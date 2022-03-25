@@ -22,9 +22,11 @@ import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 
 
 import cz.msebera.android.httpclient.Header;
@@ -38,9 +40,10 @@ import jxl.write.WritableWorkbook;
 public class MainActivity extends AppCompatActivity {
 
     private final static String FILE_NAME = "DATA.txt";
+    private final static String FILE_NAME_SELECTION = "selection.txt";
     AsyncHttpClient client;
     Workbook workbook;
-    String[] url = new String[4];
+    String[] url = new String[5];
     Button[] Subject = new Button[24];
     String[] Subject_text = new String[48];
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID;
@@ -94,12 +97,46 @@ public class MainActivity extends AppCompatActivity {
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         //Конец подключения XML//
 
-        URL_ID = 0;
-        url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FirstCourse.xls?raw=true";
-        COLLUMN_ID = 4;
+
+        url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
+        url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
+        url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
+        url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
+        url[4] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIVECOURSE.xls?raw=true";
         ROW_ID = 8;
-        SHEET_ID = 0;
         NEED_DOWNLOAD = false;
+        BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SELECTION);
+                overridePendingTransition(0,0);
+            }
+        });
+
+
+        FileInputStream fins = null;
+                String text_selection;
+                try {
+                    fins = openFileInput(FILE_NAME_SELECTION);
+                    byte[] bytes = new byte[fins.available()];
+                    fins.read(bytes);
+                    text_selection = new String(bytes);
+                    URL_ID = text_selection.charAt(0)-'0';
+                    SHEET_ID = text_selection.charAt(1)-'0';
+                    if(text_selection.length()>3)
+                    {
+                        COLLUMN_ID = ((text_selection.charAt(2)-'0')*10)+text_selection.charAt(3)-'0';
+                    }
+                    else
+                        COLLUMN_ID = text_selection.charAt(2)-'0';
+                        COLLUMN_ID = COLLUMN_ID + 4;
+                        System.out.println("---------------------"+COLLUMN_ID);
+                    } catch (FileNotFoundException e) {
+                    BUTTON_TO_SELECTION.callOnClick();
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
         LOAD_DATA();
@@ -253,13 +290,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-            BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(INTENT_TO_SELECTION);
-                    overridePendingTransition(0,0);
-                }
-            });
 
 
 

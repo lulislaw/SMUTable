@@ -19,24 +19,26 @@
 
 
     <Spinner
-        android:id="@+id/SPINNER_SELECT_GROUP"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toTopOf="@id/BUTTON_TO_MAIN"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
         android:id="@+id/SPINNER_SELECT_INSTITUTE"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
         android:layout_marginBottom="50dp"
+        android:clickable="false"
         app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_GROUP"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Spinner
+        android:id="@+id/SPINNER_SELECT_GROUP"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="200dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@id/BUTTON_TO_MAIN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,4 +50,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <Button
+        android:id="@+id/BUTTON_SAVE_SELECTION"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="100dp"
+        android:enabled="false"
+        android:text="Сохранить"
+        app:layout_constraintBottom_toTopOf="@id/BUTTON_TO_MAIN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
