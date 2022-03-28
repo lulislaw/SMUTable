@@ -30,150 +30,174 @@
                 android:id="@+id/BUTTON_SUBJECT_INFO1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO3"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO4"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO5"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO6"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO7"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO8"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO9"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO10"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO11"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO12"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO13"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO14"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO15"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO16"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO17"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO18"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO19"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO20"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO21"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO22"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO23"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO24"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Button" />
+                android:text="Button"
+                android:textSize="10sp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -219,6 +243,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/btn_dialog" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_REFRESH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_popup_sync" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -46,20 +46,23 @@ public class MainActivity extends AppCompatActivity {
     String[] url = new String[5];
     Button[] Subject = new Button[24];
     String[] Subject_text = new String[48];
+    String[] Subject_text_rly = new String[24];                     //Массив в соответсвие с "Subject"
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID;
+    int WEEK_EVEN;     // 0 = EVEN , 1 = Non-even;
     String text;
     TextView INFO_BLOCK;
     Button CLOSE_INFO_BLOCK;
     Boolean NEED_DOWNLOAD;
-    ImageButton BUTTON_TO_SELECTION;
+    ImageButton BUTTON_TO_SELECTION, BUTTON_REFRESH;
     Intent INTENT_TO_SELECTION;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
 
-
+        WEEK_EVEN = 0;
 
 
         //Начало подключения XML//
@@ -92,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         //Subjects//
         INFO_BLOCK = findViewById(R.id.INFO_BLOCK);
         CLOSE_INFO_BLOCK = findViewById(R.id.CLOSE_INFO_BLOCK);
-
+        BUTTON_REFRESH = findViewById(R.id.BUTTON_REFRESH);
         BUTTON_TO_SELECTION = findViewById(R.id.BUTTON_TO_SELECTION);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         //Конец подключения XML//
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-        LOAD_DATA();
+
 
         {
         Subject[0].setOnClickListener(new View.OnClickListener() {
@@ -289,6 +292,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+            BUTTON_REFRESH.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DOWNLOAD_DATA();
+                    SAVE_DATA();
+                    LOAD_DATA();
+                }
+            });
 
 
 
@@ -302,7 +313,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-            DOWNLOAD_DATA();
+
+
+        DOWNLOAD_DATA();
+        SAVE_DATA();
+        LOAD_DATA();
+
+
+
 
         //end main code
     }
@@ -329,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
                             workbook = workbook.getWorkbook(file);
                             Sheet sheet = workbook.getSheet(SHEET_ID);
                             for (int i = 0; i < 48; i++) {
-                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "--" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
+                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "\n\n" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
                             }
                             SAVE_DATA();
                             LOAD_DATA();
@@ -351,9 +369,10 @@ public class MainActivity extends AppCompatActivity {
         public void SHOW_INFO(int a)
         {
             INFO_BLOCK.setVisibility(View.VISIBLE);
-            INFO_BLOCK.setText(Subject_text[a]);
+            INFO_BLOCK.setText(Subject_text_rly[a]);
             CLOSE_INFO_BLOCK.setVisibility(View.VISIBLE);
             CLOSE_INFO_BLOCK.setClickable(true);
+
         }
 
 
@@ -430,6 +449,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+            int FIRSTNUMBERROW = 0 + WEEK_EVEN;
+            for(int i = 0; i < 24; i++)
+            {
+
+                Subject[i].setText(Subject_text[FIRSTNUMBERROW]);
+                Subject_text_rly[i] = Subject_text[FIRSTNUMBERROW];
+                FIRSTNUMBERROW+=2;
+            }
 
 
 
