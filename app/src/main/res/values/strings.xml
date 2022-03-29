@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">SMUTable</string>
+    <string name="mon">Понедельник</string>
+    <string name="tue">Вторник</string>
+    <string name="wed">Среда</string>
+    <string name="thu">Четверг</string>
+    <string name="fri">Пятница</string>
+    <string name="sat">Суббота</string>
 </resources>
