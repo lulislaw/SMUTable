@@ -50,11 +50,12 @@ public class MainActivity extends AppCompatActivity {
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID;
     int WEEK_EVEN;     // 0 = EVEN , 1 = Non-even;
     String text;
-    TextView INFO_BLOCK;
+    TextView INFO_BLOCK, TEXTVIEW_GROUP;
     Button CLOSE_INFO_BLOCK;
     Boolean NEED_DOWNLOAD;
-    ImageButton BUTTON_TO_SELECTION, BUTTON_REFRESH;
+    ImageButton BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_SET_WEEK;
     Intent INTENT_TO_SELECTION;
+
 
 
     @Override
@@ -97,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         CLOSE_INFO_BLOCK = findViewById(R.id.CLOSE_INFO_BLOCK);
         BUTTON_REFRESH = findViewById(R.id.BUTTON_REFRESH);
         BUTTON_TO_SELECTION = findViewById(R.id.BUTTON_TO_SELECTION);
+        BUTTON_SET_WEEK = findViewById(R.id.BUTTON_SET_WEEK);
+        TEXTVIEW_GROUP = findViewById(R.id.TEXTVIEW_GROUP);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         //Конец подключения XML//
 
@@ -301,7 +304,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-
+            BUTTON_SET_WEEK.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    WEEK_EVEN = Math.abs(WEEK_EVEN-1);
+                    LOAD_DATA();
+                }
+            });
 
 
         CLOSE_INFO_BLOCK.setOnClickListener(new View.OnClickListener() {
@@ -346,6 +355,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             workbook = workbook.getWorkbook(file);
                             Sheet sheet = workbook.getSheet(SHEET_ID);
+
                             for (int i = 0; i < 48; i++) {
                                 Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "\n\n" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
                             }
