@@ -152,25 +152,7 @@ public class MainActivity extends AppCompatActivity {
         url[4] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIVECOURSE.xls?raw=true";
         ROW_ID = 8;
         NEED_DOWNLOAD = false;
-        BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(INTENT_TO_SELECTION);
-                overridePendingTransition(0,0);
-            }
-        });
-        CLOSE_INFO_BLOCK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                INFO_BLOCK.setVisibility(View.INVISIBLE);
-                INFO_BLOCK.setClickable(false);
-                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
-                CLOSE_INFO_BLOCK.setClickable(false);
-                CALENDAR_VIEW.setVisibility(View.INVISIBLE);
-                CALENDAR_VIEW.setClickable(false);
 
-            }
-        });
 
         FileInputStream fins = null;
                 String text_selection;
@@ -198,155 +180,35 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        for(int i = 0; i< 24; i++) {
+            int finalI = i;
+            Subject[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SHOW_INFO(finalI);
+                }
+            });
+        }
 
-        {
-        Subject[0].setOnClickListener(new View.OnClickListener() {
+        BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SHOW_INFO(0);
+                startActivity(INTENT_TO_SELECTION);
+                overridePendingTransition(0,0);
+            }
+        });
+        CLOSE_INFO_BLOCK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                INFO_BLOCK.setVisibility(View.INVISIBLE);
+                INFO_BLOCK.setClickable(false);
+                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
+                CLOSE_INFO_BLOCK.setClickable(false);
+                CALENDAR_VIEW.setVisibility(View.INVISIBLE);
+                CALENDAR_VIEW.setClickable(false);
 
             }
         });
-        Subject[1].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(1);
-            }
-        });
-        Subject[2].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(2);
-            }
-        });
-        Subject[3].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(3);
-            }
-        });
-        Subject[4].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(4);
-            }
-        });
-        Subject[5].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(5);
-            }
-        });
-        Subject[6].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(6);
-            }
-        });
-        Subject[7].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(7);
-            }
-        });
-        Subject[8].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(8);
-            }
-        });
-        Subject[9].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(9);
-            }
-        });
-        Subject[10].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(10);
-            }
-        });
-        Subject[11].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(11);
-            }
-        });
-        Subject[12].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(12);
-            }
-        });
-        Subject[13].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(13);
-            }
-        });
-        Subject[14].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(14);
-            }
-        });
-        Subject[15].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(15);
-            }
-        });
-        Subject[16].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(16);
-            }
-        });
-        Subject[17].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(17);
-            }
-        });
-        Subject[18].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(18);
-            }
-        });
-        Subject[19].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(19);
-            }
-        });
-        Subject[20].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(20);
-            }
-        });
-        Subject[21].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(21);
-            }
-        });
-        Subject[22].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(22);
-            }
-        });
-        Subject[23].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SHOW_INFO(23);
-            }
-        });
-    }
-
 
             BUTTON_REFRESH.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -398,6 +260,8 @@ public class MainActivity extends AppCompatActivity {
                 CALENDAR_VIEW.setVisibility(View.INVISIBLE);
                 CALENDAR_VIEW.setClickable(false);
                 Calendar_enable = false;
+                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
+                CLOSE_INFO_BLOCK.setClickable(false);
 
             }
         });

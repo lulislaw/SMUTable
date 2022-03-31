@@ -239,15 +239,6 @@
     </androidx.core.widget.NestedScrollView>
 
     <ImageButton
-        android:id="@+id/BUTTON_TO_SELECTION"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/btn_dialog" />
-
-    <ImageButton
         android:id="@+id/BUTTON_REFRESH"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -271,19 +262,19 @@
         android:id="@+id/TEXTVIEW_GROUP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
         android:text="0 - группа"
-        app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/TEXTVIEW_WEEK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@id/BUTTON_SET_WEEK"
-        app:layout_constraintTop_toTopOf="@id/BUTTON_SET_WEEK" />
+        app:layout_constraintEnd_toEndOf="@id/BUTTON_SET_WEEK"
+        app:layout_constraintTop_toBottomOf="@id/BUTTON_SET_WEEK" />
 
     <Button
         android:id="@+id/CLOSE_INFO_BLOCK"
@@ -308,7 +299,7 @@
         android:layout_marginTop="225dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="225dp"
-        android:background="#0040FF"
+        android:background="#A1A1A1"
         android:clickable="false"
         android:gravity="center"
         android:text="TextView"
@@ -322,11 +313,11 @@
         android:id="@+id/calendarView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="24dp"
 
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="128dp"
         android:background="#B3B3B3"
         android:clickable="false"
         android:elevation="10dp"
@@ -338,6 +329,65 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_TO_SELECTION"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_SEARCH"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_search" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_MAP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_NEWS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="200dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_slideshow" />
+
+    <ImageButton
+        android:id="@+id/BUTTON_SETTINGS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_preferences" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
