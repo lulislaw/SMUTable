@@ -12,6 +12,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean Calendar_enable;
     LocalDate date;
     NestedScrollView Scroll;
+    Animation animation_scale;
     String[] daysofweeks_string = {
             "Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Суббота"
     };
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
-
+        Calendar_enable = false;
         WEEK_EVEN = 0;
         GroupName = "";
         {
@@ -130,13 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Конец подключения XML//
 
-
+        animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
         TEXTVIEW_WEEK.setText("Неделя: " + CurrentWeekOfYear);
         if(CurrentWeekOfYear % 2 == 0)
             WEEK_EVEN = 0;
         else
             WEEK_EVEN = 1;
+
 
         CALENDAR_VIEW.setVisibility(View.INVISIBLE);
         CALENDAR_VIEW.setClickable(false);
@@ -155,7 +159,18 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
+        CLOSE_INFO_BLOCK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                INFO_BLOCK.setVisibility(View.INVISIBLE);
+                INFO_BLOCK.setClickable(false);
+                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
+                CLOSE_INFO_BLOCK.setClickable(false);
+                CALENDAR_VIEW.setVisibility(View.INVISIBLE);
+                CALENDAR_VIEW.setClickable(false);
 
+            }
+        });
 
         FileInputStream fins = null;
                 String text_selection;
@@ -189,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SHOW_INFO(0);
+
             }
         });
         Subject[1].setOnClickListener(new View.OnClickListener() {
@@ -350,21 +366,19 @@ public class MainActivity extends AppCompatActivity {
             BUTTON_SET_WEEK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    CLOSE_INFO_BLOCK.setVisibility(View.VISIBLE);
+                    CLOSE_INFO_BLOCK.setClickable(true);
                     CALENDAR_VIEW.setVisibility(View.VISIBLE);
                     CALENDAR_VIEW.setClickable(true);
                     Calendar_enable = true;
-
+                    CALENDAR_VIEW.startAnimation(animation_scale);
 
                 }
             });
 
 
-/*
 
-WEEK_EVEN = Math.abs(WEEK_EVEN-1);
-                    LOAD_DATA();
 
-*/
         SpecialWeekOfYear = CurrentWeekOfYear;
         CALENDAR_VIEW.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -451,15 +465,16 @@ WEEK_EVEN = Math.abs(WEEK_EVEN-1);
         {
             if(Calendar_enable == false) {
                 INFO_BLOCK.setVisibility(View.VISIBLE);
+                INFO_BLOCK.setClickable(true);
                 INFO_BLOCK.setText(Subject_text_rly[a]);
                 CLOSE_INFO_BLOCK.setVisibility(View.VISIBLE);
                 CLOSE_INFO_BLOCK.setClickable(true);
+                INFO_BLOCK.startAnimation(animation_scale);
             }
         }
 
         public void SET_TEXT_DAYS(int day, LocalDate xDate)
         {
-
             int dayx1 = day-1;
             int dayx2 = day-1;
             long xDateEpoch = xDate.toEpochDay();

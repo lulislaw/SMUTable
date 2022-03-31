@@ -277,6 +277,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/TEXTVIEW_WEEK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@id/BUTTON_SET_WEEK"
+        app:layout_constraintTop_toTopOf="@id/BUTTON_SET_WEEK" />
+
     <Button
         android:id="@+id/CLOSE_INFO_BLOCK"
         android:layout_width="0dp"
@@ -317,9 +325,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+
         android:layout_marginBottom="10dp"
-        android:background="#D3D3D3"
+        android:background="#B3B3B3"
         android:clickable="false"
+        android:elevation="10dp"
         android:maxDate="12/31/2100"
         android:minDate="01/01/2022"
         android:visibility="visible"
@@ -327,15 +337,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/TEXTVIEW_WEEK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@id/BUTTON_SET_WEEK"
-        app:layout_constraintTop_toTopOf="@id/BUTTON_SET_WEEK" />
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
