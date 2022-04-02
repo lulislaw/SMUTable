@@ -5,16 +5,21 @@ import static com.example.smutable.R.layout.activity_main;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.core.widget.NestedScrollView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.AbsoluteSizeSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -22,6 +27,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
@@ -45,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String FILE_NAME = "DATA.txt";
     private final static String FILE_NAME_GROUP = "GROUP.txt";
     private final static String FILE_NAME_SELECTION = "selection.txt";
+
     AsyncHttpClient client;
     Workbook workbook;
     String[] url = new String[5];
@@ -56,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID, DAY_ID;
     int WEEK_EVEN;     // 1 = EVEN , 0 = Non-even;
     int SpecialWeekOfYear, CurrentWeekOfYear, UsingWeekOfYear;
-
+    int selectedday;
     Integer mYear,mMonth,mdayOfMonth;
+    String[] temp_string = new String[4]; //0 - Предмет, 1 - тип, 2 - препод, 3 - аудитория
     String text, GroupName;
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK;
     Button CLOSE_INFO_BLOCK;
@@ -66,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
     Intent INTENT_TO_SELECTION;
     CalendarView CALENDAR_VIEW;
     Boolean Calendar_enable;
-    LocalDate date;
+    LocalDate date, selecteddate;
     NestedScrollView Scroll;
     Animation animation_scale;
+    String[] monthru = {
+      "Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"
+    };
     String[] daysofweeks_string = {
             "Пн","Вт","Ср","Чт","Пт","Сб","Сб"
     };
@@ -81,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
+
+
+
+
         Calendar_enable = false;
         WEEK_EVEN = 1;
         GroupName = "";
@@ -120,17 +135,15 @@ public class MainActivity extends AppCompatActivity {
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
 
+
         //Конец подключения XML//
 
         animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
 
 
-        TEXTVIEW_WEEK.setText("Неделя: " + CurrentWeekOfYear);
-        if(CurrentWeekOfYear % 2 == 0)
-            WEEK_EVEN = 1;
-        else
-            WEEK_EVEN = 0;
+
+
 
 
         CALENDAR_VIEW.setVisibility(View.GONE);
@@ -178,15 +191,31 @@ public class MainActivity extends AppCompatActivity {
                     SHOW_INFO(finalI);
                 }
             });
+
         }
 
         for(int i = 0; i < 6; i++)
         {
             int finalI = i;
             DAYS_BUTTON[i].setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
+                    for(int c = 0; c<6;c++) {
+                        DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
+
+                    }
+                    selectedday = finalI;
                     DAY_ID = finalI;
+                    DAYS_BUTTON[finalI].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
+                    if(UsingWeekOfYear % 2 == 0) {
+                        TEXTVIEW_WEEK.setText(LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getDayOfMonth() + " " + monthru[LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getMonth().getValue()-1] + ", четная");
+                        WEEK_EVEN = 1;
+                    }
+                    else {
+                        WEEK_EVEN = 0;
+                        TEXTVIEW_WEEK.setText(LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getDayOfMonth() + " " + monthru[LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getMonth().getValue()-1] + ", нечетная");
+                    }
                     LOAD_DATA(UsingWeekOfYear);
                 }
             });
@@ -217,13 +246,20 @@ public class MainActivity extends AppCompatActivity {
             BUTTON_REFRESH.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TEXTVIEW_WEEK.setText("Неделя: " + CurrentWeekOfYear);
-                    if(CurrentWeekOfYear % 2 == 0)
-                        WEEK_EVEN = 1;
-                    else
-                        WEEK_EVEN = 0;
 
+                    if(CurrentWeekOfYear % 2 == 0) {
+                        TEXTVIEW_WEEK.setText(LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1] + ", четная");
+                        WEEK_EVEN = 1;
+                    }
+                    else {
+                        WEEK_EVEN = 0;
+                        TEXTVIEW_WEEK.setText(LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1]  + ", нечетная");
+                    }
                     DAY_ID = LocalDate.now().getDayOfWeek().getValue() - 1;
+                    for(int c = 0; c<6;c++)
+                        DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
+                    DAYS_BUTTON[DAY_ID].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
+                    selecteddate = LocalDate.now();
                     SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
                     DOWNLOAD_DATA();
                     SAVE_DATA();
@@ -244,8 +280,29 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+                Scroll.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this)
+                {
+                    public void onSwipeLeft(){
+                        if(selectedday >= 5)
+                            DAYS_BUTTON[0].callOnClick();
+                        else
+                        DAYS_BUTTON[selectedday+1].callOnClick();
+
+                    }
+
+                    @SuppressLint("ClickableViewAccessibility")
+                    public void onSwipeRight()
+                    {
+                        if(selectedday != 0)
+                        DAYS_BUTTON[selectedday-1].callOnClick();
+                        else
+                            DAYS_BUTTON[5].callOnClick();
+
+                    }
 
 
+
+                });
         SpecialWeekOfYear = CurrentWeekOfYear;
         CALENDAR_VIEW.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -254,13 +311,16 @@ public class MainActivity extends AppCompatActivity {
                 mMonth = month + 1;          //Блядская джава считает что отсчитывать с нуля нужно только месяц   :|
                 mdayOfMonth = dayOfMonth;
                 SpecialWeekOfYear = (LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfYear() - date.getDayOfYear()) / 7 + 1;
-                TEXTVIEW_WEEK.setText("Неделя: " +SpecialWeekOfYear);
-                if(SpecialWeekOfYear % 2 == 0)
-                        WEEK_EVEN = 1;
-                    else
-                        WEEK_EVEN = 0;
 
+                if(SpecialWeekOfYear % 2 == 0) {
+                    TEXTVIEW_WEEK.setText(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month] + ", четная");
+                    WEEK_EVEN = 1;
+                }   else {
+                    TEXTVIEW_WEEK.setText(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month] + ", нечетная");
+                    WEEK_EVEN = 0;
+                }
                     UsingWeekOfYear = SpecialWeekOfYear;
+                selecteddate = LocalDate.of(mYear,mMonth,mdayOfMonth);
                 DAY_ID =(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1);
                 LOAD_DATA(UsingWeekOfYear);
                 SET_TEXT_DAYS(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue(),LocalDate.of(mYear,mMonth,mdayOfMonth));
@@ -269,7 +329,6 @@ public class MainActivity extends AppCompatActivity {
                 Calendar_enable = false;
                 CLOSE_INFO_BLOCK.setVisibility(View.GONE);
                 CLOSE_INFO_BLOCK.setClickable(false);
-
             }
         });
 
@@ -281,10 +340,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         DOWNLOAD_DATA();
-
-
-
-
 
         //end main code
     }
@@ -312,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
                             Sheet sheet = workbook.getSheet(SHEET_ID);
                             GroupName = sheet.getCell(COLLUMN_ID, 5).getContents() + " - " + sheet.getCell(COLLUMN_ID, 7).getContents();
                             for (int i = 0; i < 48; i++) {
-                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "t\n\n" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
+                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "t" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
                             }
 
                             SAVE_DATA();
@@ -323,25 +378,12 @@ public class MainActivity extends AppCompatActivity {
                         } catch (BiffException e) {
                             e.printStackTrace();
                         }
-
-
                     }
-
-
                 }
             });
-
-
-
         }
 
 //next public voids
-        public void SET_DAY(int a)
-        {
-
-        }
-
-
 
         public void SHOW_INFO(int a)
         {
@@ -364,23 +406,18 @@ public class MainActivity extends AppCompatActivity {
             while(dayx1 >= 0)
             {
 
-                DAYS_BUTTON[dayx1].setText(LocalDate.ofEpochDay(xDateEpoch).getDayOfMonth()+"\n"+daysofweeks_string[dayx1]);
+                DAYS_BUTTON[dayx1].setText(Html.fromHtml("<b><big>"+LocalDate.ofEpochDay(xDateEpoch).getDayOfMonth()+"</big></b><br><small>"+daysofweeks_string[dayx1]+"</small>"));
                 xDateEpoch = xDateEpoch -1;
                 dayx1= dayx1 -1;
             }
             while(dayx2 <= 5)
             {
-                DAYS_BUTTON[dayx2].setText(LocalDate.ofEpochDay(xDateEpoch1).getDayOfMonth()+"\n"+daysofweeks_string[dayx2]);
+                DAYS_BUTTON[dayx2].setText(Html.fromHtml("<b><big>"+LocalDate.ofEpochDay(xDateEpoch1).getDayOfMonth()+"</big></b><br><small>"+daysofweeks_string[dayx2]+"</small>"));
                 xDateEpoch1 = xDateEpoch1 + 1;
                 dayx2= dayx2 +1;
             }
 
         }
-
-
-
-
-
 
         //Вывод в консоль//
     public void TEST()
@@ -391,11 +428,9 @@ public class MainActivity extends AppCompatActivity {
     }
         //Вывод в консоль//
 
-
         //Сохранение информации о текущей группе//
     public void SAVE_DATA()
     {
-
         FileOutputStream fos = null;
         try {
                 text = "";
@@ -420,8 +455,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-
-
         FileOutputStream fosgroup = null;
         try {
 
@@ -443,12 +476,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
         //Сохранение информации о текущей группе//
-
-
         //Загрузка информации о текущей группе//
     public void LOAD_DATA(int week)
     {
-
         FileInputStream fin = null;
         String stringfortext = "";
         int c = 0;
@@ -457,7 +487,6 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             text = new String(bytes);
-
 
             for(int i = 0; i < text.length(); i++)
             {
@@ -470,23 +499,78 @@ public class MainActivity extends AppCompatActivity {
                 else
                 stringfortext = stringfortext + text.charAt(i);
 
-
-
-
             }
 
             if(DAY_ID > 5)
                 DAY_ID = 5;
             int FIRSTNUMBERROW = 0 + WEEK_EVEN + (DAY_ID*8);
            for(int i = 0; i < 4; i++) {
-
-
                 String[] SPLIT = Subject_text[FIRSTNUMBERROW].split("t");
-                TIME[i].setText(SPLIT[0]);
-                Subject[i].setText(SPLIT[1]);
+                TIME[i].setText("   " + SPLIT[0]);
                 Subject_text_rly[i] = Subject_text[FIRSTNUMBERROW];
                 String sss = Subject_text[FIRSTNUMBERROW];
-                if(SPLIT[1].length() == 3)
+                if(SPLIT[1].contains("(ЛЗ"))
+                    temp_string[1] = "<br>Лабораторная работа";
+                else if(SPLIT[1].contains("(ПЗ"))
+                    temp_string[1] = "<br>Практическое занятие";
+                else if(SPLIT[1].contains("(Л "))
+                    temp_string[1] = "<br>Лекция";
+                else
+                    temp_string[1] = "";
+                temp_string[0] = "";
+                SPLIT[1] = SPLIT[1];
+
+                for(int le = 0; le < SPLIT[1].length(); le++)                                                 //пилю текст по частям
+                {
+                    if(SPLIT[1].charAt(le) == '(') {
+                        temp_string[0] = SPLIT[1].substring(0,le-1);
+                        break;
+
+                    }
+
+
+                }
+
+                int tempsc = 0;
+                for(int le = 0; le < SPLIT[1].length(); le++)
+                {
+                    if(SPLIT[1].charAt(le) == ')') {
+                        tempsc = le+2;
+                        break;
+
+                    }
+                }
+                if(temp_string[0].length() >= 33)
+                    temp_string[0] = temp_string[0].substring(0,30) + "...";
+                temp_string[3] = "";
+                temp_string[2] = "";
+
+                try {
+                    if(SPLIT[1].contains("ЛК-")) {
+                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 6, SPLIT[1].length());
+                        temp_string[2] = "<br>" + SPLIT[1].substring(tempsc, SPLIT[1].length()-7);}
+                    else if(SPLIT[1].contains("У-") || SPLIT[1].contains("А-") || SPLIT[1].contains("ПА-")) {
+                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 5, SPLIT[1].length());
+                        temp_string[2] = "<br>" + SPLIT[1].substring(tempsc, SPLIT[1].length()-6);
+                    }
+                    else if(SPLIT[1].contains("этаж")) {
+                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 9, SPLIT[1].length());
+
+                    }
+                    else if(SPLIT[1].contains("Спортивный комплекс")) {
+                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 19, SPLIT[1].length());
+                    }
+                    else
+                        temp_string[3] = "<br>";
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+               Subject[i].setText(Html.fromHtml("<br>" +"<b><big>"+temp_string[0]+"</big></b>"+temp_string[1] +temp_string[2] +""+temp_string[3]+"" + "<br>" ));
+
+                                                                                                                                                     // связываю
+                if(SPLIT[1].length() == 1)
                 {
                     Subject[i].setVisibility(View.GONE);
                     TIME[i].setVisibility(View.GONE);
@@ -494,7 +578,6 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     Subject[i].setVisibility(View.VISIBLE);
-
                     TIME[i].setVisibility(View.VISIBLE);
 
                 }
@@ -508,22 +591,17 @@ public class MainActivity extends AppCompatActivity {
                         if (w < week) {
                             TIME[i].setVisibility(View.GONE);
                             Subject[i].setVisibility(View.GONE);
-
-
                         }
-
+                        else
+                        {
+                            Subject[i].setVisibility(View.VISIBLE);
+                            TIME[i].setVisibility(View.VISIBLE);
+                        }
                     }
-
-
-
                 }
                 FIRSTNUMBERROW += 2;
             }
-
-
-
         } catch (IOException ex) {
-
         } finally {
             try {
                 if (fin != null)
@@ -532,8 +610,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-
-
 
 
         FileInputStream fingroup = null;
@@ -548,7 +624,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         } catch (IOException ex) {
-
         } finally {
             try {
                 if (fingroup != null)
@@ -559,17 +634,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
-
-
     }
         //Загрузка информации о текущей группе//
-
-
-
 
 }
 
