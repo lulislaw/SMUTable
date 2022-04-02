@@ -118,8 +118,6 @@ public class SelectionActivity extends AppCompatActivity {
                                 ADAPTER_2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 SPINNER_SELECT_INSTITUTE.setAdapter(ADAPTER_2);
 
-
-
                             } catch (IOException e) {
                                 e.printStackTrace();
                             } catch (BiffException e) {
@@ -129,14 +127,6 @@ public class SelectionActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-
-
-
-
-
-
-
             }
 
             @Override

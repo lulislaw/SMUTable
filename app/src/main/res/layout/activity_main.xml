@@ -10,10 +10,8 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="70dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,216 +25,225 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/TEXTVIEW_MONDAY"
+                android:id="@+id/TIME_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TEXTVIEW_MONDAY" />
+                android:text="Время"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO1"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="top|center_vertical"
                 android:text="Button"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/TIME_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO2"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="top|center_vertical"
                 android:text="Button"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/TIME_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO3"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="top|center_vertical"
                 android:text="Button"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/TIME_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Время"
+                android:textSize="16sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
             <Button
                 android:id="@+id/BUTTON_SUBJECT_INFO4"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="top|center_vertical"
                 android:text="Button"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/TEXTVIEW_TUESDAY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TEXTVIEW_TUESDAY" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO5"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO6"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO7"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO8"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/TEXTVIEW_WEDNESDAY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TEXTVIEW" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO9"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO10"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO11"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO12"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/TEXTVIEW_THURSDAY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TEXTVIEW" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO13"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO14"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO15"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO16"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/TEXTVIEW_FRIDAY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TEXTVIEW" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO17"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO18"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO19"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO20"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/TEXTVIEW_SATURDAY"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="TEXTVIEW" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO21"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO22"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO23"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/BUTTON_SUBJECT_INFO24"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="Button"
-                android:textSize="10sp" />
+                android:textSize="10sp"
+                android:visibility="invisible"
+                tools:visibility="visible" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_Buttons_setDay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="75dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/BUTTON_MONDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="1\nПн"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/BUTTON_TUESDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="2\nВт"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/BUTTON_WEDNESDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="3\nСр"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/BUTTON_THURSDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="4\nЧт"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/BUTTON_FRIDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="5\nПт"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/BUTTON_SATURDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="6\nСб"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout_Bot"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:orientation="horizontal"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/BUTTON_MAP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/BUTTON_SEARCH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/BUTTON_TO_SELECTION"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/BUTTON_SETTINGS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star" />
+
+        <ImageButton
+            android:id="@+id/BUTTON_HUYZNAETZACHEM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/btn_star" />
+    </LinearLayout>
 
     <ImageButton
         android:id="@+id/BUTTON_REFRESH"
@@ -263,7 +270,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="0 - группа"
+        android:text="ГРУППА"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -272,9 +280,10 @@
         android:id="@+id/TEXTVIEW_WEEK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@id/BUTTON_SET_WEEK"
-        app:layout_constraintTop_toBottomOf="@id/BUTTON_SET_WEEK" />
+        android:layout_marginStart="10dp"
+        android:text="Дата, неделя"
+        app:layout_constraintBottom_toTopOf="@id/LinearLayout_Buttons_setDay"
+        app:layout_constraintStart_toStartOf="@id/LinearLayout_Buttons_setDay" />
 
     <Button
         android:id="@+id/CLOSE_INFO_BLOCK"
@@ -328,66 +337,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
-
-    <ImageButton
-        android:id="@+id/BUTTON_TO_SELECTION"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
-
-    <ImageButton
-        android:id="@+id/BUTTON_SEARCH"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_search" />
-
-    <ImageButton
-        android:id="@+id/BUTTON_MAP"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
-
-    <ImageButton
-        android:id="@+id/BUTTON_NEWS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="200dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_slideshow" />
-
-    <ImageButton
-        android:id="@+id/BUTTON_SETTINGS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginBottom="5dp"
-        android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_preferences" />
+        tools:visibility="invisible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

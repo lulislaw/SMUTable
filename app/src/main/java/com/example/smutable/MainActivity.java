@@ -3,6 +3,7 @@ package com.example.smutable;
 
 import static com.example.smutable.R.layout.activity_main;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import com.loopj.android.http.AsyncHttpClient;
@@ -11,7 +12,11 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -25,6 +30,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Calendar;
+
 import cz.msebera.android.httpclient.Header;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -41,13 +48,15 @@ public class MainActivity extends AppCompatActivity {
     AsyncHttpClient client;
     Workbook workbook;
     String[] url = new String[5];
-    TextView[] DAYS = new TextView[7];
-    Button[] Subject = new Button[24];
+    TextView[] TIME = new TextView[4];
+    Button[] Subject = new Button[4];
+    Button[] DAYS_BUTTON = new Button[7];
     String[] Subject_text = new String[48];
     String[] Subject_text_rly = new String[24];                     //Массив в соответсвие с "Subject"
-    int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID;
-    int WEEK_EVEN;     // 0 = EVEN , 1 = Non-even;
-    int SpecialWeekOfYear, CurrentWeekOfYear;
+    int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID, DAY_ID;
+    int WEEK_EVEN;     // 1 = EVEN , 0 = Non-even;
+    int SpecialWeekOfYear, CurrentWeekOfYear, UsingWeekOfYear;
+
     Integer mYear,mMonth,mdayOfMonth;
     String text, GroupName;
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK;
@@ -61,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     NestedScrollView Scroll;
     Animation animation_scale;
     String[] daysofweeks_string = {
-            "Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Суббота"
+            "Пн","Вт","Ср","Чт","Пт","Сб","Сб"
     };
 
 
@@ -73,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
         Calendar_enable = false;
-        WEEK_EVEN = 0;
+        WEEK_EVEN = 1;
         GroupName = "";
         {
             date = LocalDate.of
@@ -85,42 +94,22 @@ public class MainActivity extends AppCompatActivity {
 
         //Начало подключения XML//
 
-        //Subjects//
 
         Subject[0] = findViewById(R.id.BUTTON_SUBJECT_INFO1);
         Subject[1] = findViewById(R.id.BUTTON_SUBJECT_INFO2);
         Subject[2] = findViewById(R.id.BUTTON_SUBJECT_INFO3);
         Subject[3] = findViewById(R.id.BUTTON_SUBJECT_INFO4);
-        Subject[4] = findViewById(R.id.BUTTON_SUBJECT_INFO5);
-        Subject[5] = findViewById(R.id.BUTTON_SUBJECT_INFO6);
-        Subject[6] = findViewById(R.id.BUTTON_SUBJECT_INFO7);
-        Subject[7] = findViewById(R.id.BUTTON_SUBJECT_INFO8);
-        Subject[8] = findViewById(R.id.BUTTON_SUBJECT_INFO9);
-        Subject[9] = findViewById(R.id.BUTTON_SUBJECT_INFO10);
-        Subject[10] = findViewById(R.id.BUTTON_SUBJECT_INFO11);
-        Subject[11] = findViewById(R.id.BUTTON_SUBJECT_INFO12);
-        Subject[12] = findViewById(R.id.BUTTON_SUBJECT_INFO13);
-        Subject[13] = findViewById(R.id.BUTTON_SUBJECT_INFO14);
-        Subject[14] = findViewById(R.id.BUTTON_SUBJECT_INFO15);
-        Subject[15] = findViewById(R.id.BUTTON_SUBJECT_INFO16);
-        Subject[16] = findViewById(R.id.BUTTON_SUBJECT_INFO17);
-        Subject[17] = findViewById(R.id.BUTTON_SUBJECT_INFO18);
-        Subject[18] = findViewById(R.id.BUTTON_SUBJECT_INFO19);
-        Subject[19] = findViewById(R.id.BUTTON_SUBJECT_INFO20);
-        Subject[20] = findViewById(R.id.BUTTON_SUBJECT_INFO21);
-        Subject[21] = findViewById(R.id.BUTTON_SUBJECT_INFO22);
-        Subject[22] = findViewById(R.id.BUTTON_SUBJECT_INFO23);
-        Subject[23] = findViewById(R.id.BUTTON_SUBJECT_INFO24);
-        //Subjects//
-        //days//
-        DAYS[0] = findViewById(R.id.TEXTVIEW_MONDAY);
-        DAYS[1] = findViewById(R.id.TEXTVIEW_TUESDAY);
-        DAYS[2] = findViewById(R.id.TEXTVIEW_WEDNESDAY);
-        DAYS[3] = findViewById(R.id.TEXTVIEW_THURSDAY);
-        DAYS[4] = findViewById(R.id.TEXTVIEW_FRIDAY);
-        DAYS[5] = findViewById(R.id.TEXTVIEW_SATURDAY);
-        DAYS[6] = findViewById(R.id.TEXTVIEW_SATURDAY);
-        //days//
+        TIME[0] = findViewById(R.id.TIME_1);
+        TIME[1] = findViewById(R.id.TIME_2);
+        TIME[2] = findViewById(R.id.TIME_3);
+        TIME[3] = findViewById(R.id.TIME_4);
+        DAYS_BUTTON[0] = findViewById(R.id.BUTTON_MONDAY);
+        DAYS_BUTTON[1] = findViewById(R.id.BUTTON_TUESDAY);
+        DAYS_BUTTON[2] = findViewById(R.id.BUTTON_WEDNESDAY);
+        DAYS_BUTTON[3] = findViewById(R.id.BUTTON_THURSDAY);
+        DAYS_BUTTON[4] = findViewById(R.id.BUTTON_FRIDAY);
+        DAYS_BUTTON[5] = findViewById(R.id.BUTTON_SATURDAY);
+        DAYS_BUTTON[6] = findViewById(R.id.BUTTON_SATURDAY);
         INFO_BLOCK = findViewById(R.id.INFO_BLOCK);
         TEXTVIEW_GROUP = findViewById(R.id.TEXTVIEW_GROUP);
         TEXTVIEW_WEEK = findViewById(R.id.TEXTVIEW_WEEK);
@@ -135,14 +124,16 @@ public class MainActivity extends AppCompatActivity {
 
         animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
+
+
         TEXTVIEW_WEEK.setText("Неделя: " + CurrentWeekOfYear);
         if(CurrentWeekOfYear % 2 == 0)
-            WEEK_EVEN = 0;
-        else
             WEEK_EVEN = 1;
+        else
+            WEEK_EVEN = 0;
 
 
-        CALENDAR_VIEW.setVisibility(View.INVISIBLE);
+        CALENDAR_VIEW.setVisibility(View.GONE);
         CALENDAR_VIEW.setClickable(false);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
@@ -170,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                     else
                         COLLUMN_ID = text_selection.charAt(2)-'0';
                         COLLUMN_ID = COLLUMN_ID + 4;
-
                     } catch (FileNotFoundException e) {
                     BUTTON_TO_SELECTION.callOnClick();
                     e.printStackTrace();
@@ -180,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        for(int i = 0; i< 24; i++) {
+        for(int i = 0; i< 4; i++) {
             int finalI = i;
             Subject[i].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -189,6 +179,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+        for(int i = 0; i < 6; i++)
+        {
+            int finalI = i;
+            DAYS_BUTTON[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DAY_ID = finalI;
+                    LOAD_DATA(UsingWeekOfYear);
+                }
+            });
+        }
+
+
 
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,11 +204,11 @@ public class MainActivity extends AppCompatActivity {
         CLOSE_INFO_BLOCK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                INFO_BLOCK.setVisibility(View.INVISIBLE);
+                INFO_BLOCK.setVisibility(View.GONE);
                 INFO_BLOCK.setClickable(false);
-                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
+                CLOSE_INFO_BLOCK.setVisibility(View.GONE);
                 CLOSE_INFO_BLOCK.setClickable(false);
-                CALENDAR_VIEW.setVisibility(View.INVISIBLE);
+                CALENDAR_VIEW.setVisibility(View.GONE);
                 CALENDAR_VIEW.setClickable(false);
 
             }
@@ -215,13 +219,16 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     TEXTVIEW_WEEK.setText("Неделя: " + CurrentWeekOfYear);
                     if(CurrentWeekOfYear % 2 == 0)
-                        WEEK_EVEN = 0;
-                    else
                         WEEK_EVEN = 1;
+                    else
+                        WEEK_EVEN = 0;
+
+                    DAY_ID = LocalDate.now().getDayOfWeek().getValue() - 1;
                     SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
                     DOWNLOAD_DATA();
                     SAVE_DATA();
-                    LOAD_DATA(CurrentWeekOfYear);
+                    UsingWeekOfYear = CurrentWeekOfYear;
+                    LOAD_DATA(UsingWeekOfYear);
                 }
             });
 
@@ -239,8 +246,6 @@ public class MainActivity extends AppCompatActivity {
             });
 
 
-
-
         SpecialWeekOfYear = CurrentWeekOfYear;
         CALENDAR_VIEW.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -251,27 +256,32 @@ public class MainActivity extends AppCompatActivity {
                 SpecialWeekOfYear = (LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfYear() - date.getDayOfYear()) / 7 + 1;
                 TEXTVIEW_WEEK.setText("Неделя: " +SpecialWeekOfYear);
                 if(SpecialWeekOfYear % 2 == 0)
-                        WEEK_EVEN = 0;
-                    else
                         WEEK_EVEN = 1;
-                LOAD_DATA(SpecialWeekOfYear);
+                    else
+                        WEEK_EVEN = 0;
+
+                    UsingWeekOfYear = SpecialWeekOfYear;
+                DAY_ID =(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1);
+                LOAD_DATA(UsingWeekOfYear);
                 SET_TEXT_DAYS(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue(),LocalDate.of(mYear,mMonth,mdayOfMonth));
-                SMOOTH_SCROLL(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue());
-                CALENDAR_VIEW.setVisibility(View.INVISIBLE);
+                CALENDAR_VIEW.setVisibility(View.GONE);
                 CALENDAR_VIEW.setClickable(false);
                 Calendar_enable = false;
-                CLOSE_INFO_BLOCK.setVisibility(View.INVISIBLE);
+                CLOSE_INFO_BLOCK.setVisibility(View.GONE);
                 CLOSE_INFO_BLOCK.setClickable(false);
 
             }
         });
 
+        UsingWeekOfYear = CurrentWeekOfYear;
+        try {
+            BUTTON_REFRESH.callOnClick();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        LOAD_DATA(CurrentWeekOfYear);
         DOWNLOAD_DATA();
 
-
-        SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
 
 
 
@@ -286,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
             client.get(url[URL_ID], new FileAsyncHttpResponseHandler(this) {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-                    SMOOTH_SCROLL(LocalDate.now().getDayOfWeek().getValue());
+
                     Toast.makeText(MainActivity.this, "Загружена последняя информация", Toast.LENGTH_SHORT).show();
                 }
 
@@ -300,13 +310,14 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             workbook = workbook.getWorkbook(file);
                             Sheet sheet = workbook.getSheet(SHEET_ID);
-                           GroupName = sheet.getCell(COLLUMN_ID, 5).getContents() + " - " + sheet.getCell(COLLUMN_ID, 7).getContents();
+                            GroupName = sheet.getCell(COLLUMN_ID, 5).getContents() + " - " + sheet.getCell(COLLUMN_ID, 7).getContents();
                             for (int i = 0; i < 48; i++) {
-                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "\n\n" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
+                                Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "t\n\n" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
                             }
 
                             SAVE_DATA();
-                            LOAD_DATA(CurrentWeekOfYear);
+                            UsingWeekOfYear = CurrentWeekOfYear;
+                            LOAD_DATA(UsingWeekOfYear);
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (BiffException e) {
@@ -315,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                     }
-                    SMOOTH_SCROLL(LocalDate.now().getDayOfWeek().getValue());
+
 
                 }
             });
@@ -325,6 +336,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
 //next public voids
+        public void SET_DAY(int a)
+        {
+
+        }
+
+
+
         public void SHOW_INFO(int a)
         {
             if(Calendar_enable == false) {
@@ -345,13 +363,14 @@ public class MainActivity extends AppCompatActivity {
             long xDateEpoch1 = xDate.toEpochDay();
             while(dayx1 >= 0)
             {
-                DAYS[dayx1].setText(daysofweeks_string[dayx1] + "  "+  LocalDate.ofEpochDay(xDateEpoch).getDayOfMonth() + "." +LocalDate.ofEpochDay(xDateEpoch).getMonth().getValue() + "." + LocalDate.ofEpochDay(xDateEpoch).getYear());
+
+                DAYS_BUTTON[dayx1].setText(LocalDate.ofEpochDay(xDateEpoch).getDayOfMonth()+"\n"+daysofweeks_string[dayx1]);
                 xDateEpoch = xDateEpoch -1;
                 dayx1= dayx1 -1;
             }
             while(dayx2 <= 5)
             {
-                DAYS[dayx2].setText(daysofweeks_string[dayx2] + "  "+  LocalDate.ofEpochDay(xDateEpoch1).getDayOfMonth() + "." + LocalDate.ofEpochDay(xDateEpoch1).getMonth().getValue() + "." + LocalDate.ofEpochDay(xDateEpoch1).getYear());
+                DAYS_BUTTON[dayx2].setText(LocalDate.ofEpochDay(xDateEpoch1).getDayOfMonth()+"\n"+daysofweeks_string[dayx2]);
                 xDateEpoch1 = xDateEpoch1 + 1;
                 dayx2= dayx2 +1;
             }
@@ -359,20 +378,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        public void SMOOTH_SCROLL(int day)
-        {
-            day = day-1;
-            if(day >= 0 && day <=6) {
-                Scroll.smoothScrollTo(Scroll.getScrollX(), DAYS[day].getTop());
-
-            }
-        }
-
-        public void SET_DATE()
-        {
 
 
-        }
+
 
         //Вывод в консоль//
     public void TEST()
@@ -467,11 +475,30 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            int FIRSTNUMBERROW = 0 + WEEK_EVEN;
-            for(int i = 0; i < 24; i++) {
-                Subject[i].setText(Subject_text[FIRSTNUMBERROW]);
+            if(DAY_ID > 5)
+                DAY_ID = 5;
+            int FIRSTNUMBERROW = 0 + WEEK_EVEN + (DAY_ID*8);
+           for(int i = 0; i < 4; i++) {
+
+
+                String[] SPLIT = Subject_text[FIRSTNUMBERROW].split("t");
+                TIME[i].setText(SPLIT[0]);
+                Subject[i].setText(SPLIT[1]);
                 Subject_text_rly[i] = Subject_text[FIRSTNUMBERROW];
                 String sss = Subject_text[FIRSTNUMBERROW];
+                if(SPLIT[1].length() == 3)
+                {
+                    Subject[i].setVisibility(View.GONE);
+                    TIME[i].setVisibility(View.GONE);
+                }
+                else
+                {
+                    Subject[i].setVisibility(View.VISIBLE);
+
+                    TIME[i].setVisibility(View.VISIBLE);
+
+                }
+
                 for (Integer w = 8; w < 20; w++) {
 
                     String s1 = w.toString() + " н";
@@ -479,9 +506,10 @@ public class MainActivity extends AppCompatActivity {
                     String s3 = w.toString() + "н";
                     if (sss.contains(s1) | sss.contains(s2) | sss.contains(s3)) {
                         if (w < week) {
-                            // Проверка на неделях
+                            TIME[i].setVisibility(View.GONE);
+                            Subject[i].setVisibility(View.GONE);
 
-                            Subject[i].setText("\n\nЗанятия закончились");
+
                         }
 
                     }
@@ -491,6 +519,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 FIRSTNUMBERROW += 2;
             }
+
 
 
         } catch (IOException ex) {
@@ -514,7 +543,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = new byte[fingroup.available()];
             fingroup.read(bytes);
             GroupName = new String(bytes);
-
+            TEXTVIEW_GROUP.setVisibility(View.VISIBLE);
             TEXTVIEW_GROUP.setText(GroupName);
 
 
