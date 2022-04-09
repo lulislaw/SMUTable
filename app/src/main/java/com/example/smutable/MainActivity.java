@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.core.widget.NestedScrollView;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
@@ -24,9 +26,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,10 +58,16 @@ public class MainActivity extends AppCompatActivity {
 
     AsyncHttpClient client;
     Workbook workbook;
+
     String[] url = new String[5];
     TextView[] TIME = new TextView[4];
-    Button[] Subject = new Button[4];
-    Button[] DAYS_BUTTON = new Button[7];
+    ConstraintLayout[] Subject = new ConstraintLayout[4];
+    TextView[] NameSubject = new TextView[4];
+    TextView[] TeacherSubject = new TextView[4];
+    TextView[] TypeSubject = new TextView[4];
+    TextView[] RoomSubject = new TextView[4];
+    Button[] DAYS_BUTTON = new Button[3];
+
     String[] Subject_text = new String[48];
     String[] Subject_text_rly = new String[24];                     //Массив в соответсвие с "Subject"
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID, DAY_ID;
@@ -67,23 +77,25 @@ public class MainActivity extends AppCompatActivity {
     Integer mYear,mMonth,mdayOfMonth;
     String[] temp_string = new String[4]; //0 - Предмет, 1 - тип, 2 - препод, 3 - аудитория
     String text, GroupName;
-    TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK;
+    TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK, TEXTVIEW_DATE;
     Button CLOSE_INFO_BLOCK;
     Boolean NEED_DOWNLOAD;
-    ImageButton BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_SET_WEEK;
+    ImageButton BUTTON_SET_WEEK;
+    ConstraintLayout BUTTON_TO_SELECTION, BUTTON_REFRESH;
     Intent INTENT_TO_SELECTION;
     CalendarView CALENDAR_VIEW;
-    Boolean Calendar_enable;
+    Boolean Calendar_enable, firstrun;
     LocalDate date, selecteddate;
     NestedScrollView Scroll;
     Animation animation_scale;
+
     String[] monthru = {
       "Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"
     };
     String[] daysofweeks_string = {
-            "Пн","Вт","Ср","Чт","Пт","Сб","Сб"
+            "Понедельник","Вторник","Среда","Четверг","Пяница","Суббота","Воскресенье"
     };
-
+    Character[] alphabet = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
 
 
 
@@ -92,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
+        firstrun = true;
 
 
 
@@ -110,28 +123,41 @@ public class MainActivity extends AppCompatActivity {
         //Начало подключения XML//
 
 
-        Subject[0] = findViewById(R.id.BUTTON_SUBJECT_INFO1);
-        Subject[1] = findViewById(R.id.BUTTON_SUBJECT_INFO2);
-        Subject[2] = findViewById(R.id.BUTTON_SUBJECT_INFO3);
-        Subject[3] = findViewById(R.id.BUTTON_SUBJECT_INFO4);
+        NameSubject[0] = findViewById(R.id.NameSubject1);
+        TeacherSubject[0] = findViewById(R.id.subjectteacher);
+        TypeSubject[0] = findViewById(R.id.subjecttype);
+        RoomSubject[0] = findViewById(R.id.subjectaud);
+        NameSubject[1] = findViewById(R.id.NameSubject2);
+        TeacherSubject[1] = findViewById(R.id.subjectteacher2);
+        TypeSubject[1] = findViewById(R.id.subjecttype2);
+        RoomSubject[1] = findViewById(R.id.subjectaud2);
+        NameSubject[2] = findViewById(R.id.NameSubject3);
+        TeacherSubject[2] = findViewById(R.id.subjectteacher3);
+        TypeSubject[2] = findViewById(R.id.subjecttype3);
+        RoomSubject[2] = findViewById(R.id.subjectaud3);
+        NameSubject[3] = findViewById(R.id.NameSubject4);
+        TeacherSubject[3] = findViewById(R.id.subjectteacher4);
+        TypeSubject[3] = findViewById(R.id.subjecttype4);
+        RoomSubject[3] = findViewById(R.id.subjectaud4);
+        Subject[0] = findViewById(R.id.Subject_layout_1);
+        Subject[1] = findViewById(R.id.Subject_layout_2);
+        Subject[2] = findViewById(R.id.Subject_layout_3);
+        Subject[3] = findViewById(R.id.Subject_layout_4);
         TIME[0] = findViewById(R.id.TIME_1);
         TIME[1] = findViewById(R.id.TIME_2);
         TIME[2] = findViewById(R.id.TIME_3);
         TIME[3] = findViewById(R.id.TIME_4);
-        DAYS_BUTTON[0] = findViewById(R.id.BUTTON_MONDAY);
-        DAYS_BUTTON[1] = findViewById(R.id.BUTTON_TUESDAY);
-        DAYS_BUTTON[2] = findViewById(R.id.BUTTON_WEDNESDAY);
-        DAYS_BUTTON[3] = findViewById(R.id.BUTTON_THURSDAY);
-        DAYS_BUTTON[4] = findViewById(R.id.BUTTON_FRIDAY);
-        DAYS_BUTTON[5] = findViewById(R.id.BUTTON_SATURDAY);
-        DAYS_BUTTON[6] = findViewById(R.id.BUTTON_SATURDAY);
+        DAYS_BUTTON[0] = findViewById(R.id.DAY_BUTTON_LEFT);
+        DAYS_BUTTON[1] = findViewById(R.id.DAY_BUTTON_CENTER);
+        DAYS_BUTTON[2] = findViewById(R.id.DAY_BUTTON_RIGHT);
         INFO_BLOCK = findViewById(R.id.INFO_BLOCK);
         TEXTVIEW_GROUP = findViewById(R.id.TEXTVIEW_GROUP);
         TEXTVIEW_WEEK = findViewById(R.id.TEXTVIEW_WEEK);
+        TEXTVIEW_DATE = findViewById(R.id.TEXTVIEW_DATE);
         CLOSE_INFO_BLOCK = findViewById(R.id.CLOSE_INFO_BLOCK);
-        BUTTON_REFRESH = findViewById(R.id.BUTTON_REFRESH);
-        BUTTON_TO_SELECTION = findViewById(R.id.BUTTON_TO_SELECTION);
-        BUTTON_SET_WEEK = findViewById(R.id.BUTTON_SET_WEEK);
+        BUTTON_REFRESH = findViewById(R.id.home_group);
+        BUTTON_TO_SELECTION = findViewById(R.id.settings_group);
+        BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
 
@@ -140,12 +166,6 @@ public class MainActivity extends AppCompatActivity {
 
         animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
-
-
-
-
-
-
         CALENDAR_VIEW.setVisibility(View.GONE);
         CALENDAR_VIEW.setClickable(false);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
@@ -183,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        for(int i = 0; i< 4; i++) {
+  /*      for(int i = 0; i< 4; i++) {
             int finalI = i;
             Subject[i].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -194,14 +214,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < 2; i++)
         {
             int finalI = i;
             DAYS_BUTTON[i].setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("ResourceAsColor")
                 @Override
                 public void onClick(View v) {
-                    for(int c = 0; c<6;c++) {
+                    for(int c = 0; c<2;c++) {
                         DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
 
                     }
@@ -220,8 +240,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-
-
+*/
 
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -248,19 +267,21 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     if(CurrentWeekOfYear % 2 == 0) {
-                        TEXTVIEW_WEEK.setText(LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1] + ", четная");
+                        TEXTVIEW_WEEK.setText("Четная");
+                        TEXTVIEW_DATE.setText(daysofweeks_string[LocalDate.now().getDayOfWeek().getValue()-1] + ", "  + LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1]);
                         WEEK_EVEN = 1;
                     }
                     else {
                         WEEK_EVEN = 0;
-                        TEXTVIEW_WEEK.setText(LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1]  + ", нечетная");
+                        TEXTVIEW_WEEK.setText("Нечетная");
+                        TEXTVIEW_DATE.setText(daysofweeks_string[LocalDate.now().getDayOfWeek().getValue()-1] + ", "  + LocalDate.now().getDayOfMonth() + " " + monthru[LocalDate.now().getMonth().getValue()-1]);
                     }
                     DAY_ID = LocalDate.now().getDayOfWeek().getValue() - 1;
                     for(int c = 0; c<6;c++)
-                        DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
-                    DAYS_BUTTON[DAY_ID].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
+            //            DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
+                 //   DAYS_BUTTON[DAY_ID].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
                     selecteddate = LocalDate.now();
-                    SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
+               //     SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
                     DOWNLOAD_DATA();
                     SAVE_DATA();
                     UsingWeekOfYear = CurrentWeekOfYear;
@@ -283,24 +304,17 @@ public class MainActivity extends AppCompatActivity {
                 Scroll.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this)
                 {
                     public void onSwipeLeft(){
-                        if(selectedday >= 5)
-                            DAYS_BUTTON[0].callOnClick();
-                        else
-                        DAYS_BUTTON[selectedday+1].callOnClick();
+
+                        Toast.makeText(MainActivity.this, "\nLEFT\n", Toast.LENGTH_SHORT).show();
 
                     }
 
                     @SuppressLint("ClickableViewAccessibility")
                     public void onSwipeRight()
                     {
-                        if(selectedday != 0)
-                        DAYS_BUTTON[selectedday-1].callOnClick();
-                        else
-                            DAYS_BUTTON[5].callOnClick();
+                        Toast.makeText(MainActivity.this, "\nRIGHT\n", Toast.LENGTH_SHORT).show();
 
                     }
-
-
 
                 });
         SpecialWeekOfYear = CurrentWeekOfYear;
@@ -313,17 +327,19 @@ public class MainActivity extends AppCompatActivity {
                 SpecialWeekOfYear = (LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfYear() - date.getDayOfYear()) / 7 + 1;
 
                 if(SpecialWeekOfYear % 2 == 0) {
-                    TEXTVIEW_WEEK.setText(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month] + ", четная");
+                    TEXTVIEW_WEEK.setText("Четная");
+                    TEXTVIEW_DATE.setText(daysofweeks_string[LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1] + ", " + LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month]);
                     WEEK_EVEN = 1;
                 }   else {
-                    TEXTVIEW_WEEK.setText(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month] + ", нечетная");
+                    TEXTVIEW_WEEK.setText("Нечетная");
+                    TEXTVIEW_DATE.setText(daysofweeks_string[LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1] + ", "  + LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfMonth() + " " + monthru[month]);
                     WEEK_EVEN = 0;
                 }
                     UsingWeekOfYear = SpecialWeekOfYear;
                 selecteddate = LocalDate.of(mYear,mMonth,mdayOfMonth);
                 DAY_ID =(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1);
                 LOAD_DATA(UsingWeekOfYear);
-                SET_TEXT_DAYS(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue(),LocalDate.of(mYear,mMonth,mdayOfMonth));
+               // SET_TEXT_DAYS(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue(),LocalDate.of(mYear,mMonth,mdayOfMonth));
                 CALENDAR_VIEW.setVisibility(View.GONE);
                 CALENDAR_VIEW.setClickable(false);
                 Calendar_enable = false;
@@ -358,6 +374,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, File file) {
 
+
+
                     WorkbookSettings WORKBOOK_SETTING = new WorkbookSettings();
                     WORKBOOK_SETTING.setGCDisabled(true);
                     Toast.makeText(MainActivity.this, "...", Toast.LENGTH_SHORT).show();
@@ -365,7 +383,16 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             workbook = workbook.getWorkbook(file);
                             Sheet sheet = workbook.getSheet(SHEET_ID);
-                            GroupName = sheet.getCell(COLLUMN_ID, 5).getContents() + " - " + sheet.getCell(COLLUMN_ID, 7).getContents();
+                            String tempgroupname = sheet.getCell(COLLUMN_ID, 5).getContents().charAt(0) + "";
+                            GroupName = sheet.getCell(COLLUMN_ID, 5).getContents();
+                            for(int i = 0; i < GroupName.length()-1; i++)
+                            {
+                                if(GroupName.charAt(i) == ' ')
+                                {
+                                    tempgroupname = tempgroupname + GroupName.charAt(i+1);
+                                }
+                            }
+                            GroupName = tempgroupname + " " + sheet.getName().charAt(0) +"-" + sheet.getCell(COLLUMN_ID, 7).getContents();
                             for (int i = 0; i < 48; i++) {
                                 Subject_text[i] = (sheet.getCell(2, ROW_ID + i).getContents() + "t" + sheet.getCell(COLLUMN_ID, ROW_ID + i).getContents());
                             }
@@ -397,7 +424,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        public void SET_TEXT_DAYS(int day, LocalDate xDate)
+    /*    public void SET_TEXT_DAYS(int day, LocalDate xDate)
         {
             int dayx1 = day-1;
             int dayx2 = day-1;
@@ -410,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
                 xDateEpoch = xDateEpoch -1;
                 dayx1= dayx1 -1;
             }
-            while(dayx2 <= 5)
+            while(dayx2 <= 2)
             {
                 DAYS_BUTTON[dayx2].setText(Html.fromHtml("<b><big>"+LocalDate.ofEpochDay(xDateEpoch1).getDayOfMonth()+"</big></b><br><small>"+daysofweeks_string[dayx2]+"</small>"));
                 xDateEpoch1 = xDateEpoch1 + 1;
@@ -418,7 +445,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-
+*/
         //Вывод в консоль//
     public void TEST()
     {
@@ -501,24 +528,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            if(DAY_ID > 5)
-                DAY_ID = 5;
+
             int FIRSTNUMBERROW = 0 + WEEK_EVEN + (DAY_ID*8);
+            if (FIRSTNUMBERROW > 40) {
+                FIRSTNUMBERROW = 40;
+
+            }
            for(int i = 0; i < 4; i++) {
                 String[] SPLIT = Subject_text[FIRSTNUMBERROW].split("t");
-                TIME[i].setText("   " + SPLIT[0]);
+                TIME[i].setText(SPLIT[0]);
                 Subject_text_rly[i] = Subject_text[FIRSTNUMBERROW];
                 String sss = Subject_text[FIRSTNUMBERROW];
                 if(SPLIT[1].contains("(ЛЗ"))
-                    temp_string[1] = "<br>Лабораторная работа";
+                    temp_string[1] = "Лабораторная работа";
                 else if(SPLIT[1].contains("(ПЗ"))
-                    temp_string[1] = "<br>Практическое занятие";
+                    temp_string[1] = "Практическое занятие";
                 else if(SPLIT[1].contains("(Л "))
-                    temp_string[1] = "<br>Лекция";
+                    temp_string[1] = "Лекция";
                 else
                     temp_string[1] = "";
                 temp_string[0] = "";
-                SPLIT[1] = SPLIT[1];
+
 
                 for(int le = 0; le < SPLIT[1].length(); le++)                                                 //пилю текст по частям
                 {
@@ -546,30 +576,41 @@ public class MainActivity extends AppCompatActivity {
                 temp_string[2] = "";
 
                 try {
+
                     if(SPLIT[1].contains("ЛК-")) {
-                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 6, SPLIT[1].length());
-                        temp_string[2] = "<br>" + SPLIT[1].substring(tempsc, SPLIT[1].length()-7);}
+                        temp_string[3] = SPLIT[1].substring(SPLIT[1].length() - 6, SPLIT[1].length());
+                        temp_string[2] = SPLIT[1].substring(tempsc, SPLIT[1].length()-7);}
                     else if(SPLIT[1].contains("У-") || SPLIT[1].contains("А-") || SPLIT[1].contains("ПА-")) {
-                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 5, SPLIT[1].length());
-                        temp_string[2] = "<br>" + SPLIT[1].substring(tempsc, SPLIT[1].length()-6);
+                        temp_string[3] = SPLIT[1].substring(SPLIT[1].length() - 5, SPLIT[1].length());
+                        temp_string[2] = SPLIT[1].substring(tempsc, SPLIT[1].length()-6);
                     }
                     else if(SPLIT[1].contains("этаж")) {
-                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 9, SPLIT[1].length());
+                        temp_string[3] = SPLIT[1].substring(SPLIT[1].length() - 9, SPLIT[1].length());
 
                     }
                     else if(SPLIT[1].contains("Спортивный комплекс")) {
-                        temp_string[3] = "<br>" + SPLIT[1].substring(SPLIT[1].length() - 19, SPLIT[1].length());
+                        temp_string[3] = SPLIT[1].substring(SPLIT[1].length() - 19, SPLIT[1].length());
                     }
                     else
-                        temp_string[3] = "<br>";
+                        temp_string[3] = "";
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
+                    if(temp_string[2].contains("\n"))
+                    {
+                        temp_string[2] = temp_string[2].substring(1);
+                    }
 
-               Subject[i].setText(Html.fromHtml("<br>" +"<b><big>"+temp_string[0]+"</big></b>"+temp_string[1] +temp_string[2] +""+temp_string[3]+"" + "<br>" ));
+                                                                                                                //распил окончен
 
-                                                                                                                                                     // связываю
+                    NameSubject[i].setText(temp_string[0]);
+                    TypeSubject[i].setText(temp_string[1]);
+                    TeacherSubject[i].setText(temp_string[2]);
+                    RoomSubject[i].setText(temp_string[3]);
+
+
+
                 if(SPLIT[1].length() == 1)
                 {
                     Subject[i].setVisibility(View.GONE);
@@ -603,6 +644,15 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (IOException ex) {
         } finally {
+
+            if(DAY_ID == 6)
+            {
+                for(int i = 0; i<4;i++)
+                    Subject[i].setVisibility(View.GONE);
+
+            }
+
+
             try {
                 if (fin != null)
                     fin.close();

@@ -6,50 +6,316 @@
     android:layout_height="match_parent"
     tools:context=".SelectionActivity">
 
-    <Spinner
-        android:id="@+id/SPINNER_SELECT_COURSE"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/courselayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="50dp"
-        app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_INSTITUTE"
+        android:background="@drawable/block_style"
+        android:backgroundTint="@color/alpha"
+        app:layout_constraintBottom_toTopOf="@+id/institutelayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
+        <Spinner
+            android:id="@+id/SPINNER_SELECT_COURSE"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="false"
+            android:scrollbarStyle="insideOverlay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/SPINNER_SELECT_INSTITUTE"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
+        <TextView
+            android:id="@+id/TEXTVIEW_COURSE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_bold_1"
+            android:text="Курс"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_COURSE"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/institutelayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="50dp"
-        android:clickable="false"
-        app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_GROUP"
+        android:background="@drawable/block_style"
+        android:backgroundTint="@color/alpha"
+        app:layout_constraintBottom_toTopOf="@+id/grouplayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Spinner
-        android:id="@+id/SPINNER_SELECT_GROUP"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="200dp"
-        android:clickable="false"
-        app:layout_constraintBottom_toTopOf="@id/BUTTON_TO_MAIN"
+        <Spinner
+            android:id="@+id/SPINNER_SELECT_INSTITUTE"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="false"
+            android:scrollbarStyle="insideOverlay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/TEXTVIEW_INSTITUTE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_bold_1"
+            android:text="Институт"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_INSTITUTE"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/grouplayout"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/block_style"
+        android:backgroundTint="@color/alpha"
+        app:layout_constraintBottom_toTopOf="@id/BUTTON_SAVE_SELECTION"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/BUTTON_TO_MAIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <Spinner
+            android:id="@+id/SPINNER_SELECT_GROUP"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="10dp"
+            android:clickable="false"
+            android:scrollbarStyle="insideOverlay"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/TEXTVIEW_sGROUP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/inter_bold_1"
+            android:text="Группа"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_GROUP"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bot"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/btn_dialog" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/home_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Главная"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/home_button" />
+
+                <ImageView
+                    android:id="@+id/home_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_home"
+                    app:tint="@color/black" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/search_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="51px"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/search_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Поиск"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/search_button" />
+
+                <ImageView
+                    android:id="@+id/search_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_search" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/note_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="51px"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/note_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Заметки"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/note_button" />
+
+                <ImageView
+                    android:id="@+id/note_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_note" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/map_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="51px"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:id="@+id/map_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Карта"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/map_button" />
+
+                <ImageView
+                    android:id="@+id/map_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_map" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/settings_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginLeft="51px"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true">
+
+                <TextView
+                    android:id="@+id/settings_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Настройки"
+                    android:textColor="@color/softblue"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/settings_button" />
+
+                <ImageView
+                    android:id="@+id/settings_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_settings"
+                    app:tint="@color/softblue" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/BUTTON_SAVE_SELECTION"
@@ -57,10 +323,10 @@
         android:layout_height="50dp"
         android:layout_marginStart="75dp"
         android:layout_marginEnd="75dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="50dp"
         android:enabled="false"
         android:text="Сохранить"
-        app:layout_constraintBottom_toTopOf="@id/BUTTON_TO_MAIN"
+        app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

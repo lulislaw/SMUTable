@@ -52,7 +52,7 @@ public class SelectionActivity extends AppCompatActivity {
         SPINNER_SELECT_GROUP = findViewById(R.id.SPINNER_SELECT_GROUP);
         SPINNER_SELECT_INSTITUTE = findViewById(R.id.SPINNER_SELECT_INSTITUTE);
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
-        BUTTON_TO_MAIN = findViewById(R.id.BUTTON_TO_MAIN);
+        BUTTON_TO_MAIN = findViewById(R.id.home_button);
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
 
 
@@ -157,7 +157,10 @@ public class SelectionActivity extends AppCompatActivity {
                 String[] GROUPS = new String[CHAR_];
                 for(int i = 0; i < CHAR_; i++)
                 {
-                    GROUPS[i] =SHEET.getCell(4+i,6).getContents() + " - " + SHEET.getCell(4+i,5).getContents();
+                    if(SHEET.getCell(4+i,5).getContents().length() > 30)
+                    GROUPS[i] = SHEET.getCell(4+i,6).getContents() + " - " + SHEET.getCell(4+i,5).getContents().substring(0,30) + "...";
+                    else
+                    GROUPS[i] = SHEET.getCell(4+i,6).getContents() + " - " + SHEET.getCell(4+i,5).getContents();
                 }
 
 
