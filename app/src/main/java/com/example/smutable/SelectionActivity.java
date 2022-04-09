@@ -1,6 +1,7 @@
 package com.example.smutable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ public class SelectionActivity extends AppCompatActivity {
 
 
     private final static String FILE_NAME_SELECTION = "selection.txt";
-    ImageButton BUTTON_TO_MAIN;
+    ConstraintLayout BUTTON_TO_MAIN;
     Button BUTTON_SAVE_SELECTION;
     Intent INTENT_TO_MAIN;
     Spinner SPINNER_SELECT_COURSE, SPINNER_SELECT_GROUP, SPINNER_SELECT_INSTITUTE;
@@ -52,7 +53,7 @@ public class SelectionActivity extends AppCompatActivity {
         SPINNER_SELECT_GROUP = findViewById(R.id.SPINNER_SELECT_GROUP);
         SPINNER_SELECT_INSTITUTE = findViewById(R.id.SPINNER_SELECT_INSTITUTE);
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
-        BUTTON_TO_MAIN = findViewById(R.id.home_button);
+        BUTTON_TO_MAIN = findViewById(R.id.home_group);
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
 
 

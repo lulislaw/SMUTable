@@ -649,7 +649,14 @@ public class MainActivity extends AppCompatActivity {
             {
                 for(int i = 0; i<4;i++)
                     Subject[i].setVisibility(View.GONE);
+                if(UsingWeekOfYear % 2 == 0) {
 
+                    TEXTVIEW_WEEK.setText("Нечетная");
+                    WEEK_EVEN = 1;
+                }
+                else {
+                    WEEK_EVEN = 0;
+                    TEXTVIEW_WEEK.setText("Четная");}
             }
 
 
