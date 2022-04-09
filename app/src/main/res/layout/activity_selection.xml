@@ -26,7 +26,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="10dp"
-            android:clickable="false"
+            android:clickable="true"
             android:scrollbarStyle="insideOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="10dp"
-            android:clickable="false"
+            android:clickable="true"
             android:scrollbarStyle="insideOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
             android:layout_marginBottom="10dp"
-            android:clickable="false"
+            android:clickable="true"
             android:scrollbarStyle="insideOverlay"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +124,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bot"
         android:layout_width="match_parent"
@@ -137,6 +138,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -147,22 +149,24 @@
                 android:id="@+id/home_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
                     android:id="@+id/home_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
                     android:text="Главная"
                     android:textColor="@color/black"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/home_button" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/home_button"
@@ -181,24 +185,24 @@
                 android:id="@+id/search_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="51px"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
                     android:id="@+id/search_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
                     android:text="Поиск"
                     android:textColor="@color/black"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/search_button" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/search_button"
@@ -215,24 +219,24 @@
                 android:id="@+id/note_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="51px"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
                     android:id="@+id/note_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
                     android:text="Заметки"
                     android:textColor="@color/black"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/note_button" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/note_button"
@@ -249,24 +253,24 @@
                 android:id="@+id/map_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="51px"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
                     android:id="@+id/map_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
                     android:text="Карта"
                     android:textColor="@color/black"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/map_button" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/map_button"
@@ -283,8 +287,9 @@
                 android:id="@+id/settings_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="51px"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:clickable="true">
 
@@ -292,30 +297,31 @@
                     android:id="@+id/settings_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
                     android:text="Настройки"
                     android:textColor="@color/softblue"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/settings_button" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
                     android:id="@+id/settings_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:tint="@color/softblue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_settings"
-                    app:tint="@color/softblue" />
+                    app:srcCompat="@drawable/ic_settings" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <Button
         android:id="@+id/BUTTON_SAVE_SELECTION"

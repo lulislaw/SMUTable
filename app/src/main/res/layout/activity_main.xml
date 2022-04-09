@@ -813,7 +813,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -824,9 +824,9 @@
                 android:id="@+id/home_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="11dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -860,9 +860,9 @@
                 android:id="@+id/search_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="11dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -894,9 +894,9 @@
                 android:id="@+id/note_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="11dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -928,9 +928,9 @@
                 android:id="@+id/map_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="11dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -962,9 +962,9 @@
                 android:id="@+id/settings_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
-                android:layout_marginLeft="11dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginRight="11dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:clickable="true">
 
