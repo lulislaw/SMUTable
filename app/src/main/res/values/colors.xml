@@ -8,5 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="softblue">#FF0070F4</color>
-    <color name="alpha">#08000000</color>
+    <color name="darkblue">#FF0070F1</color>
+    <color name="alphablack">#08000000</color>
+    <color name="alphawhite">#08FFFFFF</color>
+    <color name="alpha25black">#40000000</color>
+    <color name="alpha25white">#40FFFFFF</color>
+    <color name="backgrounddark">#FF121212</color>
 </resources>

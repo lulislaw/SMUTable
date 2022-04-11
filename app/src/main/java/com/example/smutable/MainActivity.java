@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     Button CLOSE_INFO_BLOCK;
     Boolean NEED_DOWNLOAD;
     ImageButton BUTTON_SET_WEEK;
-    ConstraintLayout BUTTON_TO_SELECTION, BUTTON_REFRESH;
+    Button BUTTON_TO_SELECTION, BUTTON_REFRESH;
     Intent INTENT_TO_SELECTION;
     CalendarView CALENDAR_VIEW;
     Boolean Calendar_enable, firstrun;
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
         TEXTVIEW_WEEK = findViewById(R.id.TEXTVIEW_WEEK);
         TEXTVIEW_DATE = findViewById(R.id.TEXTVIEW_DATE);
         CLOSE_INFO_BLOCK = findViewById(R.id.CLOSE_INFO_BLOCK);
-        BUTTON_REFRESH = findViewById(R.id.home_group);
-        BUTTON_TO_SELECTION = findViewById(R.id.settings_group);
+        BUTTON_REFRESH = findViewById(R.id.home_button_inside);
+        BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
         BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
@@ -282,10 +282,11 @@ public class MainActivity extends AppCompatActivity {
                  //   DAYS_BUTTON[DAY_ID].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
                     selecteddate = LocalDate.now();
                //     SET_TEXT_DAYS(LocalDate.now().getDayOfWeek().getValue(),LocalDate.now());
+                    LOAD_DATA(UsingWeekOfYear);
                     DOWNLOAD_DATA();
                     SAVE_DATA();
                     UsingWeekOfYear = CurrentWeekOfYear;
-                    LOAD_DATA(UsingWeekOfYear);
+
                 }
             });
 
@@ -367,7 +368,11 @@ public class MainActivity extends AppCompatActivity {
             client.get(url[URL_ID], new FileAsyncHttpResponseHandler(this) {
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable throwable, File file) {
-
+                    try{
+                        LOAD_DATA(UsingWeekOfYear);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(MainActivity.this, "Загружена последняя информация", Toast.LENGTH_SHORT).show();
                 }
 
