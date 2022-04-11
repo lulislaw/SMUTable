@@ -13,6 +13,13 @@
             android:name=".search_activity"
             android:exported="false" />
         <activity
+            android:name=".NotesTakerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Notes"
+            android:theme="@style/Theme.SMUTable.DarkActionBar"
+            android:exported="false" />
+        <activity
             android:name=".SelectionActivity"
             android:exported="false" />
         <activity

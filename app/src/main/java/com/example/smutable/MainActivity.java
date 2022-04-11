@@ -697,8 +697,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-        //Загрузка информации о текущей группе//
 
+    //Загрузка информации о текущей группе//
+    public void NotesButtonClick(View view) {
+        Intent intent = new Intent(MainActivity.this, Notes.class);
+        startActivity(intent);
+    }
 }
 
 
