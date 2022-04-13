@@ -200,47 +200,32 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                for(int c = 0; c<3;c++) {
+                    int finalC = c;
+                    DAYS_BUTTON[c].setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 
-
-
-  /*      for(int i = 0; i< 4; i++) {
-            int finalI = i;
-            Subject[i].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    SHOW_INFO(finalI);
+                            DAY_ID = selecteddate.getDayOfWeek().getValue() - Math.abs(2- finalC);
+                            if (DAY_ID < 0)
+                                DAY_ID = 6;
+                            if (DAY_ID > 6)
+                                DAY_ID = 0;
+                            if (CurrentWeekOfYear % 2 == 0) {
+                                TEXTVIEW_WEEK.setText("Четная");
+                                TEXTVIEW_DATE.setText(daysofweeks_string[DAY_ID]
+                                        + ", " + (selecteddate.getDayOfMonth() - (7 - DAY_ID)) + " " + monthru[selecteddate.getMonth().getValue() - 1]);
+                                WEEK_EVEN = 1;
+                            } else {
+                                WEEK_EVEN = 0;
+                                TEXTVIEW_WEEK.setText("Нечетная");
+                                TEXTVIEW_DATE.setText(daysofweeks_string[DAY_ID]
+                                        + ", " + (selecteddate.getDayOfMonth() - (7 - DAY_ID)) + " " + monthru[selecteddate.getMonth().getValue() - 1]);
+                            }
+                            LOAD_DATA(UsingWeekOfYear);
+                        }
+                    });
                 }
-            });
-
-        }
-
-        for(int i = 0; i < 2; i++)
-        {
-            int finalI = i;
-            DAYS_BUTTON[i].setOnClickListener(new View.OnClickListener() {
-                @SuppressLint("ResourceAsColor")
-                @Override
-                public void onClick(View v) {
-                    for(int c = 0; c<2;c++) {
-                        DAYS_BUTTON[c].setBackgroundTintList(getResources().getColorStateList(R.color.purple_200));
-
-                    }
-                    selectedday = finalI;
-                    DAY_ID = finalI;
-                    DAYS_BUTTON[finalI].setBackgroundTintList(getResources().getColorStateList(R.color.purple_500));
-                    if(UsingWeekOfYear % 2 == 0) {
-                        TEXTVIEW_WEEK.setText(LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getDayOfMonth() + " " + monthru[LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getMonth().getValue()-1] + ", четная");
-                        WEEK_EVEN = 1;
-                    }
-                    else {
-                        WEEK_EVEN = 0;
-                        TEXTVIEW_WEEK.setText(LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getDayOfMonth() + " " + monthru[LocalDate.ofEpochDay((selecteddate.toEpochDay())+(finalI+1-selecteddate.getDayOfWeek().getValue())).getMonth().getValue()-1] + ", нечетная");
-                    }
-                    LOAD_DATA(UsingWeekOfYear);
-                }
-            });
-        }
-*/
 
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -699,7 +684,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Загрузка информации о текущей группе//
-    public void NotesButtonClick(View view) {
+    public void note_button_inside(View view) {
         Intent intent = new Intent(MainActivity.this, Notes.class);
         startActivity(intent);
     }
