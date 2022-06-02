@@ -7,378 +7,6 @@
     tools:context=".MainActivity">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollViewl"
-        android:layout_width="169dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="-500dp"
-        android:fillViewport="true"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/bot"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Top_frame"
-        tools:visibility="gone">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/Subject_layout_1l"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/block_style">
-
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_1l"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info" />
-
-                <TextView
-                    android:id="@+id/TIME_1l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="left"
-                    android:text="Время(830)"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/NameSubject1l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:singleLine="false"
-                    android:text="Предмет"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TIME_1l" />
-
-                <TextView
-                    android:id="@+id/subjecttypel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Тип"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/NameSubject1l" />
-
-                <TextView
-                    android:id="@+id/subjectteacherl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Преподователь"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjecttypel" />
-
-                <TextView
-                    android:id="@+id/subjectaudl"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Аудитория"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjectteacherl" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/Subject_layout_2l"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/block_style"
-                android:backgroundTint="#08000000">
-
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_2l"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info" />
-
-                <TextView
-                    android:id="@+id/TIME_2l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="left"
-                    android:text="Время(830)"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/NameSubject2l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Предмет"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TIME_2l" />
-
-                <TextView
-                    android:id="@+id/subjecttype2l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Тип"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/NameSubject2l" />
-
-                <TextView
-                    android:id="@+id/subjectteacher2l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Преподователь"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjecttype2l" />
-
-                <TextView
-                    android:id="@+id/subjectaud2l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Аудитория"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjectteacher2l" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/Subject_layout_3l"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/block_style"
-                android:backgroundTint="#08000000">
-
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_3l"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info" />
-
-                <TextView
-                    android:id="@+id/TIME_3l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="left"
-                    android:text="Время(830)"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/NameSubject3l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Предмет"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TIME_3l" />
-
-                <TextView
-                    android:id="@+id/subjecttype3l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Тип"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/NameSubject3l" />
-
-                <TextView
-                    android:id="@+id/subjectteacher3l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Преподователь"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjecttype3l" />
-
-                <TextView
-                    android:id="@+id/subjectaud3l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Аудитория"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjectteacher3l" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/Subject_layout_4l"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                android:layout_marginBottom="18dp"
-                android:background="@drawable/block_style"
-                android:backgroundTint="#08000000">
-
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_4l"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info" />
-
-                <TextView
-                    android:id="@+id/TIME_4l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="left"
-                    android:text="Время(830)"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/NameSubject4l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Предмет"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/TIME_4l" />
-
-                <TextView
-                    android:id="@+id/subjecttype4l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Тип"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/NameSubject4l" />
-
-                <TextView
-                    android:id="@+id/subjectteacher4l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Преподователь"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjecttype4l" />
-
-                <TextView
-                    android:id="@+id/subjectaud4l"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:text="Аудитория"
-                    android:textColor="@color/black"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/subjectteacher4l" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
-    <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -399,7 +27,7 @@
                 android:id="@+id/Subject_layout_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginBottom="18dp"
                 android:background="@drawable/block_style"
                 android:visibility="gone"
@@ -413,6 +41,7 @@
                     android:layout_marginEnd="20dp"
                     android:background="#00FFFFFF"
                     android:scaleType="center"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_info"
@@ -504,6 +133,7 @@
                     android:layout_marginEnd="20dp"
                     android:background="#00FFFFFF"
                     android:scaleType="center"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_info"
@@ -594,6 +224,7 @@
                     android:layout_marginEnd="20dp"
                     android:background="#00FFFFFF"
                     android:scaleType="center"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_info"
@@ -684,6 +315,7 @@
                     android:layout_marginEnd="20dp"
                     android:background="#00FFFFFF"
                     android:scaleType="center"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_info"
@@ -769,7 +401,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/CLOSE_INFO_BLOCK"
@@ -819,51 +451,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/home_group"
-                android:layout_width="54dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp">
 
-                <Button
-                    android:id="@+id/home_button_inside"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="#00FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/home_text"
-                    android:layout_width="55dp"
-                    android:layout_height="13dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/inter_regular"
-                    android:gravity="center"
-                    android:text="Главная"
-                    android:textColor="?attr/colorPrimary"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <ImageView
-                    android:id="@+id/home_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_home"
-                    app:tint="?attr/colorPrimary" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/search_group"
@@ -909,7 +497,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/note_group"
+                android:id="@+id/news_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="8dp"
@@ -917,7 +505,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
                 <Button
-                    android:id="@+id/note_button_inside"
+                    android:id="@+id/news_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
@@ -925,14 +513,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
-                    android:id="@+id/note_text"
+                    android:id="@+id/news_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
-                    android:text="Заметки"
+                    android:text="Новости"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -940,7 +529,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/note_image"
+                    android:id="@+id/news_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -950,7 +539,51 @@
                     app:srcCompat="@drawable/ic_note"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_group"
+                android:layout_width="54dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp">
 
+                <Button
+                    android:id="@+id/home_button_inside"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="#00FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/home_text"
+                    android:layout_width="55dp"
+                    android:layout_height="13dp"
+                    android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center"
+                    android:text="Главная"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageView
+                    android:id="@+id/home_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_home"
+                    app:tint="?attr/colorPrimary" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/map_group"
                 android:layout_width="54dp"
@@ -1044,7 +677,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/Top_frame"
         android:layout_width="0dp"
-        android:layout_height="176dp"
+        android:layout_height="198dp"
         android:layout_marginTop="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -1055,9 +688,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="76dp"
             android:layout_marginEnd="333dp"
-            android:layout_marginBottom="104dp"
+            android:layout_marginBottom="82dp"
             android:backgroundTint="#00FFFFFF"
             android:clickable="true"
             android:scaleType="center"
@@ -1074,9 +707,9 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="333dp"
-            android:layout_marginTop="54dp"
+            android:layout_marginTop="76dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="104dp"
+            android:layout_marginBottom="82dp"
             android:backgroundTint="#00FFFFFF"
             android:clickable="true"
             android:scaleType="center"
@@ -1088,10 +721,11 @@
             app:tint="?attr/colorOnPrimary" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginTop="61dp"
+            android:layout_marginBottom="66dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -1109,7 +743,7 @@
 
                 <TextView
                     android:id="@+id/but_day_left"
-                    android:layout_width="22dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_marginTop="4dp"
                     android:elevation="10dp"
@@ -1168,7 +802,7 @@
 
                 <TextView
                     android:id="@+id/but_day_cen"
-                    android:layout_width="22dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_marginTop="4dp"
                     android:elevation="10dp"
@@ -1218,7 +852,7 @@
 
                 <TextView
                     android:id="@+id/but_day_right"
-                    android:layout_width="22dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="19dp"
                     android:layout_marginTop="4dp"
                     android:elevation="10dp"
@@ -1254,9 +888,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="118dp"
+            android:layout_marginTop="140dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -1271,18 +904,17 @@
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/TEXTVIEW_WEEK"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="24dp"
                 android:fontFamily="@font/inter_bold_1"
                 android:text="Тип недели"
 
-                android:textSize="20sp"
                 android:textColor="?attr/colorOnPrimary"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/TEXTVIEW_DATE" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1292,29 +924,26 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="330dp"
-            android:layout_marginTop="2dp"
             android:layout_marginEnd="25dp"
-            android:layout_marginBottom="154dp"
+            android:layout_marginBottom="142dp"
             android:backgroundTint="#00FFFFFF"
             android:scaleType="center"
             app:layout_constraintBottom_toBottomOf="@id/Top_frame"
             app:layout_constraintEnd_toEndOf="@id/Top_frame"
             app:layout_constraintStart_toStartOf="@id/Top_frame"
-            app:layout_constraintTop_toTopOf="@id/Top_frame"
             app:srcCompat="@drawable/ic_group"
             app:tint="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/TEXTVIEW_GROUP"
             android:layout_width="300dp"
-            android:layout_height="24dp"
+            android:layout_height="50dp"
             android:layout_marginStart="24dp"
-            android:layout_marginBottom="152dp"
+            android:layout_marginTop="6dp"
             android:fontFamily="@font/inter_bold_1"
-            android:text="ПИ 1-1"
+            android:gravity="left|center_vertical"
             android:textColor="?attr/colorOnPrimary"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

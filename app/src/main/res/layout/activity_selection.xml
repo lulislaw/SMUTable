@@ -213,7 +213,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/note_group"
+                android:id="@+id/news_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="8dp"
@@ -222,7 +222,7 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
-                    android:id="@+id/note_text"
+                    android:id="@+id/news_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
                     android:layout_marginBottom="8dp"
@@ -236,7 +236,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/note_image"
+                    android:id="@+id/news_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/white"

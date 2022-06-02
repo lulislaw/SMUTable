@@ -62,7 +62,7 @@ public class SelectionActivity extends AppCompatActivity {
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
         url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
-        url[4] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIVECOURSE.xls?raw=true";
+
 
         BUTTON_TO_MAIN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class SelectionActivity extends AppCompatActivity {
 
         String[] ARRAYSPINNER_1 = new String[]
                 {
-                        "1 Курс","2 Курс","3 Курс", "4 Курс", "1-2 Курс Маг."
+                        "1 Курс","2 Курс","3 Курс", "4 Курс"
                 };
         ArrayAdapter<String> ADAPTER_1 = new ArrayAdapter<String>(SelectionActivity.this, android.R.layout.simple_spinner_item, ARRAYSPINNER_1);
         ADAPTER_1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
