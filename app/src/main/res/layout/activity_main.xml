@@ -33,20 +33,6 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info"
-                    app:tint="?attr/colorOnPrimary" />
-
                 <TextView
                     android:id="@+id/TIME_1"
                     android:layout_width="wrap_content"
@@ -59,6 +45,18 @@
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/thtime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Через 0м"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/TIME_1"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -125,19 +123,17 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                <TextView
+                    android:id="@+id/thtime2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info"
-                    app:tint="?attr/colorOnPrimary" />
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Через 0м"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/TIME_2"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/TIME_2"
@@ -216,19 +212,17 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                <TextView
+                    android:id="@+id/thtime3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info"
-                    app:tint="?attr/colorOnPrimary" />
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Через 0м"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/TIME_3"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/TIME_3"
@@ -307,19 +301,17 @@
                 android:visibility="gone"
                 tools:visibility="visible">
 
-                <ImageButton
-                    android:id="@+id/INFO_BUTTON_4"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                <TextView
+                    android:id="@+id/thtime4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="#00FFFFFF"
-                    android:scaleType="center"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_info"
-                    app:tint="?attr/colorOnPrimary" />
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Через 0м"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@id/TIME_4"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/TIME_4"

@@ -15,6 +15,7 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,6 +30,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import cz.msebera.android.httpclient.Header;
 import jxl.Sheet;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     String[] url = new String[5];
     TextView[] TIME = new TextView[4];
+    TextView[] thtime = new TextView[4];
     ConstraintLayout[] Subject = new ConstraintLayout[4];
     TextView[] NameSubject = new TextView[4];
     TextView[] TeacherSubject = new TextView[4];
@@ -64,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
     int WEEK_EVEN;     // 1 = EVEN , 0 = Non-even;
     int SpecialWeekOfYear, CurrentWeekOfYear, UsingWeekOfYear;
     int selectedday;
+    int[] thtimecurhours = new int[4];
+    int[] thtimecurminutes = new int[4];
     Integer mYear,mMonth,mdayOfMonth;
     String[] temp_string = new String[4]; //0 - Предмет, 1 - тип, 2 - препод, 3 - аудитория
     String text, GroupName;
@@ -80,6 +87,12 @@ public class MainActivity extends AppCompatActivity {
     Animation animation_scale;
     ImageButton poligon_left, poligon_right;
     LocalDate[] datesbutton = new LocalDate[3];
+    int[] thtimeinthours = {
+            8, 9,11,13,15,17,18,20
+    };
+    int[] thtimeintminutes = {
+            15, 55,35,45,25,05,50,30
+    };
     String[] time = {
       "8:15 - 9:45", "9:55 - 11:25","11:35 - 13:05", "13:45 - 15:15", "15:25 - 16:55", "17:05 - 18:35","18:50 - 20:20", "20:30 - 22:00"
     };
@@ -118,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Начало подключения XML//
+
         poligon_left = findViewById(R.id.poligon_left);
         poligon_right = findViewById(R.id.poligon_right);
         DAYS_BUTTON_GROUP[0] = findViewById(R.id.DAY_BUTTON_GROUP_LEFT);
@@ -153,6 +167,10 @@ public class MainActivity extends AppCompatActivity {
         TIME[1] = findViewById(R.id.TIME_2);
         TIME[2] = findViewById(R.id.TIME_3);
         TIME[3] = findViewById(R.id.TIME_4);
+        thtime[0] = findViewById(R.id.thtime1);
+        thtime[1] = findViewById(R.id.thtime2);
+        thtime[2] = findViewById(R.id.thtime3);
+        thtime[3] = findViewById(R.id.thtime4);
         DAYS_BUTTON[0] = findViewById(R.id.DAY_BUTTON_LEFT);
         DAYS_BUTTON[1] = findViewById(R.id.DAY_BUTTON_CENTER);
         DAYS_BUTTON[2] = findViewById(R.id.DAY_BUTTON_RIGHT);
@@ -401,6 +419,58 @@ public class MainActivity extends AppCompatActivity {
 
         DOWNLOAD_DATA();
 
+
+
+
+
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            int timertime = 0;
+            @Override
+            public void run() {
+                timertime++;
+                runOnUiThread(new Runnable() {
+                    @SuppressLint("ResourceAsColor")
+                    @Override
+                    public void run() {
+                        for(int i =0; i < 4; i++) {                                                     // не до конца работает
+
+                            Date datetime = new Date();
+                            int timeb_h = (thtimecurhours[i] - datetime.getHours());
+                            int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
+                            if (timeb_h > -1) {
+                                if (timeb_h < 1 && timeb_m < 0)
+                                    thtime[i].setText("");
+                                else if (timeb_h < 1 && timeb_m > 0)
+                                    thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
+                                else if (timeb_h > 0 && timeb_m < 0) {
+                                    timeb_h--;
+                                    timeb_m = 60 + timeb_m;
+                                    if (timeb_h > 0)
+                                        thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
+                                    else
+                                        thtime[i].setText("через " + timeb_m + "м");
+                                } else
+                                    thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
+                                if (timeb_h <= 0)
+                                    thtime[i].setText("через " + timeb_m + "м");
+                                if (timeb_h <= 0 && timeb_m < 10)
+                                    thtime[i].setTextColor(getColor(R.color.red));
+                                Log.d("MyLog", "" + datetime.getHours() + datetime.getMinutes());
+
+                            } else {
+                                thtime[i].setText("");
+                            }
+                        }
+                    }
+                });
+
+            }
+        }, 0, 1000);
+
+
         //end main code
     }
 
@@ -563,8 +633,13 @@ public class MainActivity extends AppCompatActivity {
 
                     for(int t = 0;t < 8;t++)
                     {
-                        if(SPLIT[0].contains(timedef[t]))
+                        if(SPLIT[0].contains(timedef[t])) {
                             TIME[i].setText(time[t]);
+                            thtimecurhours[i] = thtimeinthours[t];
+                            thtimecurminutes[i] = thtimeintminutes[t];
+
+
+                        }
                     }
 
 
