@@ -7,15 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
-
 import com.google.android.material.color.MaterialColors;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -33,7 +30,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import cz.msebera.android.httpclient.Header;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -76,12 +72,10 @@ public class MainActivity extends AppCompatActivity {
     String text, GroupName;
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK, TEXTVIEW_DATE;
     Button CLOSE_INFO_BLOCK;
-    Boolean NEED_DOWNLOAD;
     ImageButton BUTTON_SET_WEEK;
-    Button BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_TO_NEWS;
-    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS;
+    Button BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_TO_NEWS, BUTTON_TO_SEARCH;
+    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH;
     CalendarView CALENDAR_VIEW;
-    Boolean Calendar_enable, firstrun;
     LocalDate date, selecteddate;
     NestedScrollView Scroll;
     Animation animation_scale;
@@ -182,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
         BUTTON_REFRESH = findViewById(R.id.home_button_inside);
         BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
+        BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
         BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
@@ -195,13 +190,14 @@ public class MainActivity extends AppCompatActivity {
         CALENDAR_VIEW.setClickable(false);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         INTENT_TO_NEWS = new Intent(MainActivity.this, activity_news.class);
+        INTENT_TO_SEARCH = new Intent(MainActivity.this, search_activity.class);
         url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
         url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
 
         ROW_ID = 8;
-        NEED_DOWNLOAD = false;
+
 
 
         FileInputStream fins = null;
@@ -315,7 +311,13 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
-
+        BUTTON_TO_SEARCH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SEARCH);
+                overridePendingTransition(0,0);
+            }
+        });
         BUTTON_TO_NEWS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -458,7 +460,6 @@ public class MainActivity extends AppCompatActivity {
                                     thtime[i].setText("через " + timeb_m + "м");
                                 if (timeb_h <= 0 && timeb_m < 10)
                                     thtime[i].setTextColor(getColor(R.color.red));
-                                Log.d("MyLog", "" + datetime.getHours() + datetime.getMinutes());
 
                             } else {
                                 thtime[i].setText("");
@@ -487,7 +488,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(MainActivity.this, "Загружена последняя информация", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Нет подключения\nЗагружена последняя информация", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override

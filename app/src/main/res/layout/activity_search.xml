@@ -6,32 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".search_activity">
 
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/filter_scrollview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/strokecorners"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/week_c_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/day_c_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" />
+
+            <Spinner
+                android:id="@+id/time_c_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" />
+
+            <Button
+                android:id="@+id/filter_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFFFFF"
+                android:gravity="center"
+                android:text="Продолжить" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <ImageButton
+        android:id="@+id/filter"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+
     <EditText
         android:id="@+id/edittext"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="47dp"
         android:layout_marginStart="75dp"
         android:layout_marginTop="75dp"
+        android:background="@drawable/block_style"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Поиск"
+        android:fontFamily="@font/inter_regular"
+        android:inputType="text"
+        android:hint="Поиск"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="75dp"
+        android:background="#00FFFFFF"
+        android:scaleType="center"
         app:layout_constraintStart_toEndOf="@+id/edittext"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_search" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="409dp"
-        android:layout_height="537dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/search_text_nestedscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext" />
+        app:layout_constraintTop_toBottomOf="@id/edittext">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/search_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/block_style"
+                android:elevation="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,34 @@
 package com.example.smutable;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 
-public class item extends AppCompatActivity {
+import java.util.Objects;
+
+public class item {
+    private String name;
+
+    public item(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        item item = (item) o;
+        return Objects.equals(name, item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

@@ -146,8 +146,8 @@ public class SelectionActivity extends AppCompatActivity {
                 for(int i = 0; i < 30; i++)
                 {
 
-                    System.out.println(SHEET.getCell(4+i,4).getContents());
-                    String sgc = SHEET.getCell(4+i,4).getContents();
+                    System.out.println(SHEET.getCell(4+i,3).getContents());
+                    String sgc = SHEET.getCell(4+i,3).getContents();
                     if(sgc.charAt(0) == '0')
                     {
                         CHAR_ = i;
