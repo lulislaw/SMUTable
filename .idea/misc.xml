@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/activity_notes.xml" value="0.17753623188405798" />
+        <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/notes_list.xml" value="0.335" />
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/drawable-v24/strokecorners_grey.xml" value="0.3828125" />
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/drawable/block_style.xml" value="0.2599099099099099" />
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/drawable/buttons_style_days.xml" value="0.2526041666666667" />
@@ -14,15 +17,15 @@
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/layout/activity_search.xml" value="0.67" />
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/layout/activity_selection.xml" value="0.33" />
         <entry key="..\:/Users/lul/AndroidStudioProjects/SMUTable/app/src/main/res/layout/scrollview.xml" value="0.284375" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/drawable/ic_pastedimage.xml" value="0.296" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/drawable/strokecorners.xml" value="0.21770833333333334" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_item.xml" value="0.22772277227722773" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_map.xml" value="0.33" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_news.xml" value="0.5" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_search.xml" value="0.5" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_selection.xml" value="0.33" />
-        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/items.xml" value="0.2911458333333333" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/drawable/ic_system_uicons_newspaper.xml" value="0.2855" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_main.xml" value="0.41602465331278893" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_map.xml" value="0.28125" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_news.xml" value="0.423861852433281" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_notes.xml" value="0.28125" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_notes_taker.xml" value="0.28125" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_search.xml" value="0.25" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/activity_selection.xml" value="0.25" />
+        <entry key="..\:/gitclonesmutable/SMUTable/app/src/main/res/layout/notes_list.xml" value="0.28125" />
       </map>
     </option>
   </component>

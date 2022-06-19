@@ -522,13 +522,14 @@
 
                 <ImageView
                     android:id="@+id/news_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginTop="-5dp"
                     android:background="#00FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_note"
+                    app:srcCompat="@drawable/ic_system_uicons_newspaper"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -577,7 +578,7 @@
                     app:tint="?attr/colorPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/map_group"
+                android:id="@+id/note_group"
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 android:layout_marginStart="8dp"
@@ -585,7 +586,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
                 <Button
-                    android:id="@+id/map_button_inside"
+                    android:id="@+id/note_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
@@ -593,14 +594,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
-                    android:id="@+id/map_text"
+                    android:id="@+id/note_text"
                     android:layout_width="55dp"
                     android:layout_height="13dp"
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/inter_regular"
                     android:gravity="center"
-                    android:text="Карта"
+                    android:text="Заметки"
                     android:textColor="?attr/colorOnPrimary"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -608,14 +610,14 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
-                    android:id="@+id/map_image"
+                    android:id="@+id/note_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_map"
+                    app:srcCompat="@drawable/ic_note"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

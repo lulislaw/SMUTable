@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK, TEXTVIEW_DATE;
     Button CLOSE_INFO_BLOCK;
     ImageButton BUTTON_SET_WEEK;
-    Button BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_TO_NEWS, BUTTON_TO_SEARCH;
-    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH;
+    Button BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_TO_NEWS, BUTTON_TO_SEARCH, BUTTON_TO_NOTES;
+    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES;
     CalendarView CALENDAR_VIEW;
     LocalDate date, selecteddate;
     NestedScrollView Scroll;
@@ -442,28 +442,27 @@ public class MainActivity extends AppCompatActivity {
                             Date datetime = new Date();
                             int timeb_h = (thtimecurhours[i] - datetime.getHours());
                             int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
-                            if (timeb_h > -1) {
-                                if (timeb_h < 1 && timeb_m < 0)
-                                    thtime[i].setText("");
-                                else if (timeb_h < 1 && timeb_m > 0)
-                                    thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
-                                else if (timeb_h > 0 && timeb_m < 0) {
-                                    timeb_h--;
-                                    timeb_m = 60 + timeb_m;
-                                    if (timeb_h > 0)
-                                        thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
-                                    else
-                                        thtime[i].setText("через " + timeb_m + "м");
-                                } else
-                                    thtime[i].setText("через " + timeb_h + "ч " + timeb_m + "м");
-                                if (timeb_h <= 0)
-                                    thtime[i].setText("через " + timeb_m + "м");
-                                if (timeb_h <= 0 && timeb_m < 10)
-                                    thtime[i].setTextColor(getColor(R.color.red));
-
-                            } else {
-                                thtime[i].setText("");
+                            int sumtime_hm = 0;
+                            if(timeb_h > 0){
+                                sumtime_hm = timeb_h * 60 + timeb_m;
                             }
+                            if(sumtime_hm > 59)
+                            {
+                                String ssthtime = "Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.";
+                                thtime[i].setText(ssthtime);
+                            }
+                            else
+                            {
+                                String ssthtime = "Через " + (sumtime_hm % 60) + " м.";
+                                thtime[i].setText(ssthtime);
+                                if(sumtime_hm % 60 < 10)
+                                    thtime[i].setTextColor(getColor(R.color.red));
+                            }
+
+
+
+
+
                         }
                     }
                 });

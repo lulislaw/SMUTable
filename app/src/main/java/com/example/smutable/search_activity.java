@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -41,11 +43,19 @@ public class search_activity extends AppCompatActivity {
     Integer[] maxgroup = new Integer[5];
     NestedScrollView filter_scroll_view;
     String[] urls = new String[4];
-
+    Button BUTTON_TO_MAIN, BUTTON_TO_NEWS, BUTTON_TO_SELECTION, BUTTON_TO_NOTES;
+    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_MAIN, INTENT_TO_NOTES;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        BUTTON_TO_MAIN= findViewById(R.id.home_button_inside);
+        BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
+        BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+        INTENT_TO_MAIN = new Intent(search_activity.this, MainActivity.class);
+        INTENT_TO_SELECTION = new Intent(search_activity.this, SelectionActivity.class);
+        INTENT_TO_NEWS = new Intent(search_activity.this, activity_news.class);
         ImageButton searchbutton = findViewById(R.id.search);
         EditText edittext = findViewById(R.id.edittext);
         finishtext = findViewById(R.id.search_textview);
@@ -67,7 +77,29 @@ public class search_activity extends AppCompatActivity {
             }
         });
 
+        BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SELECTION);
+                overridePendingTransition(0,0);
+            }
+        });
 
+        BUTTON_TO_NEWS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_NEWS);
+                overridePendingTransition(0,0);
+            }
+        });
+
+        BUTTON_TO_MAIN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_MAIN);
+                overridePendingTransition(0,0);
+            }
+        });
 
 
 

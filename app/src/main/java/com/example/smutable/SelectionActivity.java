@@ -1,7 +1,6 @@
 package com.example.smutable;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,10 +17,8 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 import cz.msebera.android.httpclient.Header;
-import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -33,9 +29,10 @@ public class SelectionActivity extends AppCompatActivity {
 
 
     private final static String FILE_NAME_SELECTION = "selection.txt";
-    ConstraintLayout BUTTON_TO_MAIN;
+
     Button BUTTON_SAVE_SELECTION;
-    Intent INTENT_TO_MAIN;
+    Button BUTTON_TO_MAIN, BUTTON_TO_NEWS, BUTTON_TO_SEARCH, BUTTON_TO_NOTES;
+    Intent INTENT_TO_MAIN,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES;
     Spinner SPINNER_SELECT_COURSE, SPINNER_SELECT_GROUP, SPINNER_SELECT_INSTITUTE;
     String[] url = new String[5];
     int URL_ID, WORKBOOK_COURSE_ID, SHEET_INSTITUTE_ID, COLLUMN_GROUP_ID;
@@ -48,13 +45,19 @@ public class SelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
 
-
+        BUTTON_TO_MAIN= findViewById(R.id.home_button_inside);
+        BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
+        BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
         SPINNER_SELECT_COURSE = findViewById(R.id.SPINNER_SELECT_COURSE);
         SPINNER_SELECT_GROUP = findViewById(R.id.SPINNER_SELECT_GROUP);
         SPINNER_SELECT_INSTITUTE = findViewById(R.id.SPINNER_SELECT_INSTITUTE);
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
-        BUTTON_TO_MAIN = findViewById(R.id.home_group);
+
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
+        INTENT_TO_NEWS = new Intent(SelectionActivity.this, activity_news.class);
+        INTENT_TO_SEARCH = new Intent(SelectionActivity.this, search_activity.class);
+  //      INTENT_TO_NOTES = new Intent(SelectionActivity.this, MainActivity.class);
 
 
 
@@ -71,6 +74,21 @@ public class SelectionActivity extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
+        BUTTON_TO_SEARCH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SEARCH);
+                overridePendingTransition(0,0);
+            }
+        });
+        BUTTON_TO_NEWS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_NEWS);
+                overridePendingTransition(0,0);
+            }
+        });
+
 
         String[] ARRAYSPINNER_1 = new String[]
                 {
