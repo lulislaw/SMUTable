@@ -1,14 +1,18 @@
 package com.example.smutable;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -39,11 +43,50 @@ public class SelectionActivity extends AppCompatActivity {
     AsyncHttpClient client;
     Workbook workbook;
 
+    //Переключатель темная/светлая тема
+    Switch switch_ThemeColor;
+    boolean nightMODE;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+
+
+
+        //Переключатель темная/светлая тема
+
+        switch_ThemeColor = findViewById(R.id.switch_ThemeColor);
+
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMODE = sharedPreferences.getBoolean("night", false); //светлая тема дефолт
+
+        if (nightMODE) {
+            switch_ThemeColor.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+
+        switch_ThemeColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (nightMODE){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("night", false);
+                } else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor = sharedPreferences.edit();
+                    editor.putBoolean("night", true);
+                }
+                editor.apply();
+            }
+        });
+
+
 
         BUTTON_TO_MAIN= findViewById(R.id.home_button_inside);
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
