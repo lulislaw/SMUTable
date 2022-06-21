@@ -3,6 +3,8 @@ package com.example.smutable;
 
 
 import static com.example.smutable.R.layout.activity_main;
+
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,6 +21,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
@@ -188,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
         CALENDAR_VIEW.setVisibility(View.GONE);
         CALENDAR_VIEW.setClickable(false);
+        INTENT_TO_NOTES = new Intent(MainActivity.this, NotesActivity.class);
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         INTENT_TO_NEWS = new Intent(MainActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(MainActivity.this, search_activity.class);
@@ -302,6 +306,18 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
+
+
+
+        //NEW
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+        BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_NOTES);
+            }
+        });
+
 
 
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {

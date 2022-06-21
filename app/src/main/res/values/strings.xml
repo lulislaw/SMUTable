@@ -6,4 +6,9 @@
     <string name="thu">Четверг</string>
     <string name="fri">Пятница</string>
     <string name="sat">Суббота</string>
+
+    <string name="my_notes">Мои заметки</string>
+    <string name="search_notes">Search notes</string>
+    <string name="note_subtitle">Note Subtitle</string>
+    <string name="type_note_here">Type note here</string>
 </resources>
