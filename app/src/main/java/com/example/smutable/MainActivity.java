@@ -513,7 +513,7 @@ public class MainActivity extends AppCompatActivity {
 
                     WorkbookSettings WORKBOOK_SETTING = new WorkbookSettings();
                     WORKBOOK_SETTING.setGCDisabled(true);
-                    Toast.makeText(MainActivity.this, "...", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "...", Toast.LENGTH_SHORT).show();
                     if (file != null) {
                         try {
                             workbook = workbook.getWorkbook(file);

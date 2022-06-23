@@ -1,8 +1,12 @@
 package com.example.smutable.adapters;
 
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.smutable.Note;
 import com.example.smutable.R;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
@@ -51,12 +56,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
     static class NoteViewHolder extends RecyclerView.ViewHolder {
 
         TextView textTitle, textSubtitle, textDataTime;
+        LinearLayout layoutNote;
+        RoundedImageView imageNote;
 
         NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);
             textSubtitle = itemView.findViewById(R.id.textSubtitle);
             textDataTime = itemView.findViewById(R.id.textDateTime);
+            layoutNote = itemView.findViewById(R.id.layoutNote);
+            imageNote = itemView.findViewById(R.id.imageNote);
         }
         void setNote(Note note) {
             textTitle.setText(note.getTitle());
@@ -66,6 +75,21 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
                 textSubtitle.setText(note.getSubtitle());
             }
             textDataTime.setText(note.getDateTime());
+
+            GradientDrawable gradientDrawable = (GradientDrawable) layoutNote.getBackground();
+            if (note.getColor() != null) {
+                gradientDrawable.setColor(Color.parseColor(note.getColor()));
+            } else {
+                gradientDrawable.setColor(Color.parseColor("#333333"));
+            }
+
+            if (note.getImagePath() != null) {
+                imageNote.setImageBitmap(BitmapFactory.decodeFile(note.getImagePath()));
+                imageNote.setVisibility(View.VISIBLE);
+            } else {
+                imageNote.setVisibility(View.GONE);
+            }
+
         }
     }
 }

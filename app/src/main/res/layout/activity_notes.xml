@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/white"
     tools:context=".NotesActivity">
 
     <TextView
@@ -17,7 +17,7 @@
         android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:text="@string/my_notes"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/_20ssp"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/textMyNotes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textMyNotes"
-        app:tint="@color/white" />
+        app:tint="@color/black" />
     <LinearLayout
         android:id="@+id/layoutSearch"
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:layout_marginStart="@dimen/_8sdp"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:background="@drawable/background_search"
+        android:background="@drawable/block_style"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="@dimen/_10sdp"
@@ -49,7 +49,7 @@
             android:layout_height="@dimen/_20sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search"
-            app:tint="@color/colorSearchIcon" />
+            app:tint="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/inputSearch"
@@ -64,7 +64,7 @@
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="text"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorTextHint"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/_13ssp" />
@@ -91,7 +91,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/background_search"
+        android:background="@drawable/block_style"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="@dimen/_15sdp"
@@ -106,7 +106,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_add_outline"
-            app:tint="@color/colorIcons" />
+            app:tint="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/imageAddImage"
@@ -115,7 +115,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_image"
-            app:tint="@color/colorIcons" />
+            app:tint="@color/colorPrimary" />
 
         <ImageView
             android:id="@+id/imageAddWebLink"
@@ -124,7 +124,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_web_link"
-            app:tint="@color/colorIcons" />
+            app:tint="@color/colorPrimary" />
 
     </LinearLayout>
 
