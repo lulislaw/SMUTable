@@ -59,7 +59,7 @@
             android:background="@null"
             android:cursorVisible="true"
             android:fontFamily="@font/ubuntu_regular"
-            android:hint="@string/search_notes"
+            android:hint="@string/search_notes_ru"
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:includeFontPadding="false"
@@ -74,14 +74,14 @@
         android:id="@+id/notesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_2sdp"
-        android:layout_marginEnd="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:clipToPadding="false"
-        android:paddingStart="0dp"
+
         android:paddingEnd="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
         app:layout_constraintBottom_toTopOf="@+id/layoutQuickActions"
         app:layout_constraintTop_toBottomOf="@+id/layoutSearch"
+        tools:ignore="RtlSymmetry"
         tools:layout_editor_absoluteX="3dp" />
 
     <LinearLayout

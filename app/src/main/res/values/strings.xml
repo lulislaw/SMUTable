@@ -14,4 +14,8 @@
     <string name="add_image">Добавить изображение</string>
     <string name="miscellaneous">Дополнительно</string>
     <string name="complete">Готово</string>
+    <string name="delete">Удалить</string>
+    <string name="noteTitle">Название</string>
+    <string name="deleteNote">Удалить заметку</string>
+    <string name="search_notes_ru">Поиск заметок</string>
 </resources>
