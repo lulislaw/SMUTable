@@ -46,6 +46,7 @@ public class SelectionActivity extends AppCompatActivity {
     //Переключатель темная/светлая тема
     Switch switch_ThemeColor;
     boolean nightMODE;
+    boolean NOnightMODE;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 

@@ -181,13 +181,14 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     private void saveNote() {
         if(inputNoteTitle.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Вы не ввели название", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Вы не ввели название", Toast.LENGTH_SHORT).show();
+            inputNoteTitle.setText(inputNoteText.getText().toString().trim());
             return;
-        }else if(inputNoteText.getText().toString().trim().isEmpty()
+        }/*else if(inputNoteText.getText().toString().trim().isEmpty()
                 && inputNoteSubtitle.getText().toString().trim().isEmpty()) {
             Toast.makeText(this, "Вы не ввели текст заметки", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
         final Note note = new Note();
         note.setTitle(inputNoteTitle.getText().toString());

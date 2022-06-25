@@ -20,8 +20,8 @@
 
 
 
-    <color name="colorPrimary">#F2F3F4</color>
-    <color name="colorPrimaryDark">#292929</color>
+    <color name="colorPrimary">#292929</color>
+    <color name="colorPrimaryDark">#F2F3F4</color>
     <color name="colorAccent">#FDBE3B</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorSearchIcon">#DBDBDB</color>
@@ -41,3 +41,4 @@
     <color name="colorSearchBackground">#333333</color>
     <color name="mat">#F2F3F4</color>
 </resources>
+

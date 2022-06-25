@@ -7,6 +7,7 @@ import static com.example.smutable.R.layout.activity_main;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import com.google.android.material.color.MaterialColors;
@@ -43,6 +44,7 @@ import jxl.read.biff.BiffException;
 
 
 public class MainActivity extends AppCompatActivity {
+
 
     private final static String FILE_NAME = "DATA.txt";
     private final static String FILE_NAME_GROUP = "GROUP.txt";
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
 
-
+        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
 
 
@@ -181,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
         BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
         BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
         BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
@@ -250,6 +253,23 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        /*poligon_left.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedday == 0)
+                {
+                    selecteddate = LocalDate.ofEpochDay(selecteddate.toEpochDay() - 1);
+                }
+                if (selectedday == 2) {
+                    DAYS_BUTTON[1].callOnClick();
+                }
+                else {
+                    DAYS_BUTTON[0].callOnClick();
+                }
+            }
+        });*/
+
         poligon_right.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -261,7 +281,6 @@ public class MainActivity extends AppCompatActivity {
                     DAYS_BUTTON[1].callOnClick();
                 else {
                     DAYS_BUTTON[2].callOnClick();
-
                 }
             }
         });
@@ -285,6 +304,7 @@ public class MainActivity extends AppCompatActivity {
                             DAYS_BUTTON_TEXT2[finalI].setTextColor(MaterialColors.getColor(DAYS_BUTTON_TEXT[finalI], R.attr.colorOnPrimary));
                             selectedday = finalI;
                             DAY_ID = LocalDate.ofEpochDay(selecteddate.toEpochDay()-(Math.abs(2- finalI))).getDayOfWeek().getValue();
+                            UsingWeekOfYear = ((LocalDate.ofEpochDay(selecteddate.toEpochDay() - (Math.abs(2 - finalI))).getDayOfYear() - date.getDayOfYear()) / 7 + 1);
                             if(DAY_ID > 6)
                                 DAY_ID = 0;
                             if(DAY_ID <0)
@@ -297,8 +317,9 @@ public class MainActivity extends AppCompatActivity {
                                 WEEK_EVEN = 0;
                                 TEXTVIEW_WEEK.setText("Нечетная" + "(" + UsingWeekOfYear + ")");
                             }
-                            TEXTVIEW_DATE.setText(daysofweeks_string[DAY_ID] + ", "  + LocalDate.ofEpochDay(selecteddate.toEpochDay()-(Math.abs(2- finalI))+1).getDayOfMonth() + " " + monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1]);
-                            UsingWeekOfYear = ((LocalDate.ofEpochDay(selecteddate.toEpochDay() - (Math.abs(2 - finalI))).getDayOfYear() - date.getDayOfYear()) / 7 + 1);
+                            TEXTVIEW_DATE.setText(daysofweeks_string[DAY_ID] + ", "  +
+                                    LocalDate.ofEpochDay(selecteddate.toEpochDay()-(Math.abs(2- finalI))+1).getDayOfMonth() + " " +
+                                    monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1]);
                             SET_TEXT_DAYS();
 
 
@@ -310,7 +331,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
         BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -460,7 +480,7 @@ public class MainActivity extends AppCompatActivity {
                             thtime[i].setVisibility(View.VISIBLE);
                             int timeb_h = (thtimecurhours[i] - datetime.getHours());
                             int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
-                            int sumtime_hm = 0;
+                            int sumtime_hm = timeb_m;
 
                             if (timeb_h > 0) {
                                 sumtime_hm = timeb_h * 60 + timeb_m;
@@ -735,7 +755,7 @@ public class MainActivity extends AppCompatActivity {
                         TeacherSubject[i].setVisibility(View.GONE);
                     else
                         TeacherSubject[i].setVisibility(View.VISIBLE);
-                    RoomSubject[i].setText(temp_string[3]);
+                    RoomSubject[i].setText(temp_string[3] + "\n");
 
 
 

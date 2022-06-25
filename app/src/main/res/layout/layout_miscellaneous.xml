@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background_miscellaneous_white"
+    android:background="@drawable/background_miscellaneous"
     app:behavior_peekHeight="@dimen/_40sdp"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
@@ -18,7 +18,7 @@
         android:fontFamily="@font/inter_bold"
         android:includeFontPadding="false"
         android:text="@string/miscellaneous"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/_13ssp" />
 
     <LinearLayout
@@ -156,7 +156,7 @@
             android:layout_height="@dimen/_22sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_image"
-            app:tint="@color/colorPrimary" />
+            app:tint="@color/colorPrimaryDark" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
             android:includeFontPadding="false"
             android:text="@string/add_image"
             android:textSize="@dimen/_12sdp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimaryDark"/>
 
     </LinearLayout>
 
