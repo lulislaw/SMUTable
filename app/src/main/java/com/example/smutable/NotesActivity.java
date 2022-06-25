@@ -22,6 +22,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -47,14 +48,53 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
     private ImageView imageAddWebLink;
 
     private int noteClickedPosition = -1;
-
+    Button BUTTON_TO_SELECTION, BUTTON_TO_MAIN, BUTTON_TO_NEWS, BUTTON_TO_SEARCH;
+    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_MAIN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+        BUTTON_TO_MAIN = findViewById(R.id.home_button_inside);
+        BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
+        BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
+        BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
+        INTENT_TO_MAIN = new Intent(NotesActivity.this, MainActivity.class);
+        INTENT_TO_SELECTION = new Intent(NotesActivity.this, SelectionActivity.class);
+        INTENT_TO_NEWS = new Intent(NotesActivity.this, activity_news.class);
+        INTENT_TO_SEARCH = new Intent(NotesActivity.this, search_activity.class);
+
+        BUTTON_TO_MAIN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_MAIN);
+                overridePendingTransition(0,0);
+            }
+        });
 
 
+
+        BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SELECTION);
+                overridePendingTransition(0,0);
+            }
+        });
+        BUTTON_TO_SEARCH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_SEARCH);
+                overridePendingTransition(0,0);
+            }
+        });
+        BUTTON_TO_NEWS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(INTENT_TO_NEWS);
+                overridePendingTransition(0,0);
+            }
+        });
 
         ImageView imageBackFromNotes = findViewById(R.id.imageBackFromNotes);
         imageBackFromNotes.setOnClickListener(new View.OnClickListener() {

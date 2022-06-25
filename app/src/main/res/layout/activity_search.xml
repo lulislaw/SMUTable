@@ -21,7 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -79,8 +79,8 @@
         android:background="@drawable/block_style"
         android:ems="10"
         android:fontFamily="@font/inter_regular"
-        android:inputType="text"
         android:hint="Поиск"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -103,6 +103,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,8 +113,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/block_style"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -123,7 +125,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginLeft="5dp"
-                android:background="@drawable/block_style"
                 android:elevation="10dp"
                 android:fontFamily="@font/inter_regular"
                 android:textColor="#000000"
@@ -136,23 +137,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bot"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/_10sdp"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/block_style"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -163,11 +164,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/search_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -207,11 +210,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/news_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -243,6 +248,7 @@
                     app:srcCompat="@drawable/ic_system_uicons_newspaper"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/home_group"
                 android:layout_width="54dp"
@@ -257,6 +263,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -288,6 +295,7 @@
                     app:srcCompat="@drawable/ic_home"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/note_group"
                 android:layout_width="54dp"
@@ -296,11 +304,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/note_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -341,15 +351,18 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:clickable="true">
+
                 <Button
                     android:id="@+id/settings_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/settings_text"
                     android:layout_width="55dp"
@@ -372,8 +385,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_settings"
-                    app:tint="?attr/colorOnPrimary" />
+                    app:srcCompat="@drawable/ic_settings" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

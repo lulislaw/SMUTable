@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
@@ -63,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
     TextView[] DAYS_BUTTON_TEXT = new TextView[3];
     TextView[] DAYS_BUTTON_TEXT2 = new TextView[3];
     String[] Subject_text = new String[48];
-    String[] Subject_text_rly = new String[24];                     //Массив в соответсвие с "Subject"
+    String[] Subject_text_rly = new String[24];
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID, DAY_ID;
-    int WEEK_EVEN;     // 1 = EVEN , 0 = Non-even;
+    int WEEK_EVEN;
     int SpecialWeekOfYear, CurrentWeekOfYear, UsingWeekOfYear;
     int selectedday;
     int[] thtimecurhours = new int[4];
     int[] thtimecurminutes = new int[4];
     Integer mYear,mMonth,mdayOfMonth;
-    String[] temp_string = new String[4]; //0 - Предмет, 1 - тип, 2 - препод, 3 - аудитория
+    String[] temp_string = new String[4];
     String text, GroupName;
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK, TEXTVIEW_DATE;
     Button CLOSE_INFO_BLOCK;
@@ -80,21 +81,21 @@ public class MainActivity extends AppCompatActivity {
     Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES;
     CalendarView CALENDAR_VIEW;
     LocalDate date, selecteddate;
-    NestedScrollView Scroll;
+    ScrollView Scroll;
     Animation animation_scale;
     ImageButton poligon_left, poligon_right;
     LocalDate[] datesbutton = new LocalDate[3];
     int[] thtimeinthours = {
-            8, 9,11,13,15,17,18,20
+            8, 9,11,13,13,15,17,18,20
     };
     int[] thtimeintminutes = {
-            15, 55,35,45,25,05,50,30
+            15, 55,35, 5 ,45,25,5,50,30
     };
     String[] time = {
-      "8:15 - 9:45", "9:55 - 11:25","11:35 - 13:05", "13:45 - 15:15", "15:25 - 16:55", "17:05 - 18:35","18:50 - 20:20", "20:30 - 22:00"
+      "8:15 - 9:45", "9:55 - 11:25","11:35 - 13:05","13:15 - 14:45", "13:45 - 15:15", "15:25 - 16:55", "17:05 - 18:35","18:50 - 20:20", "20:30 - 22:00"
     };
     String[] timedef = {
-            "8.15", "9.55","11.35", "13.45", "15.25", "17.05","18.50", "20.30"
+            "8.15", "9.55","11.35","13.15", "13.45", "15.25", "17.05","18.50", "20.30"
     };
     String[] monthru = {
       "Января","Февраля","Марта","Апреля","Мая","Июня","Июля","Августа","Сентября","Октября","Ноября","Декабря"
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        //Начало подключения XML//
+
 
         poligon_left = findViewById(R.id.poligon_left);
         poligon_right = findViewById(R.id.poligon_right);
@@ -185,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         Scroll = findViewById(R.id.nestedScrollView);
 
 
-        //Конец подключения XML//
+
 
         animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
@@ -226,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
                     overridePendingTransition(0,0);
                     e.printStackTrace();
                 } catch (IOException e) {
-
                     e.printStackTrace();
                 }
 
@@ -309,12 +309,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //NEW
+
         BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
         BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(INTENT_TO_NOTES);
+                overridePendingTransition(0,0);
             }
         });
 
@@ -453,27 +454,31 @@ public class MainActivity extends AppCompatActivity {
                     @SuppressLint("ResourceAsColor")
                     @Override
                     public void run() {
-                        for(int i =0; i < 4; i++) {                                                     // не до конца работает
+                        for(int i =0; i < 4; i++) {
 
                             Date datetime = new Date();
+                            thtime[i].setVisibility(View.VISIBLE);
                             int timeb_h = (thtimecurhours[i] - datetime.getHours());
                             int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
                             int sumtime_hm = 0;
-                            if(timeb_h > 0){
+
+                            if (timeb_h > 0) {
                                 sumtime_hm = timeb_h * 60 + timeb_m;
                             }
-                            if(sumtime_hm > 59)
-                            {
+                            if (sumtime_hm > 59) {
                                 String ssthtime = "Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.";
                                 thtime[i].setText(ssthtime);
-                            }
-                            else
-                            {
+                            } else {
                                 String ssthtime = "Через " + (sumtime_hm % 60) + " м.";
                                 thtime[i].setText(ssthtime);
-                                if(sumtime_hm % 60 < 10)
+                                if (sumtime_hm % 60 < 10)
                                     thtime[i].setTextColor(getColor(R.color.red));
+                                if(sumtime_hm % 60 <= 0)
+                                    thtime[i].setText("");
                             }
+
+
+
 
 
 
@@ -487,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
         }, 0, 1000);
 
 
-        //end main code
+
     }
 
 
@@ -513,7 +518,7 @@ public class MainActivity extends AppCompatActivity {
 
                     WorkbookSettings WORKBOOK_SETTING = new WorkbookSettings();
                     WORKBOOK_SETTING.setGCDisabled(true);
-                    //Toast.makeText(MainActivity.this, "...", Toast.LENGTH_SHORT).show();
+
                     if (file != null) {
                         try {
                             workbook = workbook.getWorkbook(file);
@@ -538,7 +543,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-//next public voids
 
 
 
@@ -556,16 +560,10 @@ public class MainActivity extends AppCompatActivity {
             datesbutton[2] = LocalDate.ofEpochDay(selecteddate.toEpochDay()+1);
         }
 
-        //Вывод в консоль//
-    public void TEST()
-    {
-        for (int i = 0; i < 48; i++) {
-            System.out.println(Subject_text[i]);
-        }
-    }
-        //Вывод в консоль//
 
-        //Сохранение информации о текущей группе//
+
+
+
     public void SAVE_DATA()
     {
         FileOutputStream fos = null;
@@ -612,8 +610,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-        //Сохранение информации о текущей группе//
-        //Загрузка информации о текущей группе//
+
     public void LOAD_DATA(int week)
     {
         FileInputStream fin = null;
@@ -647,7 +644,7 @@ public class MainActivity extends AppCompatActivity {
            for(int i = 0; i < 4; i++) {
                String[] SPLIT = Subject_text[FIRSTNUMBERROW].split("t");
 
-                    for(int t = 0;t < 8;t++)
+                    for(int t = 0;t < 9;t++)
                     {
                         if(SPLIT[0].contains(timedef[t])) {
                             TIME[i].setText(time[t]);
@@ -673,7 +670,7 @@ public class MainActivity extends AppCompatActivity {
                 temp_string[0] = "";
 
 
-                for(int le = 0; le < SPLIT[1].length(); le++)                                                 //пилю текст по частям
+                for(int le = 0; le < SPLIT[1].length(); le++)
                 {
                     if(SPLIT[1].charAt(le) == '(') {
                         temp_string[0] = SPLIT[1].substring(0,le-1);
@@ -725,11 +722,19 @@ public class MainActivity extends AppCompatActivity {
                         temp_string[2] = temp_string[2].substring(1);
                     }
 
-                                                                                                                //распил окончен
+
 
                     NameSubject[i].setText(temp_string[0]);
                     TypeSubject[i].setText(temp_string[1]);
+                       if(TeacherSubject[i].getText().toString() == "")
+                           TypeSubject[i].setVisibility(View.GONE);
+                       else
+                           TypeSubject[i].setVisibility(View.VISIBLE);
                     TeacherSubject[i].setText(temp_string[2]);
+                    if(TeacherSubject[i].getText().toString() == "")
+                        TeacherSubject[i].setVisibility(View.GONE);
+                    else
+                        TeacherSubject[i].setVisibility(View.VISIBLE);
                     RoomSubject[i].setText(temp_string[3]);
 
 
@@ -809,7 +814,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-        //Загрузка информации о текущей группе//
+
 
 }
 

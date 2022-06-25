@@ -100,7 +100,7 @@ public class SelectionActivity extends AppCompatActivity {
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
         INTENT_TO_NEWS = new Intent(SelectionActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(SelectionActivity.this, search_activity.class);
-  //      INTENT_TO_NOTES = new Intent(SelectionActivity.this, MainActivity.class);
+
 
 
 
@@ -109,7 +109,17 @@ public class SelectionActivity extends AppCompatActivity {
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
         url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
 
+        INTENT_TO_NOTES = new Intent(SelectionActivity.this, NotesActivity.class);
 
+
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+        BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_NOTES);
+                overridePendingTransition(0,0);
+            }
+        });
         BUTTON_TO_MAIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

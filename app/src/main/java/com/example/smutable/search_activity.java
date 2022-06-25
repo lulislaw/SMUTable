@@ -76,7 +76,17 @@ public class search_activity extends AppCompatActivity {
 
             }
         });
+        INTENT_TO_NOTES = new Intent(search_activity.this, NotesActivity.class);
 
+
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+        BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_NOTES);
+                overridePendingTransition(0,0);
+            }
+        });
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,18 +161,18 @@ public class search_activity extends AppCompatActivity {
                             for(int s = 0; s < 48; s++){
                                 for(int c = 0; c < maxgroup[i]; c++)
                                 {
-                                    String mess = sheet.getCell(1,8+s).getContents() +"\n" + sheet.getCell(2,8+s).getContents() + "\n" + sheet.getCell(3,8+s).getContents() +"\n" + sheet.getCell(4+c,8+s).getContents();
+                                    String mess = sheet.getCell(1,8+s).getContents() +"\n" + sheet.getCell(2,8+s).getContents() + "\n" + sheet.getCell(3,8+s).getContents() +"\n" + sheet.getCell(4+c,8+s).getContents() + "\n";
                                     if(sheet.getCell(4+c,8+s).getContents().contains(search_message))
                                     {
                                         if(!finishtext.getText().toString().contains(mess))
                                         {
-                                            finishtext.setText(finishtext.getText().toString() + mess);
+                                            finishtext.setText(finishtext.getText().toString() + mess + "\n\n");
 
                                         }
                                     }
                                 }
                             }
-
+                            finishtext.setText(finishtext.getText().toString().substring(0));
                         }
 
                     } catch (IOException e) {

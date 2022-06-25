@@ -123,8 +123,17 @@ public class activity_news extends AppCompatActivity {
         INTENT_TO_MAIN = new Intent(activity_news.this, MainActivity.class);
         INTENT_TO_SELECTION = new Intent(activity_news.this, SelectionActivity.class);
         INTENT_TO_SEARCH = new Intent(activity_news.this, search_activity.class);
-        //      INTENT_TO_NOTES = new Intent(activity_news.this, MainActivity.class);
+        INTENT_TO_NOTES = new Intent(activity_news.this, NotesActivity.class);
 
+
+        BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+        BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_NOTES);
+                overridePendingTransition(0,0);
+            }
+        });
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -270,7 +279,7 @@ public class activity_news extends AppCompatActivity {
             for(int i = 0; i < 10; i++){
                 docnews = Jsoup.connect(urlnews[i]).get();
                 Element contentnew = docnews.getElementById("content");
-              //  Elements classp = contentnew.getElementsByTag("p");
+
                 Elements classp = contentnew.getElementsByClass("cf");
                 Elements cfp = classp.select("p");
                 Elements cfh2 = classp.select("h2");

@@ -38,7 +38,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/inter_bold_1"
             android:text="Курс"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_COURSE"
             app:layout_constraintStart_toStartOf="parent" />
@@ -76,7 +76,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/inter_bold_1"
             android:text="Институт"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_INSTITUTE"
             app:layout_constraintStart_toStartOf="parent" />
@@ -114,7 +114,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/inter_bold_1"
             android:text="Группа"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnPrimary"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/SPINNER_SELECT_GROUP"
             app:layout_constraintStart_toStartOf="parent" />
@@ -125,23 +125,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bot"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/_10sdp"
         android:layout_height="60dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/block_style"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,15 +152,18 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/search_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/search_text"
                     android:layout_width="55dp"
@@ -195,11 +198,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/news_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -231,6 +236,7 @@
                     app:srcCompat="@drawable/ic_system_uicons_newspaper"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/home_group"
                 android:layout_width="54dp"
@@ -245,6 +251,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -276,6 +283,7 @@
                     app:srcCompat="@drawable/ic_home"
                     app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/note_group"
                 android:layout_width="54dp"
@@ -284,11 +292,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp">
+
                 <Button
                     android:id="@+id/note_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -329,11 +339,13 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:clickable="true">
+
                 <Button
                     android:id="@+id/settings_button_inside"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:background="#00FFFFFF"
+                    android:elevation="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -358,11 +370,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
+                    android:tint="?attr/colorPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_settings"
-                    app:tint="?attr/colorPrimary" />
+                    app:srcCompat="@drawable/ic_settings" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
