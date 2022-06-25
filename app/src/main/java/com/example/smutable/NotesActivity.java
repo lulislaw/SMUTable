@@ -96,21 +96,21 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
             }
         });
 
-        ImageView imageBackFromNotes = findViewById(R.id.imageBackFromNotes);
+        /*ImageView imageBackFromNotes = findViewById(R.id.imageBackFromNotes);
         imageBackFromNotes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
-        });
+        });*/
 
-        imageAddWebLink = findViewById(R.id.imageAddWebLink);
+        /*imageAddWebLink = findViewById(R.id.imageAddWebLink);
         imageAddWebLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(NotesActivity.this, "Мне лень прикручивать бесполезную функцию ;)", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
 
@@ -156,7 +156,7 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
             }
         });
 
-        findViewById(R.id.imageAddNote).setOnClickListener(new View.OnClickListener() {
+        /*findViewById(R.id.imageAddNote).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(
@@ -181,7 +181,7 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
                     selectImage();
                 }
             }
-        });
+        });*/
 
     }
 

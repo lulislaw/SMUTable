@@ -58,7 +58,7 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <ImageButton
+    <!--<ImageButton
         android:id="@+id/filter"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -68,7 +68,7 @@
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />-->
 
     <EditText
         android:id="@+id/edittext"
@@ -127,7 +127,7 @@
                 android:layout_marginLeft="5dp"
                 android:elevation="10dp"
                 android:fontFamily="@font/inter_regular"
-                android:textColor="#000000"
+                android:textColor="?attr/colorOnPrimary"
                 android:textSize="18sp" />
         </LinearLayout>
 
