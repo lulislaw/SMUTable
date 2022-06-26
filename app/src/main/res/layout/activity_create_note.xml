@@ -164,7 +164,7 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@null"
-                android:fontFamily="@font/inter_regular"
+                android:fontFamily="@font/ubuntu"
                 android:gravity="top"
                 android:hint="Содержание"
                 android:importantForAutofill="no"

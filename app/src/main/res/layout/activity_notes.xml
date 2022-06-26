@@ -50,7 +50,7 @@
             android:layout_height="@dimen/_20sdp"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_search"
-            app:tint="@color/colorPrimary" />
+            app:tint="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/inputSearch"
