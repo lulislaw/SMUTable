@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
     TextView[] DAYS_BUTTON_TEXT = new TextView[3];
     TextView[] DAYS_BUTTON_TEXT2 = new TextView[3];
     String[] Subject_text = new String[48];
-    String[] Subject_text_rly = new String[24];
     int SHEET_ID, COLLUMN_ID, ROW_ID, URL_ID, DAY_ID;
     int WEEK_EVEN;
     int SpecialWeekOfYear, CurrentWeekOfYear, UsingWeekOfYear;
@@ -114,12 +113,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
-
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-
-
-
         WEEK_EVEN = 1;
         GroupName = "";
         {
@@ -129,9 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     6);
 
         }
-
-
-
         poligon_left = findViewById(R.id.poligon_left);
         poligon_right = findViewById(R.id.poligon_right);
         DAYS_BUTTON_GROUP[0] = findViewById(R.id.DAY_BUTTON_GROUP_LEFT);
@@ -187,10 +177,6 @@ public class MainActivity extends AppCompatActivity {
         BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
-
-
-
-
         animation_scale = AnimationUtils.loadAnimation(MainActivity.this, R.anim.scale);
         CurrentWeekOfYear = (LocalDate.now().getDayOfYear() - date.getDayOfYear()) / 7 + 1;
         CALENDAR_VIEW.setVisibility(View.GONE);
@@ -203,11 +189,7 @@ public class MainActivity extends AppCompatActivity {
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
         url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
-
         ROW_ID = 8;
-
-
-
         FileInputStream fins = null;
                 String text_selection = "";
                 try {
@@ -232,8 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-
                 poligon_left.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -253,22 +233,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
-        /*poligon_left.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(selectedday == 0)
-                {
-                    selecteddate = LocalDate.ofEpochDay(selecteddate.toEpochDay() - 1);
-                }
-                if (selectedday == 2) {
-                    DAYS_BUTTON[1].callOnClick();
-                }
-                else {
-                    DAYS_BUTTON[0].callOnClick();
-                }
-            }
-        });*/
 
         poligon_right.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -328,9 +292,6 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
 
-
-
-
         BUTTON_TO_NOTES.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -338,8 +299,6 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(0,0);
             }
         });
-
-
 
         BUTTON_TO_SELECTION.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -438,10 +397,8 @@ public class MainActivity extends AppCompatActivity {
                 selecteddate = LocalDate.of(mYear,mMonth,mdayOfMonth);
                 DAY_ID =(LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfWeek().getValue()-1);
                 LOAD_DATA(UsingWeekOfYear);
-
                 CALENDAR_VIEW.setVisibility(View.GONE);
                 CALENDAR_VIEW.setClickable(false);
-
                 CLOSE_INFO_BLOCK.setVisibility(View.GONE);
                 CLOSE_INFO_BLOCK.setClickable(false);
                 DAYS_BUTTON[1].callOnClick();
@@ -457,11 +414,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         DOWNLOAD_DATA();
-
-
-
-
-
 
         Timer timer = new Timer();
 
@@ -481,46 +433,34 @@ public class MainActivity extends AppCompatActivity {
                             int timeb_h = (thtimecurhours[i] - datetime.getHours());
                             int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
                             int sumtime_hm = 0;
-
-                            if (timeb_h > 0) {
+                            Boolean f = false;
+                            if(timeb_h > 0)
                                 sumtime_hm = timeb_h * 60 + timeb_m;
-                            }
-                            else
                             if(timeb_h == 0)
-                            {
                                 sumtime_hm = timeb_m;
+                            if(timeb_h<0) {
+                                sumtime_hm = Math.abs(timeb_h * 60 + timeb_m);
+                                f = true;
+                            }
+                            if(!f){
+                                if(sumtime_hm > 60)
+                                thtime[i].setText("Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.");
+                                else {
+                                    thtime[i].setText("Через " + (sumtime_hm) + " м.");
+                                    if (sumtime_hm < 10)
+                                        thtime[i].setTextColor(getColor(R.color.red));
+                                }
                             }
                             else
                             {
-                                thtime[i].setText("");
-                            }
-                            if (sumtime_hm > 59) {
-                                String ssthtime = "Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.";
-                                thtime[i].setText(ssthtime);
-                            }
-                            else
-                            {
-                                String ssthtime = "Через " + (sumtime_hm) + " м.";
-                                thtime[i].setText(ssthtime);
-                                if (sumtime_hm < 10)
-                                    thtime[i].setTextColor(getColor(R.color.red));
-                                if(sumtime_hm <= 0)
+
+                                if(sumtime_hm > 60)
+                                    thtime[i].setText("Идет " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.");
+                                else
+                                    thtime[i].setText("Идет "+ (sumtime_hm) + " м.");
+                                if(sumtime_hm > 90)
                                     thtime[i].setText("");
                             }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         }
                     }
                 });
@@ -528,11 +468,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 0, 1000);
 
-
-
     }
-
-
 
         public void DOWNLOAD_DATA()
         {
@@ -550,8 +486,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, File file) {
-
-
 
                     WorkbookSettings WORKBOOK_SETTING = new WorkbookSettings();
                     WORKBOOK_SETTING.setGCDisabled(true);
@@ -581,8 +515,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
       public void SET_TEXT_DAYS()
         {
 
@@ -596,10 +528,6 @@ public class MainActivity extends AppCompatActivity {
             datesbutton[1] = LocalDate.ofEpochDay(selecteddate.toEpochDay());
             datesbutton[2] = LocalDate.ofEpochDay(selecteddate.toEpochDay()+1);
         }
-
-
-
-
 
     public void SAVE_DATA()
     {
@@ -672,7 +600,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
             int FIRSTNUMBERROW = 0 + WEEK_EVEN + (DAY_ID*8);
             if (FIRSTNUMBERROW > 40) {
                 FIRSTNUMBERROW = 40;
@@ -692,9 +619,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
 
-
-
-                Subject_text_rly[i] = Subject_text[FIRSTNUMBERROW];
                 String sss = Subject_text[FIRSTNUMBERROW];
                 if(SPLIT[1].contains("(ЛЗ"))
                     temp_string[1] = "Лабораторная работа";
@@ -759,8 +683,6 @@ public class MainActivity extends AppCompatActivity {
                         temp_string[2] = temp_string[2].substring(1);
                     }
 
-
-
                     NameSubject[i].setText(temp_string[0]);
                     TypeSubject[i].setText(temp_string[1]);
                        if(TeacherSubject[i].getText().toString() == "")
@@ -773,8 +695,6 @@ public class MainActivity extends AppCompatActivity {
                     else
                         TeacherSubject[i].setVisibility(View.VISIBLE);
                     RoomSubject[i].setText(temp_string[3] + "\n");
-
-
 
                 if(SPLIT[1].length() == 1)
                 {

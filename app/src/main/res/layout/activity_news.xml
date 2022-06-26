@@ -26,15 +26,15 @@
         android:id="@+id/backview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="5dp"
         android:background="#FFFFFF"
-        android:elevation="2dp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pageslin"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progcircle"
@@ -50,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pageslin"
-        tools:visibility="invisible"></ProgressBar>
+        tools:visibility="visible"></ProgressBar>
 
     <LinearLayout
         android:id="@+id/pageslin"
@@ -101,9 +101,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="5dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/bot"
         app:layout_constraintEnd_toEndOf="parent"
