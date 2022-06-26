@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SMUTable</string>
+    <string name="app_name">SUMTable</string>
     <string name="mon">Понедельник</string>
     <string name="tue">Вторник</string>
     <string name="wed">Среда</string>
