@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/drawable/background_dialog.xml" value="0.2075" />
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/layout/activity_create_note.xml" value="0.358695652173913" />
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/layout/activity_notes.xml" value="0.358695652173913" />
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/layout/item_container_note.xml" value="0.358695652173913" />
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/layout/layout_delete_note.xml" value="0.358695652173913" />
+        <entry key="..\:/GitHub/SMUTable/app/src/main/res/layout/layout_miscellaneous.xml" value="0.358695652173913" />
         <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/activity_notes.xml" value="0.17753623188405798" />
         <entry key="..\:/Users/ilyap/StudioProjects/SMUTable/app/src/main/res/layout/notes_list.xml" value="0.335" />

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="@dimen/_10sdp"
-    android:background="@drawable/background_dialog_white">
+    android:background="@drawable/background_dialog">
 
     <ImageView
         android:id="@+id/imageDeleteNote"
@@ -18,7 +18,7 @@
         android:src="@drawable/ic_delete"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/colorPrimary" />
+        app:tint="@color/colorPrimaryDark" />
 
     <TextView
         android:layout_width="0dp"
@@ -28,7 +28,7 @@
         android:fontFamily="@font/inter_bold"
         android:includeFontPadding="false"
         android:text="Удалить заметку"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="@+id/imageDeleteNote"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         android:paddingStart="@dimen/_8sdp"
         android:paddingEnd="@dimen/_8sdp"
         android:text="Вы уверены, что хотите продолжить?"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/_13ssp"
         app:layout_constraintTop_toBottomOf="@+id/imageDeleteNote" />
 

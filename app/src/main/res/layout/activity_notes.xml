@@ -67,7 +67,7 @@
             android:importantForAutofill="no"
             android:includeFontPadding="false"
             android:inputType="text"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorTextHint"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/_13ssp" />
@@ -79,10 +79,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_15sdp"
         android:clipToPadding="false"
-
+        android:layout_marginBottom="@dimen/_10sdp"
         android:paddingEnd="@dimen/_12sdp"
         android:paddingBottom="@dimen/_12sdp"
-
+        app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutSearch"

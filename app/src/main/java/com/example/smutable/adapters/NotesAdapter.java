@@ -89,10 +89,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
         }
         void setNote(Note note) {
             textTitle.setText(note.getTitle());
-            if(note.getSubtitle().trim().isEmpty()) {
+            if(note.getNoteText().trim().isEmpty()) {
                 textSubtitle.setVisibility(View.GONE);
             }else {
-                textSubtitle.setText(note.getSubtitle());
+                textSubtitle.setText(note.getNoteText());
             }
             textDataTime.setText(note.getDateTime());
 
