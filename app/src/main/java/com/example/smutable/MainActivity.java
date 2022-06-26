@@ -436,8 +436,10 @@ public class MainActivity extends AppCompatActivity {
                             Boolean f = false;
                             if(timeb_h > 0)
                                 sumtime_hm = timeb_h * 60 + timeb_m;
-                            if(timeb_h == 0)
+                            if(timeb_h == 0) {
                                 sumtime_hm = timeb_m;
+
+                            }
                             if(timeb_h<0) {
                                 sumtime_hm = Math.abs(timeb_h * 60 + timeb_m);
                                 f = true;
@@ -447,19 +449,25 @@ public class MainActivity extends AppCompatActivity {
                                 thtime[i].setText("Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.");
                                 else {
                                     thtime[i].setText("Через " + (sumtime_hm) + " м.");
-                                    if (sumtime_hm < 10)
+                                    if (sumtime_hm >= 0 && sumtime_hm < 10)
                                         thtime[i].setTextColor(getColor(R.color.red));
+                                }
+                                if(sumtime_hm < 0)
+                                {
+                                    thtime[i].setText("Идет "+ (Math.abs(sumtime_hm)) + " м.");
+                                    thtime[i].setTextColor(getColor(R.color.alsoftblue));
                                 }
                             }
                             else
                             {
-
+                                thtime[i].setTextColor(getColor(R.color.alsoftblue));
                                 if(sumtime_hm > 60)
                                     thtime[i].setText("Идет " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.");
                                 else
                                     thtime[i].setText("Идет "+ (sumtime_hm) + " м.");
                                 if(sumtime_hm > 90)
                                     thtime[i].setText("");
+
                             }
                         }
                     }
@@ -682,20 +690,20 @@ public class MainActivity extends AppCompatActivity {
                     {
                         temp_string[2] = temp_string[2].substring(1);
                     }
-
+               TeacherSubject[i].setVisibility(View.VISIBLE);
+               TypeSubject[i].setVisibility(View.VISIBLE);
                     NameSubject[i].setText(temp_string[0]);
                     TypeSubject[i].setText(temp_string[1]);
-                       if(TeacherSubject[i].getText().toString() == "")
-                           TypeSubject[i].setVisibility(View.GONE);
-                       else
-                           TypeSubject[i].setVisibility(View.VISIBLE);
                     TeacherSubject[i].setText(temp_string[2]);
-                    if(TeacherSubject[i].getText().toString() == "")
-                        TeacherSubject[i].setVisibility(View.GONE);
-                    else
-                        TeacherSubject[i].setVisibility(View.VISIBLE);
                     RoomSubject[i].setText(temp_string[3] + "\n");
-
+                   if(temp_string[2] == "")
+                       TeacherSubject[i].setVisibility(View.GONE);
+                   else
+                       TeacherSubject[i].setVisibility(View.VISIBLE);
+                   if(temp_string[1] == "")
+                       TypeSubject[i].setVisibility(View.GONE);
+                   else
+                       TypeSubject[i].setVisibility(View.VISIBLE);
                 if(SPLIT[1].length() == 1)
                 {
                     Subject[i].setVisibility(View.GONE);

@@ -390,8 +390,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible"
-        />
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/CLOSE_INFO_BLOCK"
@@ -905,7 +904,7 @@
             <TextView
                 android:id="@+id/TEXTVIEW_DATE"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold_1"
                 android:text="День недели, число"
                 android:textColor="?attr/colorOnPrimary"
@@ -916,7 +915,7 @@
             <TextView
                 android:id="@+id/TEXTVIEW_WEEK"
                 android:layout_width="wrap_content"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_bold_1"
                 android:text="Тип недели"
 
