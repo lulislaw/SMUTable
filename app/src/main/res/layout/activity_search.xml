@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".search_activity">
 
+    <TextView
+        android:id="@+id/textMyNotes3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="19dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:includeFontPadding="false"
+        android:text="Поиск"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/_20ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/filter_scrollview"
         android:layout_width="0dp"
@@ -72,15 +88,18 @@
 
     <EditText
         android:id="@+id/edittext"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="47dp"
-        android:layout_marginStart="75dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="75dp"
         android:background="@drawable/block_style"
         android:ems="10"
         android:fontFamily="@font/inter_regular"
         android:hint="Поиск"
         android:inputType="text"
+        android:textColor="?attr/colorOnPrimary"
+        android:textColorHint="?attr/colorOnPrimary"
+        app:layout_constraintEnd_toStartOf="@+id/search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,13 +107,14 @@
         android:id="@+id/search"
         android:layout_width="47dp"
         android:layout_height="47dp"
-        android:layout_marginStart="4dp"
         android:layout_marginTop="75dp"
+        android:layout_marginEnd="19dp"
         android:background="#00FFFFFF"
         android:scaleType="center"
-        app:layout_constraintStart_toEndOf="@+id/edittext"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search" />
+        app:srcCompat="@drawable/ic_search"
+        app:tint="?attr/colorOnPrimary" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/search_text_nestedscrollview"
@@ -385,7 +405,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_settings" />
+                    app:srcCompat="@drawable/ic_settings"
+                    app:tint="?attr/colorOnPrimary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
