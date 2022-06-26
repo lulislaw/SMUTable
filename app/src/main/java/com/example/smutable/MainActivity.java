@@ -480,22 +480,39 @@ public class MainActivity extends AppCompatActivity {
                             thtime[i].setVisibility(View.VISIBLE);
                             int timeb_h = (thtimecurhours[i] - datetime.getHours());
                             int timeb_m = (thtimecurminutes[i] - datetime.getMinutes());
-                            int sumtime_hm = timeb_m;
+                            int sumtime_hm = 0;
 
                             if (timeb_h > 0) {
                                 sumtime_hm = timeb_h * 60 + timeb_m;
                             }
+                            else
+                            if(timeb_h == 0)
+                            {
+                                sumtime_hm = timeb_m;
+                            }
+                            else
+                            {
+                                thtime[i].setText("");
+                            }
                             if (sumtime_hm > 59) {
                                 String ssthtime = "Через " + (sumtime_hm / 60) + " ч. " + (sumtime_hm % 60) + " м.";
                                 thtime[i].setText(ssthtime);
-                            } else {
-                                String ssthtime = "Через " + (sumtime_hm % 60) + " м.";
+                            }
+                            else
+                            {
+                                String ssthtime = "Через " + (sumtime_hm) + " м.";
                                 thtime[i].setText(ssthtime);
-                                if (sumtime_hm % 60 < 10)
+                                if (sumtime_hm < 10)
                                     thtime[i].setTextColor(getColor(R.color.red));
-                                if(sumtime_hm % 60 <= 0)
+                                if(sumtime_hm <= 0)
                                     thtime[i].setText("");
                             }
+
+
+
+
+
+
 
 
 

@@ -6,6 +6,49 @@
     android:layout_height="match_parent"
     tools:context=".search_activity">
 
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="19dp"
+        android:background="@drawable/block_style"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textMyNotes3">
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_search"
+            app:tint="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@null"
+            android:cursorVisible="true"
+            android:fontFamily="@font/ubuntu_regular"
+            android:hint="@string/search_s"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:includeFontPadding="false"
+            android:inputType="text"
+            android:textColor="?attr/colorOnPrimary"
+            android:textColorHint="@color/colorTextHint"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/_13ssp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textMyNotes3"
         android:layout_width="match_parent"
@@ -74,47 +117,6 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!--<ImageButton
-        android:id="@+id/filter"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:background="#00FFFFFF"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_sort_by_size" />-->
-
-    <EditText
-        android:id="@+id/edittext"
-        android:layout_width="0dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="75dp"
-        android:background="@drawable/block_style"
-        android:ems="10"
-        android:fontFamily="@font/inter_regular"
-        android:hint="Поиск"
-        android:inputType="text"
-        android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary"
-        app:layout_constraintEnd_toStartOf="@+id/search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/search"
-        android:layout_width="47dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="75dp"
-        android:layout_marginEnd="19dp"
-        android:background="#00FFFFFF"
-        android:scaleType="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_search"
-        app:tint="?attr/colorOnPrimary" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/search_text_nestedscrollview"
@@ -128,7 +130,7 @@
         app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext">
+        app:layout_constraintTop_toBottomOf="@+id/layoutSearch">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -157,8 +159,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bot"
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_10sdp"
         android:layout_height="60dp"
+        android:layout_margin="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
