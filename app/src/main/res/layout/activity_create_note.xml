@@ -62,7 +62,8 @@
                 app:tint="@color/colorPrimaryDark" />
 
             <EditText
-                android:maxLength="14"
+                android:maxLines="1"
+                android:maxLength="30"
                 android:ellipsize="end"
                 android:id="@+id/inputNoteTitle"
                 android:layout_width="match_parent"
