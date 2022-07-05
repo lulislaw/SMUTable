@@ -87,20 +87,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             layoutNote = itemView.findViewById(R.id.layoutNote);
             imageNote = itemView.findViewById(R.id.imageNote);
         }
+        @SuppressLint("ResourceAsColor")
         void setNote(Note note) {
             textTitle.setText(note.getTitle());
-            if(note.getNoteText().trim().isEmpty()) {
+            if(note.getNoteText().trim().isEmpty() && note.getSubtitle().trim().isEmpty()) {
                 textSubtitle.setVisibility(View.GONE);
-            }else {
+            } else if (!note.getSubtitle().trim().isEmpty()) {
+                textSubtitle.setText(note.getSubtitle());
+                textSubtitle.setTextColor(Color.parseColor("#89CFF0"));
+            } else
                 textSubtitle.setText(note.getNoteText());
-            }
+
             textDataTime.setText(note.getDateTime());
 
             GradientDrawable gradientDrawable = (GradientDrawable) layoutNote.getBackground();
             if (note.getColor() != null) {
                 gradientDrawable.setColor(Color.parseColor(note.getColor()));
             } else {
-                gradientDrawable.setColor(Color.parseColor("#333333"));
+                gradientDrawable.setColor(R.color.colorDefaultNoteColor);
             }
 
             if (note.getImagePath() != null) {

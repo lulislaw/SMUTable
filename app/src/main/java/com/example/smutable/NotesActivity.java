@@ -222,10 +222,17 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
     @Override
     public void onNoteClicked(Note note, int position) {
         noteClickedPosition = position;
-        Intent intent = new Intent(getApplicationContext(), CreateNoteActivity.class);
-        intent.putExtra("isViewOrUpdate", true);
-        intent.putExtra("note", note);
-        startActivityForResult(intent, REQUEST_CODE_UPDATE_NOTE);
+        if (note.getSubtitle().trim().isEmpty())  {
+            Intent intent = new Intent(getApplicationContext(), CreateNoteActivity.class);
+            intent.putExtra("isViewOrUpdate", true);
+            intent.putExtra("note", note);
+            startActivityForResult(intent, REQUEST_CODE_UPDATE_NOTE);
+        } else {
+            Intent intent = new Intent(getApplicationContext(), CreateNoteActivitySecond.class);
+            intent.putExtra("isViewOrUpdate", true);
+            intent.putExtra("note", note);
+            startActivityForResult(intent, REQUEST_CODE_UPDATE_NOTE);
+        }
     }
 
     private void getNotes(final int requestCode, final boolean isNoteDeleted) {

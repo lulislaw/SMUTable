@@ -46,7 +46,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class CreateNoteActivity extends AppCompatActivity {
+public class CreateNoteActivitySecond extends AppCompatActivity {
 
     private EditText inputNoteTitle, inputNoteSubtitle, inputNoteText;
     private TextView textDataTime;
@@ -68,7 +68,7 @@ public class CreateNoteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_note);
+        setContentView(R.layout.activity_create_note_second);
 
         ImageView imageBack = findViewById(R.id.imageBack);
         imageBack.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +136,18 @@ public class CreateNoteActivity extends AppCompatActivity {
         //
         registerForContextMenu(imageNote);
         //
+
+
+        Bundle bundle = getIntent().getExtras();
+        String Day = bundle.getString("Day");
+        String Month = bundle.getString("Month");
+        String lesson = bundle.getString("lesson");
+        if (Day != null && Month != null && lesson != null) {
+            inputNoteTitle.setText(String.valueOf(lesson),
+                    TextView.BufferType.EDITABLE);
+            inputNoteSubtitle.setText("на " + String.valueOf(Day) + " " + String.valueOf(Month), TextView.BufferType.EDITABLE);
+        }
+
     }
 
     //longClick context menu
@@ -332,7 +344,7 @@ public class CreateNoteActivity extends AppCompatActivity {
                         getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE
                 ) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(
-                            CreateNoteActivity.this,
+                            CreateNoteActivitySecond.this,
                             new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
                             REQUEST_CODE_STORAGE_PERMISSION
                     );
@@ -357,7 +369,7 @@ public class CreateNoteActivity extends AppCompatActivity {
 
     private void showDeleteNoteDialog() {
         if(dialogDeleteNote == null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(CreateNoteActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateNoteActivitySecond.this);
             View view = LayoutInflater.from(this).inflate(
                     R.layout.layout_delete_note,
                     (ViewGroup) findViewById(R.id.layoutDeleteNoteContainer)
@@ -436,35 +448,35 @@ public class CreateNoteActivity extends AppCompatActivity {
     }
     ActivityResultLauncher<Intent> activityResultLauncher =
             registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
 
-                        if(result.getResultCode() == RESULT_OK) {
-                            if(result.getData() != null) {
-                                Uri selectedImageUri = result.getData().getData();
-                                if(selectedImageUri != null) {
-                                    try {
+                            if(result.getResultCode() == RESULT_OK) {
+                                if(result.getData() != null) {
+                                    Uri selectedImageUri = result.getData().getData();
+                                    if(selectedImageUri != null) {
+                                        try {
 
-                                        InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
-                                        Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                                        imageNote.setImageBitmap(bitmap);
-                                        imageNote.setVisibility(View.VISIBLE);
+                                            InputStream inputStream = getContentResolver().openInputStream(selectedImageUri);
+                                            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                                            imageNote.setImageBitmap(bitmap);
+                                            imageNote.setVisibility(View.VISIBLE);
 
 //                                        findViewById(R.id.imageRemoveImage).setVisibility(View.VISIBLE);
-                                        selectedImagePath = getPathFromUri(selectedImageUri);
+                                            selectedImagePath = getPathFromUri(selectedImageUri);
 
 
-                                    } catch (Exception exception) {
-                                        Toast.makeText(CreateNoteActivity.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                        } catch (Exception exception) {
+                                            Toast.makeText(CreateNoteActivitySecond.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             }
                         }
                     }
-                }
-    );
+            );
 
     private String getPathFromUri(Uri contentUri) {
         String filePath;

@@ -3,6 +3,7 @@ package com.example.smutable;
 
 
 import static com.example.smutable.R.layout.activity_main;
+import static com.example.smutable.R.layout.activity_selection;
 
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -32,7 +33,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import cz.msebera.android.httpclient.Header;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     TextView[] TIME = new TextView[4];
     TextView[] thtime = new TextView[4];
     ConstraintLayout[] Subject = new ConstraintLayout[4];
+    ImageView[] onBlockImageNotes = new ImageView[4];
     TextView[] NameSubject = new TextView[4];
     TextView[] TeacherSubject = new TextView[4];
     TextView[] TypeSubject = new TextView[4];
@@ -79,7 +83,10 @@ public class MainActivity extends AppCompatActivity {
     Button CLOSE_INFO_BLOCK;
     ImageButton BUTTON_SET_WEEK;
     Button BUTTON_TO_SELECTION, BUTTON_REFRESH, BUTTON_TO_NEWS, BUTTON_TO_SEARCH, BUTTON_TO_NOTES;
-    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES;
+
+    Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_CREATE_NOTE;
+    ImageView onBlockImageNotes_1, onBlockImageNotes_2, onBlockImageNotes_3, onBlockImageNotes_4;
+
     CalendarView CALENDAR_VIEW;
     LocalDate date, selecteddate;
     ScrollView Scroll;
@@ -113,6 +120,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
+
+        /*SelectionActivity selectionActivity = new SelectionActivity();
+        if (selectionActivity.nightMODE) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            selectionActivity.editor = selectionActivity.sharedPreferences.edit();
+            selectionActivity.editor.putBoolean("night", false);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            selectionActivity.editor = selectionActivity.sharedPreferences.edit();
+            selectionActivity.editor.putBoolean("night", true);
+        }
+        selectionActivity.editor.apply();*/
+
         WEEK_EVEN = 1;
         GroupName = "";
         {
@@ -174,6 +194,17 @@ public class MainActivity extends AppCompatActivity {
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
         BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
         BUTTON_TO_NOTES = findViewById(R.id.note_button_inside);
+
+        onBlockImageNotes_1 = findViewById(R.id.onBlockImageNotes_1);
+        onBlockImageNotes_2 = findViewById(R.id.onBlockImageNotes_2);
+        onBlockImageNotes_3 = findViewById(R.id.onBlockImageNotes_3);
+        onBlockImageNotes_4 = findViewById(R.id.onBlockImageNotes_4);
+
+        onBlockImageNotes[0] = findViewById(R.id.onBlockImageNotes_1);
+        onBlockImageNotes[1] = findViewById(R.id.onBlockImageNotes_2);
+        onBlockImageNotes[2] = findViewById(R.id.onBlockImageNotes_3);
+        onBlockImageNotes[3] = findViewById(R.id.onBlockImageNotes_4);
+
         BUTTON_SET_WEEK = findViewById(R.id.calendar);
         CALENDAR_VIEW = findViewById(R.id.calendarView);
         Scroll = findViewById(R.id.nestedScrollView);
@@ -185,6 +216,9 @@ public class MainActivity extends AppCompatActivity {
         INTENT_TO_SELECTION = new Intent(MainActivity.this, SelectionActivity.class);
         INTENT_TO_NEWS = new Intent(MainActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(MainActivity.this, search_activity.class);
+
+        INTENT_TO_CREATE_NOTE = new Intent(MainActivity.this, CreateNoteActivitySecond.class);
+
         url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
@@ -284,6 +318,10 @@ public class MainActivity extends AppCompatActivity {
                             TEXTVIEW_DATE.setText(daysofweeks_string[DAY_ID] + ", "  +
                                     LocalDate.ofEpochDay(selecteddate.toEpochDay()-(Math.abs(2- finalI))+1).getDayOfMonth() + " " +
                                     monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1]);
+
+                            Integer dayToNote = LocalDate.ofEpochDay(selecteddate.toEpochDay()-(Math.abs(2- finalI))+1).getDayOfMonth();
+                            INTENT_TO_CREATE_NOTE.putExtra("Day", dayToNote.toString());
+
                             SET_TEXT_DAYS();
 
 
@@ -333,6 +371,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
 
             BUTTON_REFRESH.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -476,6 +516,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 0, 1000);
 
+
     }
 
         public void DOWNLOAD_DATA()
@@ -613,6 +654,9 @@ public class MainActivity extends AppCompatActivity {
                 FIRSTNUMBERROW = 40;
 
             }
+
+            List<String> new_temp_string = new ArrayList<>();
+
            for(int i = 0; i < 4; i++) {
                String[] SPLIT = Subject_text[FIRSTNUMBERROW].split("t");
 
@@ -693,6 +737,7 @@ public class MainActivity extends AppCompatActivity {
                TeacherSubject[i].setVisibility(View.VISIBLE);
                TypeSubject[i].setVisibility(View.VISIBLE);
                     NameSubject[i].setText(temp_string[0]);
+                    new_temp_string.add(temp_string[0]);
                     TypeSubject[i].setText(temp_string[1]);
                     TeacherSubject[i].setText(temp_string[2]);
                     RoomSubject[i].setText(temp_string[3] + "\n");
@@ -735,6 +780,51 @@ public class MainActivity extends AppCompatActivity {
                 }
                 FIRSTNUMBERROW += 2;
             }
+
+           for (int i = 0; i < 4; i++) {
+
+               int finalI = i;
+               onBlockImageNotes[i].setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+
+                       INTENT_TO_CREATE_NOTE.putExtra("lesson", new_temp_string.get(finalI));
+                       String monthToNote = monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1];
+
+                       /*if (monthToNote == "Сентября") monthToNote = "9";
+                       else if (monthToNote == "Октября") monthToNote = "10";
+                       else if (monthToNote == "Ноября") monthToNote = "11";
+                       else if (monthToNote == "Декабря") monthToNote = "12";
+                       else if (monthToNote == "Января") monthToNote = "1";
+                       else if (monthToNote == "Февраля") monthToNote = "2";
+                       else if (monthToNote == "Марта") monthToNote = "3";
+                       else if (monthToNote == "Апреля") monthToNote = "4";
+                       else if (monthToNote == "Мая") monthToNote = "5";
+                       else if (monthToNote == "Июня") monthToNote = "6";
+                       else if (monthToNote == "Июля") monthToNote = "7";
+                       else if (monthToNote == "Августа") monthToNote = "8";*/
+
+                       INTENT_TO_CREATE_NOTE.putExtra("Month", monthToNote);
+                       startActivity(INTENT_TO_CREATE_NOTE);
+
+                   }
+               });
+
+               Subject[i].setOnLongClickListener(new View.OnLongClickListener() {
+                   @Override
+                   public boolean onLongClick(View view) {
+
+                       INTENT_TO_CREATE_NOTE.putExtra("lesson", new_temp_string.get(finalI));
+                       String monthToNote = monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1];
+                       INTENT_TO_CREATE_NOTE.putExtra("Month", monthToNote);
+                       startActivity(INTENT_TO_CREATE_NOTE);
+
+                       return false;
+                   }
+               });
+
+           }
+
         } catch (IOException ex) {
         } finally {
 
