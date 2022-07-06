@@ -784,14 +784,17 @@ public class MainActivity extends AppCompatActivity {
            for (int i = 0; i < 4; i++) {
 
                int finalI = i;
-               onBlockImageNotes[i].setOnClickListener(new View.OnClickListener() {
+               Integer finalI_string = finalI + 1;
+
+
+               /*onBlockImageNotes[i].setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View view) {
 
                        INTENT_TO_CREATE_NOTE.putExtra("lesson", new_temp_string.get(finalI));
                        String monthToNote = monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1];
 
-                       /*if (monthToNote == "Сентября") monthToNote = "9";
+                       *//*if (monthToNote == "Сентября") monthToNote = "9";
                        else if (monthToNote == "Октября") monthToNote = "10";
                        else if (monthToNote == "Ноября") monthToNote = "11";
                        else if (monthToNote == "Декабря") monthToNote = "12";
@@ -802,18 +805,19 @@ public class MainActivity extends AppCompatActivity {
                        else if (monthToNote == "Мая") monthToNote = "5";
                        else if (monthToNote == "Июня") monthToNote = "6";
                        else if (monthToNote == "Июля") monthToNote = "7";
-                       else if (monthToNote == "Августа") monthToNote = "8";*/
+                       else if (monthToNote == "Августа") monthToNote = "8";*//*
 
                        INTENT_TO_CREATE_NOTE.putExtra("Month", monthToNote);
                        startActivity(INTENT_TO_CREATE_NOTE);
 
                    }
-               });
+               });*/
 
                Subject[i].setOnLongClickListener(new View.OnLongClickListener() {
                    @Override
                    public boolean onLongClick(View view) {
-
+                       INTENT_TO_CREATE_NOTE.putExtra("LessonNumber", finalI_string.toString());
+                       INTENT_TO_CREATE_NOTE.putExtra("DayOfWeek", daysofweeks_string[DAY_ID]);
                        INTENT_TO_CREATE_NOTE.putExtra("lesson", new_temp_string.get(finalI));
                        String monthToNote = monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1];
                        INTENT_TO_CREATE_NOTE.putExtra("Month", monthToNote);

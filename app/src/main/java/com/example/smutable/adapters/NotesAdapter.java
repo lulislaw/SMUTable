@@ -1,9 +1,11 @@
 package com.example.smutable.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -11,12 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.smutable.CreateNoteActivity;
+import com.example.smutable.CreateNoteActivitySecond;
 import com.example.smutable.Note;
+import com.example.smutable.NotesActivity;
 import com.example.smutable.R;
+import com.example.smutable.database.NotesDatabase;
 import com.example.smutable.listeners.NotesListener;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -59,6 +66,16 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NoteViewHold
             @Override
             public void onClick(View view) {
                 notesListener.onNoteClicked(notes.get(position), position);
+            }
+        });
+        holder.layoutNote.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+
+                Toast.makeText(view.getContext(), "LongClicked", Toast.LENGTH_SHORT).show();
+
+                
+                return false;
             }
         });
     }

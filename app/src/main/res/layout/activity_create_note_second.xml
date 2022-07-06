@@ -100,9 +100,9 @@
                 android:id="@+id/inputNoteSubtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_6sdp"
-                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="0dp"
                 android:background="@null"
                 android:fontFamily="@font/ubuntu"
                 android:hint="Описание"
@@ -114,10 +114,11 @@
                 android:textColor="#89CFF0"
                 android:textColorHint="@color/colorTextHint"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/_15ssp"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
-                app:layout_constraintTop_toBottomOf="@id/textDateTime" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
+            <!--android:textSize="@dimen/_15ssp"-->
 
             <View
                 android:id="@+id/viewSubtitleIndicator"
@@ -125,9 +126,9 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:background="@drawable/background_subtitle_indicator"
-                app:layout_constraintBottom_toBottomOf="@id/inputNoteSubtitle"
+                app:layout_constraintBottom_toBottomOf="@id/inputNote"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/inputNoteSubtitle" />
+                app:layout_constraintTop_toTopOf="@id/inputNote" />
 
             <ImageView
                 android:id="@+id/imageNote"
@@ -160,6 +161,8 @@
                 android:id="@+id/inputNote"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:background="@null"
                 android:fontFamily="@font/ubuntu"
@@ -175,10 +178,10 @@
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
                 app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp"/>
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

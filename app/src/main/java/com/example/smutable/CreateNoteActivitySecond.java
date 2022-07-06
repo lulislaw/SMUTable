@@ -5,10 +5,8 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -27,7 +25,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -139,13 +136,15 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
 
 
         Bundle bundle = getIntent().getExtras();
+        String LessonNumber = bundle.getString("LessonNumber");
+        String DayOfWeek = bundle.getString("DayOfWeek");
         String Day = bundle.getString("Day");
         String Month = bundle.getString("Month");
         String lesson = bundle.getString("lesson");
         if (Day != null && Month != null && lesson != null) {
             inputNoteTitle.setText(String.valueOf(lesson),
                     TextView.BufferType.EDITABLE);
-            inputNoteSubtitle.setText("на " + String.valueOf(Day) + " " + String.valueOf(Month), TextView.BufferType.EDITABLE);
+            inputNoteSubtitle.setText("На " + String.valueOf(Day) + " " + String.valueOf(Month) + ", " + DayOfWeek + "\n" + LessonNumber + " пара", TextView.BufferType.EDITABLE);
         }
 
     }
@@ -193,14 +192,10 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
 
     private void saveNote() {
         if(inputNoteTitle.getText().toString().trim().isEmpty()) {
-            //Toast.makeText(this, "Вы не ввели название", Toast.LENGTH_SHORT).show();
-            inputNoteTitle.setText(inputNoteText.getText().toString().trim());
+            inputNoteTitle.setText("Заметка...");
             return;
-        }/*else if(inputNoteText.getText().toString().trim().isEmpty()
-                && inputNoteSubtitle.getText().toString().trim().isEmpty()) {
-            Toast.makeText(this, "Вы не ввели текст заметки", Toast.LENGTH_SHORT).show();
-            return;
-        }*/
+
+        }
 
         final Note note = new Note();
         note.setTitle(inputNoteTitle.getText().toString());
@@ -367,7 +362,7 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
 
     }
 
-    private void showDeleteNoteDialog() {
+    public void showDeleteNoteDialog() {
         if(dialogDeleteNote == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(CreateNoteActivitySecond.this);
             View view = LayoutInflater.from(this).inflate(
