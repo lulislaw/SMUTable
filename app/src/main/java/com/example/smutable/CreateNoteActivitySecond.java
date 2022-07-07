@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -23,6 +24,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -144,7 +146,7 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
         if (Day != null && Month != null && lesson != null) {
             inputNoteTitle.setText(String.valueOf(lesson),
                     TextView.BufferType.EDITABLE);
-            inputNoteSubtitle.setText("На " + String.valueOf(Day) + " " + String.valueOf(Month) + ", " + DayOfWeek + "\n" + LessonNumber + " пара", TextView.BufferType.EDITABLE);
+            inputNoteSubtitle.setText("На " + String.valueOf(Day) + " " + String.valueOf(Month).toLowerCase() + ", " + DayOfWeek + "\n" + LessonNumber + " пара", TextView.BufferType.EDITABLE);
         }
 
     }
@@ -155,6 +157,9 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         getMenuInflater().inflate(R.menu.menu, menu);
         super.onCreateContextMenu(menu, v, menuInfo);
+        /*Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(10);*/
+
     }
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
@@ -162,7 +167,6 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
         imageNote.setVisibility(View.GONE);
 //        findViewById(R.id.imageRemoveImage).setVisibility(View.GONE);
         selectedImagePath = "";
-        Toast.makeText(this, "Изображение удалено", Toast.LENGTH_SHORT).show();
         return super.onContextItemSelected(item);
     }
     /////////////////////////////////////

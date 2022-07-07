@@ -162,8 +162,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_6sdp"
-                android:layout_marginEnd="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:background="@null"
                 android:fontFamily="@font/ubuntu"
                 android:gravity="top"
@@ -176,12 +176,10 @@
                 android:textColorHint="@color/colorTextHint"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/_15ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle"
-                />
+                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

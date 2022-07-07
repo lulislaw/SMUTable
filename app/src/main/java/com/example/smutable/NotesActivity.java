@@ -11,7 +11,9 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -52,9 +54,9 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
     Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_MAIN;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+
         BUTTON_TO_MAIN = findViewById(R.id.home_button_inside);
         BUTTON_TO_SELECTION = findViewById(R.id.settings_button_inside);
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
@@ -63,6 +65,8 @@ public class NotesActivity extends AppCompatActivity implements NotesListener {
         INTENT_TO_SELECTION = new Intent(NotesActivity.this, SelectionActivity.class);
         INTENT_TO_NEWS = new Intent(NotesActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(NotesActivity.this, search_activity.class);
+
+
 
         BUTTON_TO_MAIN.setOnClickListener(new View.OnClickListener() {
             @Override

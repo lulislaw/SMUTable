@@ -15,8 +15,10 @@ import com.google.android.material.color.MaterialColors;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -821,7 +823,11 @@ public class MainActivity extends AppCompatActivity {
                        INTENT_TO_CREATE_NOTE.putExtra("lesson", new_temp_string.get(finalI));
                        String monthToNote = monthru[LocalDate.ofEpochDay(selecteddate.toEpochDay()+1-(Math.abs(2- finalI))).getMonth().getValue()-1];
                        INTENT_TO_CREATE_NOTE.putExtra("Month", monthToNote);
+
                        startActivity(INTENT_TO_CREATE_NOTE);
+
+                       Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                       vibrator.vibrate(10);
 
                        return false;
                    }
