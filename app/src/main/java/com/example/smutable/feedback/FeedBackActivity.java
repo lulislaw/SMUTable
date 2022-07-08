@@ -35,7 +35,7 @@ public class FeedBackActivity extends AppCompatActivity {
         mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         back_from_feedback = findViewById(R.id.back_from_feedback);
         editContact.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        editMessage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        editMessage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 
         back_from_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,11 +49,14 @@ public class FeedBackActivity extends AppCompatActivity {
         String id = mDataBase.getKey();
         String contact = editContact.getText().toString();
         String message = editMessage.getText().toString();
-        User user = new User(id, contact, message);
+        User user = new User(contact, message);
         if (!contact.isEmpty() && !message.isEmpty()) {
             mDataBase.push().setValue(user);
             Toast.makeText(this, "Отправлено", Toast.LENGTH_SHORT).show();
-            finish();
+            editContact.getText().clear();
+            editMessage.getText().clear();
+            editContact.setHintTextColor(getResources().getColor(R.color.colorTextHint));
+            editMessage.setHintTextColor(getResources().getColor(R.color.colorTextHint));
         } else {
             editContact.setHintTextColor(getResources().getColor(R.color.colorTextHint1));
             editMessage.setHintTextColor(getResources().getColor(R.color.colorTextHint1));

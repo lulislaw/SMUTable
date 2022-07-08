@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".feedback.FeedBackActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/back_from_feedback"
@@ -44,56 +45,68 @@
         android:textColorHint="@color/colorTextHint"
         android:textColor="@color/colorPrimaryDark"
         android:fontFamily="@font/inter"
-        android:background="@drawable/block_style"
+        android:background="@null"
+        android:importantForAutofill="no"
+        android:includeFontPadding="false"
         android:cursorVisible="true"
         android:textSize="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_50sdp"
-        android:paddingStart="@dimen/_5sdp"
-        android:minHeight="@dimen/_30sdp"
+        android:padding="@dimen/_5sdp"
         android:textCursorDrawable="@null"
         android:imeOptions="actionDone" />
+
+    <View
+        android:id="@+id/view"
+        android:background="@drawable/block_style"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        app:layout_constraintTop_toBottomOf="@+id/editContact"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_7sdp"/>
+
 
     <EditText
         android:id="@+id/editMessage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:fontFamily="@font/inter"
+        android:gravity="top"
+        android:hint="Ваше сообщение"
+        android:importantForAutofill="no"
+        android:includeFontPadding="false"
+        android:minHeight="@dimen/_275sdp"
+        android:padding="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorTextHint"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editContact"
-        android:hint="Ваше сообщение"
-        android:textColorHint="@color/colorTextHint"
-        android:textColor="@color/colorPrimaryDark"
-        android:fontFamily="@font/inter"
-        android:background="@drawable/block_style"
-        android:cursorVisible="true"
-        android:textSize="@dimen/_15sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:minHeight="@dimen/_100sdp"
-        android:gravity="top"
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingTop="@dimen/_5sdp"
-        android:textCursorDrawable="@null"
-        android:imeOptions="actionDone"/>
+        app:layout_constraintTop_toBottomOf="@+id/editContact" />
 
     <Button
         android:id="@+id/buttonFeedBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_50sdp"
         android:backgroundTint="@color/softblue"
         android:fontFamily="@font/inter"
         android:onClick="onButtonFeedBack"
         android:text="Отправить"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_40sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editMessage" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
