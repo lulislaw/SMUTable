@@ -63,7 +63,7 @@ public class SelectionActivity extends AppCompatActivity {
 
         //Переключатель темная/светлая тема
 
-        switch_ThemeColor = findViewById(R.id.switch_ThemeColor);
+        /*switch_ThemeColor = findViewById(R.id.switch_ThemeColor);
 
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
         nightMODE = sharedPreferences.getBoolean("night", false); //светлая тема дефолт
@@ -88,7 +88,7 @@ public class SelectionActivity extends AppCompatActivity {
                 }
                 editor.apply();
             }
-        });
+        });*/
 
 
 
