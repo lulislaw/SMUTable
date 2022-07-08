@@ -11,10 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.smutable.feedback.FeedBackActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 
@@ -36,12 +38,13 @@ public class SelectionActivity extends AppCompatActivity {
 
     Button BUTTON_SAVE_SELECTION;
     Button BUTTON_TO_MAIN, BUTTON_TO_NEWS, BUTTON_TO_SEARCH, BUTTON_TO_NOTES;
-    Intent INTENT_TO_MAIN,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES;
+    Intent INTENT_TO_MAIN,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_FEEDBACK;
     Spinner SPINNER_SELECT_COURSE, SPINNER_SELECT_GROUP, SPINNER_SELECT_INSTITUTE;
     String[] url = new String[5];
     int URL_ID, WORKBOOK_COURSE_ID, SHEET_INSTITUTE_ID, COLLUMN_GROUP_ID;
     AsyncHttpClient client;
     Workbook workbook;
+    ImageView image_feedback;
 
     //Переключатель темная/светлая тема
     Switch switch_ThemeColor;
@@ -97,13 +100,12 @@ public class SelectionActivity extends AppCompatActivity {
         SPINNER_SELECT_GROUP = findViewById(R.id.SPINNER_SELECT_GROUP);
         SPINNER_SELECT_INSTITUTE = findViewById(R.id.SPINNER_SELECT_INSTITUTE);
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
+        image_feedback = findViewById(R.id.image_feedback);
 
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
         INTENT_TO_NEWS = new Intent(SelectionActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(SelectionActivity.this, search_activity.class);
-
-
-
+        INTENT_TO_FEEDBACK = new Intent(SelectionActivity.this, FeedBackActivity.class);
 
         url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
@@ -140,6 +142,12 @@ public class SelectionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(INTENT_TO_NEWS);
                 overridePendingTransition(0,0);
+            }
+        });
+        image_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(INTENT_TO_FEEDBACK);
             }
         });
 

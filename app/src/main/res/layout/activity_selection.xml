@@ -396,6 +396,17 @@
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:id="@+id/image_feedback"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:src="@drawable/ic_feedback"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:layout_constraintBottom_toTopOf="@+id/courselayout"
+        app:layout_constraintEnd_toEndOf="@+id/courselayout"
+        app:layout_constraintTop_toBottomOf="@+id/textMyNotes4"
+        app:tint="@color/softblue" />
+
 
     <Button
         android:id="@+id/BUTTON_SAVE_SELECTION"
@@ -410,7 +421,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+
     <Switch
+        android:visibility="gone"
         android:id="@+id/switch_ThemeColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,0 +1,52 @@
+package com.example.smutable.feedback;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.smutable.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class FeedBackActivity extends AppCompatActivity {
+    private EditText editContact, editMessage;
+    private DatabaseReference mDataBase;
+    private String USER_KEY = "User";
+    private ImageView back_from_feedback;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_feed_back);
+        init();
+    }
+    protected void init() {
+        editContact = findViewById(R.id.editContact);
+        editMessage = findViewById(R.id.editMessage);
+        mDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
+        back_from_feedback = findViewById(R.id.back_from_feedback);
+
+        back_from_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    public void onButtonFeedBack(View view) {
+        String id = mDataBase.getKey();
+        String contact = editContact.getText().toString();
+        String message = editMessage.getText().toString();
+        User user = new User(id, contact, message);
+        mDataBase.push().setValue(user);
+
+        Toast.makeText(this, "Отправлено", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+}
