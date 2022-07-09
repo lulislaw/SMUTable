@@ -17,6 +17,7 @@ import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -89,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
     Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_CREATE_NOTE;
     ImageView onBlockImageNotes_1, onBlockImageNotes_2, onBlockImageNotes_3, onBlockImageNotes_4;
 
+
+
+    SharedPreferences sharedPreferences;
+    boolean nightMODE;
+
+
     CalendarView CALENDAR_VIEW;
     LocalDate date, selecteddate;
     ScrollView Scroll;
@@ -96,10 +103,10 @@ public class MainActivity extends AppCompatActivity {
     ImageButton poligon_left, poligon_right;
     LocalDate[] datesbutton = new LocalDate[3];
     int[] thtimeinthours = {
-            8, 9,11,13,13,15,17,18,20
+            8, 9, 11, 13, 13, 15, 17, 18, 20
     };
     int[] thtimeintminutes = {
-            15, 55,35, 5 ,45,25,5,50,30
+            15, 55, 35, 5, 45, 25, 5, 50, 30
     };
     String[] time = {
       "8:15 - 9:45", "9:55 - 11:25","11:35 - 13:05","13:15 - 14:45", "13:45 - 15:15", "15:25 - 16:55", "17:05 - 18:35","18:50 - 20:20", "20:30 - 22:00"
@@ -116,24 +123,20 @@ public class MainActivity extends AppCompatActivity {
     Character[] alphabet = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
 
 
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_main);
 
-        /*SelectionActivity selectionActivity = new SelectionActivity();
-        if (selectionActivity.nightMODE) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-            selectionActivity.editor = selectionActivity.sharedPreferences.edit();
-            selectionActivity.editor.putBoolean("night", false);
-        } else {
+        sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
+        nightMODE = sharedPreferences.getBoolean("night", false);
+
+        if (nightMODE) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            selectionActivity.editor = selectionActivity.sharedPreferences.edit();
-            selectionActivity.editor.putBoolean("night", true);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-        selectionActivity.editor.apply();*/
 
         WEEK_EVEN = 1;
         GroupName = "";

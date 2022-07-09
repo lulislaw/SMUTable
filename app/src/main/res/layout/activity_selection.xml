@@ -39,7 +39,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="@dimen/_24sdp"
         android:background="@drawable/block_style"
         app:layout_constraintBottom_toTopOf="@+id/institutelayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,11 +77,11 @@
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="25dp"
         android:background="@drawable/block_style"
-        app:layout_constraintBottom_toTopOf="@+id/grouplayout"
+        app:layout_constraintBottom_toTopOf="@+id/bot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textMyNotes4">
 
         <Spinner
             android:id="@+id/SPINNER_SELECT_INSTITUTE"
@@ -115,11 +115,11 @@
         android:layout_height="100dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="@dimen/_24sdp"
         android:background="@drawable/block_style"
-        app:layout_constraintBottom_toTopOf="@id/BUTTON_SAVE_SELECTION"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/institutelayout">
 
         <Spinner
             android:id="@+id/SPINNER_SELECT_GROUP"
@@ -408,44 +408,41 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/image_feedback"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
         android:layout_margin="@dimen/_20sdp"
         android:src="@drawable/ic_feedback"
         app:layout_constraintBottom_toTopOf="@+id/courselayout"
-        app:layout_constraintEnd_toEndOf="@+id/courselayout"
+        app:layout_constraintEnd_toStartOf="@+id/switch_ThemeColor"
         app:tint="@color/softblue" />
 
 
     <Button
         android:id="@+id/BUTTON_SAVE_SELECTION"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginStart="75dp"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="35dp"
         android:enabled="false"
         android:text="Сохранить"
         app:layout_constraintBottom_toTopOf="@id/bot"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grouplayout" />
 
 
     <Switch
         android:visibility="gone"
         android:id="@+id/switch_ThemeColor"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="24dp"
-        android:text="Темная тема"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_margin="@dimen/_20sdp"
         android:textSize="16sp"
-        android:thumbTint="@color/colorDefaultNoteColor"
+        android:thumbTint="@color/colorPrimary"
         android:trackTint="@color/alpha25black"
         android:trackTintMode="add"
+        app:layout_constraintBottom_toTopOf="@+id/courselayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textMyNotes4" />
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

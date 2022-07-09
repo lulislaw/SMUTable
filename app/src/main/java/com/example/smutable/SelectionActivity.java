@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.smutable.feedback.FeedBackActivity;
@@ -28,6 +27,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.client.cache.Resource;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
@@ -50,12 +50,9 @@ public class SelectionActivity extends AppCompatActivity {
     ImageView image_feedback, ic_more;
 
     //Переключатель темная/светлая тема
-    Switch switch_ThemeColor;
     boolean nightMODE;
-    boolean NOnightMODE;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,17 +63,21 @@ public class SelectionActivity extends AppCompatActivity {
 
         //Переключатель темная/светлая тема
 
-        /*switch_ThemeColor = findViewById(R.id.switch_ThemeColor);
+        //switch_ThemeColor = findViewById(R.id.switch_ThemeColor);
 
         sharedPreferences = getSharedPreferences("MODE", Context.MODE_PRIVATE);
-        nightMODE = sharedPreferences.getBoolean("night", false); //светлая тема дефолт
+        nightMODE = sharedPreferences.getBoolean("night", false);
 
-        if (nightMODE) {
+
+        /*if (nightMODE) {
             switch_ThemeColor.setChecked(true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        }
+        } else {
+            switch_ThemeColor.setChecked(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }*/
 
-        switch_ThemeColor.setOnClickListener(new View.OnClickListener() {
+        /*switch_ThemeColor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -93,8 +94,6 @@ public class SelectionActivity extends AppCompatActivity {
             }
         });*/
 
-
-
         BUTTON_TO_MAIN= findViewById(R.id.home_button_inside);
         BUTTON_TO_NEWS = findViewById(R.id.news_button_inside);
         BUTTON_TO_SEARCH = findViewById(R.id.search_button_inside);
@@ -105,7 +104,6 @@ public class SelectionActivity extends AppCompatActivity {
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
         image_feedback = findViewById(R.id.image_feedback);
         ic_more = findViewById(R.id.ic_more);
-        //registerForContextMenu(ic_more);
 
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
         INTENT_TO_NEWS = new Intent(SelectionActivity.this, activity_news.class);
@@ -308,6 +306,7 @@ public class SelectionActivity extends AppCompatActivity {
             }
         });
 
+
         ic_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -316,10 +315,26 @@ public class SelectionActivity extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
+
                         if (menuItem.getItemId() == R.id.feedBack) {
                             startActivity(INTENT_TO_FEEDBACK);
-                        } else if (menuItem.getItemId() == R.id.who) {
+                        }
+                        else if (menuItem.getItemId() == R.id.who) {
                             startActivity(INTENT_TO_WHO);
+                        }
+                        else if (menuItem.getItemId() == R.id.theme) {
+
+                            if (nightMODE) {
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                                editor = sharedPreferences.edit();
+                                editor.putBoolean("night", false);
+                            }
+                            else {
+                                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                                editor = sharedPreferences.edit();
+                                editor.putBoolean("night", true);
+                            }
+                            editor.apply();
                         }
                         return false;
                     }

@@ -9,4 +9,9 @@
         android:id="@+id/who"
         android:title="Кто насрал?" />
 
+    <item
+        android:id="@+id/theme"
+
+        android:title="Темная / Светлая тема" />
+
 </menu>
