@@ -13,5 +13,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="popupMenuBackground">@drawable/menu_background</item>
+        
+        <item name="android:popupMenuStyle">@style/popupBGStyle</item>
     </style>
+    
+    <style name="popupBGStyle" parent="Widget.MaterialComponents.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_background</item>
+    </style>
+    
 </resources>

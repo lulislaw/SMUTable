@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="@dimen/_46sdp"
         android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:text="Настройки"
@@ -21,6 +21,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic_more"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:src="@drawable/ic_more"
+        app:layout_constraintBottom_toBottomOf="@+id/textMyNotes4"
+        app:layout_constraintEnd_toEndOf="@+id/courselayout"
+        app:layout_constraintTop_toTopOf="@+id/textMyNotes4"
+        app:tint="@color/colorPrimaryDark" />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/courselayout"

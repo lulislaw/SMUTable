@@ -7,11 +7,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -38,13 +41,13 @@ public class SelectionActivity extends AppCompatActivity {
 
     Button BUTTON_SAVE_SELECTION;
     Button BUTTON_TO_MAIN, BUTTON_TO_NEWS, BUTTON_TO_SEARCH, BUTTON_TO_NOTES;
-    Intent INTENT_TO_MAIN,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_FEEDBACK;
+    Intent INTENT_TO_MAIN,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_FEEDBACK, INTENT_TO_WHO;
     Spinner SPINNER_SELECT_COURSE, SPINNER_SELECT_GROUP, SPINNER_SELECT_INSTITUTE;
     String[] url = new String[5];
     int URL_ID, WORKBOOK_COURSE_ID, SHEET_INSTITUTE_ID, COLLUMN_GROUP_ID;
     AsyncHttpClient client;
     Workbook workbook;
-    ImageView image_feedback;
+    ImageView image_feedback, ic_more;
 
     //Переключатель темная/светлая тема
     Switch switch_ThemeColor;
@@ -101,11 +104,14 @@ public class SelectionActivity extends AppCompatActivity {
         SPINNER_SELECT_INSTITUTE = findViewById(R.id.SPINNER_SELECT_INSTITUTE);
         BUTTON_SAVE_SELECTION = findViewById(R.id.BUTTON_SAVE_SELECTION);
         image_feedback = findViewById(R.id.image_feedback);
+        ic_more = findViewById(R.id.ic_more);
+        //registerForContextMenu(ic_more);
 
         INTENT_TO_MAIN = new Intent(SelectionActivity.this, MainActivity.class);
         INTENT_TO_NEWS = new Intent(SelectionActivity.this, activity_news.class);
         INTENT_TO_SEARCH = new Intent(SelectionActivity.this, search_activity.class);
         INTENT_TO_FEEDBACK = new Intent(SelectionActivity.this, FeedBackActivity.class);
+        INTENT_TO_WHO = new Intent(SelectionActivity.this, HoWeAre.class);
 
         url[0] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FIRSTCOURSE.xls?raw=true";
         url[1] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/SECONDCOURSE.xls?raw=true";
@@ -302,15 +308,23 @@ public class SelectionActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
+        ic_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(SelectionActivity.this, view);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_selection_activity, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        if (menuItem.getItemId() == R.id.feedBack) {
+                            startActivity(INTENT_TO_FEEDBACK);
+                        } else if (menuItem.getItemId() == R.id.who) {
+                            startActivity(INTENT_TO_WHO);
+                        }
+                        return false;
+                    }
+                }); popupMenu.show();
+            }
+        });
     }
 }

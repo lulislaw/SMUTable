@@ -15,12 +15,17 @@ import com.example.smutable.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 
 public class FeedBackActivity extends AppCompatActivity {
     private EditText editContact, editMessage;
     private DatabaseReference mDataBase;
     private String USER_KEY = "User";
     private ImageView back_from_feedback;
+    private TextView dateTimeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,8 @@ public class FeedBackActivity extends AppCompatActivity {
         back_from_feedback = findViewById(R.id.back_from_feedback);
         editContact.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         editMessage.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        dateTimeTextView = findViewById(R.id.dateTimeTextView);
+        dateTimeTextView.setText(new SimpleDateFormat("EE, dd MMMM yyyy HH:mm", Locale.getDefault()).format(new Date()));
 
         back_from_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +56,10 @@ public class FeedBackActivity extends AppCompatActivity {
         String id = mDataBase.getKey();
         String contact = editContact.getText().toString();
         String message = editMessage.getText().toString();
-        User user = new User(contact, message);
+        message = message.replace("\n", "");
+        dateTimeTextView.setText(new SimpleDateFormat("EE, dd MMMM yyyy HH:mm", Locale.getDefault()).format(new Date()));
+        String dateTime = new SimpleDateFormat("EE, dd MMMM yyyy HH:mm", Locale.getDefault()).format(new Date());
+        User user = new User(contact, message, dateTime);
         if (!contact.isEmpty() && !message.isEmpty()) {
             mDataBase.push().setValue(user);
             Toast.makeText(this, "Отправлено", Toast.LENGTH_SHORT).show();
