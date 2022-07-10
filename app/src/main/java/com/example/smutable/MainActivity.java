@@ -19,6 +19,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.view.View;
 import android.view.animation.Animation;
@@ -524,7 +525,22 @@ public class MainActivity extends AppCompatActivity {
             DAY_ID =(LocalDate.of(nYear, inMonth, inDayOfMonth).getDayOfWeek().getValue()-1);
             LOAD_DATA(UsingWeekOfYear);
             DAYS_BUTTON[1].callOnClick();
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    DAYS_BUTTON[1].callOnClick();
+                }
+            }, 800);
+
         }
+
+        /*try {
+            BUTTON_REFRESH.callOnClick();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        DOWNLOAD_DATA();*/
 
         Timer timer = new Timer();
 
