@@ -25,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -39,6 +40,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import cz.msebera.android.httpclient.Header;
@@ -80,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
     int[] thtimecurhours = new int[4];
     int[] thtimecurminutes = new int[4];
     Integer mYear,mMonth,mdayOfMonth;
+    String nMonth, nDayOfMonth;
+    Integer nYear;
     String[] temp_string = new String[4];
     String text, GroupName;
     TextView INFO_BLOCK, TEXTVIEW_GROUP, TEXTVIEW_WEEK, TEXTVIEW_DATE;
@@ -89,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
 
     Intent INTENT_TO_SELECTION,INTENT_TO_NEWS, INTENT_TO_SEARCH, INTENT_TO_NOTES, INTENT_TO_CREATE_NOTE;
     ImageView onBlockImageNotes_1, onBlockImageNotes_2, onBlockImageNotes_3, onBlockImageNotes_4;
+
+    String checkIf;
 
 
 
@@ -123,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     Character[] alphabet = {'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'};
 
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -153,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         DAYS_BUTTON_GROUP[1] = findViewById(R.id.DAY_BUTTON_GROUP_CENTER);
         DAYS_BUTTON_GROUP[2] = findViewById(R.id.DAY_BUTTON_GROUP_RIGHT);
         DAYS_BUTTON_TEXT[0] = findViewById(R.id.but_day_left);
+        DAYS_BUTTON_TEXT[1] = findViewById(R.id.but_day_cen);
         DAYS_BUTTON_TEXT[1] = findViewById(R.id.but_day_cen);
         DAYS_BUTTON_TEXT[2] = findViewById(R.id.but_day_right);
         DAYS_BUTTON_TEXT2[0] = findViewById(R.id.but_month_left);
@@ -229,6 +236,8 @@ public class MainActivity extends AppCompatActivity {
         url[2] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/THIRDCOURSE.xls?raw=true";
         url[3] = "https://github.com/lulislaw/ExcelFilesForAnroidGUU/blob/main/FOURCOURSE.xls?raw=true";
         ROW_ID = 8;
+
+
         FileInputStream fins = null;
                 String text_selection = "";
                 try {
@@ -437,6 +446,8 @@ public class MainActivity extends AppCompatActivity {
                 mYear = year;
                 mMonth = month + 1;
                 mdayOfMonth = dayOfMonth;
+
+
                 SpecialWeekOfYear = (LocalDate.of(mYear,mMonth,mdayOfMonth).getDayOfYear() - date.getDayOfYear()) / 7 + 1;
                 UsingWeekOfYear = SpecialWeekOfYear;
                 selecteddate = LocalDate.of(mYear,mMonth,mdayOfMonth);
@@ -457,8 +468,63 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         DOWNLOAD_DATA();
+
+
+        //////////
+        Bundle bundle = getIntent().getExtras();
+        try {
+            checkIf = bundle.getString("checkIf");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        ////////// Я ТВОЙ МАМА ТРАХАЛ
+
+
+        if (Objects.equals(checkIf, "createNote")) {
+
+            SpecialWeekOfYear = CurrentWeekOfYear;
+
+            nMonth = bundle.getString("MonthFromNote");
+            nDayOfMonth = bundle.getString("DayFromNote");
+            nYear = bundle.getInt("YearFromNote");
+
+            if (Objects.equals(nMonth, "сентября"))
+                nMonth = "9";
+            else if (Objects.equals(nMonth, "октября"))
+                nMonth = "10";
+            else if (Objects.equals(nMonth, "ноября"))
+                nMonth = "11";
+            else if (Objects.equals(nMonth, "декабря"))
+                nMonth = "12";
+            else if (Objects.equals(nMonth, "января"))
+                nMonth = "1";
+            else if (Objects.equals(nMonth, "февраля"))
+                nMonth = "2";
+            else if (Objects.equals(nMonth, "марта"))
+                nMonth = "3";
+            else if (Objects.equals(nMonth, "апреля"))
+                nMonth = "4";
+            else if (Objects.equals(nMonth, "мая"))
+                nMonth = "5";
+            else if (Objects.equals(nMonth, "июня"))
+                nMonth = "6";
+            else if (Objects.equals(nMonth, "июля"))
+                nMonth = "7";
+            else if (Objects.equals(nMonth, "августа"))
+                nMonth = "8";
+
+            int inMonth = Integer.parseInt(nMonth);
+            int inDayOfMonth = Integer.parseInt(nDayOfMonth);
+
+            SpecialWeekOfYear = (LocalDate.of(nYear, inMonth, inDayOfMonth).getDayOfYear() - date.getDayOfYear()) / 7 + 1;
+            UsingWeekOfYear = SpecialWeekOfYear;
+            selecteddate = LocalDate.of(nYear, inMonth, inDayOfMonth);
+            DAY_ID =(LocalDate.of(nYear, inMonth, inDayOfMonth).getDayOfWeek().getValue()-1);
+            LOAD_DATA(UsingWeekOfYear);
+            DAYS_BUTTON[1].callOnClick();
+        }
 
         Timer timer = new Timer();
 
@@ -520,8 +586,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }, 0, 1000);
-
-
     }
 
         public void DOWNLOAD_DATA()

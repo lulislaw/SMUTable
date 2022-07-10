@@ -97,6 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@id/inputNoteTitle" />
 
             <EditText
+                android:visibility="gone"
                 android:id="@+id/inputNoteSubtitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -119,6 +120,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
             <!--android:textSize="@dimen/_15ssp"-->
+            <TextView
+                android:id="@+id/inputNoteSubtitleTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="0dp"
+                android:background="@null"
+                android:fontFamily="@font/ubuntu"
+                android:hint="Описание"
+                android:importantForAutofill="no"
+                android:includeFontPadding="false"
+                android:inputType="textMultiLine"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:textColor="#89CFF0"
+                android:textColorHint="@color/colorTextHint"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textDateTime"/>
 
             <View
                 android:id="@+id/viewSubtitleIndicator"
@@ -178,7 +201,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
 
                 app:layout_constraintStart_toEndOf="@id/viewSubtitleIndicator"
-                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitle" />
+                app:layout_constraintTop_toBottomOf="@id/inputNoteSubtitleTextView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

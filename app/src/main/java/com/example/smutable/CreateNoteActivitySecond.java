@@ -40,6 +40,8 @@ import android.widget.Toast;
 import com.example.smutable.database.NotesDatabase;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
+import org.apache.log4j.chainsaw.Main;
+
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +50,7 @@ import java.util.Locale;
 public class CreateNoteActivitySecond extends AppCompatActivity {
 
     private EditText inputNoteTitle, inputNoteSubtitle, inputNoteText;
-    private TextView textDataTime;
+    private TextView textDataTime, inputNoteSubtitleTextView;
     private View viewSubtitleIndicator;
     private TextView createNoteTime;
 
@@ -63,6 +65,10 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
     private AlertDialog dialogDeleteNote;
 
     private Note alreadyAvailableNote;
+
+    Intent INTENT_TO_MAIN;
+
+    String checkIf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +85,14 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
 
         inputNoteTitle = findViewById(R.id.inputNoteTitle);
         inputNoteSubtitle = findViewById(R.id.inputNoteSubtitle);
+        inputNoteSubtitleTextView = findViewById(R.id.inputNoteSubtitleTextView);
         inputNoteText = findViewById(R.id.inputNote);
         textDataTime = findViewById(R.id.textDateTime);
         createNoteTime = findViewById(R.id.createNoteTime);
         viewSubtitleIndicator = findViewById(R.id.viewSubtitleIndicator);
         imageNote = findViewById(R.id.imageNote);
+        INTENT_TO_MAIN = new Intent(CreateNoteActivitySecond.this, MainActivity.class);
+        MainActivity mainActivity = new MainActivity();
 
         textDataTime.setText(
                 new SimpleDateFormat("EE, dd MMMM yyyy HH:mm", Locale.getDefault())
@@ -146,8 +155,36 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
         if (Day != null && Month != null && lesson != null) {
             inputNoteTitle.setText(String.valueOf(lesson),
                     TextView.BufferType.EDITABLE);
-            inputNoteSubtitle.setText("На " + String.valueOf(Day) + " " + String.valueOf(Month).toLowerCase() + ", " + DayOfWeek + "\n" + LessonNumber + " пара", TextView.BufferType.EDITABLE);
+            inputNoteSubtitle.setText("На " + Day + " " + Month.toLowerCase() + ", " + DayOfWeek + "\n" + LessonNumber + " пара", TextView.BufferType.EDITABLE);
+            inputNoteSubtitleTextView.setText("На " + Day + " " + Month.toLowerCase() + ", " + DayOfWeek + "\n" + LessonNumber + " пара");
         }
+
+        String noteSubtitleTextView = inputNoteSubtitleTextView.getText().toString();
+        noteSubtitleTextView = noteSubtitleTextView.replace("На ", "");
+        noteSubtitleTextView = noteSubtitleTextView.replace(",", "");
+        noteSubtitleTextView = noteSubtitleTextView.replace("\n", " ");
+        noteSubtitleTextView = noteSubtitleTextView.replace(" пара", "");
+        String arr[] = noteSubtitleTextView.split(" ", 4);
+
+        String Year = "2022";
+
+        inputNoteSubtitleTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                int iYear = Integer.parseInt(Year);
+
+                INTENT_TO_MAIN.putExtra("DayFromNote", arr[0]);
+                INTENT_TO_MAIN.putExtra("MonthFromNote", arr[1]);
+                INTENT_TO_MAIN.putExtra("DayOfWeekFromNote", arr[2]);
+                INTENT_TO_MAIN.putExtra("LessonFromNote", lesson);
+                INTENT_TO_MAIN.putExtra("YearFromNote", iYear);
+                checkIf = "createNote";
+                INTENT_TO_MAIN.putExtra("checkIf", checkIf);
+                startActivity(INTENT_TO_MAIN);
+            }
+        });
 
     }
 
@@ -174,6 +211,7 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
     private void setViewOrUpdateNote() {
         inputNoteTitle.setText(alreadyAvailableNote.getTitle());
         inputNoteSubtitle.setText(alreadyAvailableNote.getSubtitle());
+        inputNoteSubtitleTextView.setText(alreadyAvailableNote.getSubtitle());
         inputNoteText.setText(alreadyAvailableNote.getNoteText());
         textDataTime.setText(alreadyAvailableNote.getDateTime());
         selectedNoteColor = alreadyAvailableNote.getColor();
@@ -204,6 +242,7 @@ public class CreateNoteActivitySecond extends AppCompatActivity {
         final Note note = new Note();
         note.setTitle(inputNoteTitle.getText().toString());
         note.setSubtitle(inputNoteSubtitle.getText().toString());
+        note.setSubtitle(inputNoteSubtitleTextView.getText().toString());
         note.setNoteText(inputNoteText.getText().toString());
         note.setDateTime(textDataTime.getText().toString());
         note.setColor(selectedNoteColor);
