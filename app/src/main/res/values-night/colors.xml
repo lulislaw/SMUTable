@@ -40,5 +40,8 @@
     <color name="colorDelete">#FF4842</color>
     <color name="colorSearchBackground">#333333</color>
     <color name="mat">#F2F3F4</color>
+    <color name="background">#121212</color>
+
+
 </resources>
 

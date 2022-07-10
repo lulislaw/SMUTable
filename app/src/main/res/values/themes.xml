@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.SMUTable" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
+        <item name="android:windowLightStatusBar">true</item>
         <item name="colorPrimary">@color/softblue</item>
         <item name="colorPrimaryVariant">@color/softblue</item>
         <item name="colorOnPrimary">@color/black</item>
@@ -11,8 +12,9 @@
         <item name="colorOnSecondary">@color/white</item>
 
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/background</item>
         <!-- Customize your theme here. -->
+        <!-- ?attr/colorPrimaryVariant -->
 
         <item name="popupMenuBackground">@drawable/menu_background</item>
         

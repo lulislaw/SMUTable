@@ -333,8 +333,7 @@ public class SelectionActivity extends AppCompatActivity {
                                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                                 editor = sharedPreferences.edit();
                                 editor.putBoolean("night", true);
-                            }
-                            editor.apply();
+                            } editor.apply();
                         }
                         return false;
                     }
