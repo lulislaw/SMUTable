@@ -531,7 +531,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     DAYS_BUTTON[1].callOnClick();
                 }
-            }, 800);
+            }, 1000);
 
         }
 
